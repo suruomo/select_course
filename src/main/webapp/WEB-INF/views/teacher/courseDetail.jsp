@@ -24,6 +24,7 @@
             <col width="80">
             <col width="100">
             <col width="50">
+            <col width="50">
             <col width="200">
         </colgroup>
         <thead>
@@ -31,6 +32,7 @@
                 <th>学号</th>
                 <th>姓名</th>
                 <th>学院</th>
+                <th>专业</th>
                 <th>分数</th>
                 <th>操作</th>
             </tr>
@@ -41,11 +43,12 @@
                     <td>${stu.stuId}</td>
                     <td>${stu.stuName}</td>
                     <td>${stu.insName}</td>
+                    <td>${stu.profession}</td>
                     <td>${stu.tempScore}</td>
                     <td>
                         <input type="text" class="layui-input" id="${stu.stuId}" value="${stu.tempScore}" style="width:50px; display: inline-block;">
-                        <button class="layui-btn" onclick="update_score(${stu.stuId})">评分</button>
-                        <button class="layui-btn" onclick="delete_fun(${stu.stuId})">删除</button>
+                        <button class="layui-btn" onclick="update_score(${stu.stuId})">录入</button>
+                        <button class="layui-btn" onclick="delete_fun(${stu.stuId})">删除记录</button>
                     </td>
                 </tr>
             </c:forEach>

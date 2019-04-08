@@ -20,8 +20,12 @@
     </script>
     <table class="layui-table" style="margin-top:15px;">
         <colgroup>
+            <col width="50">
+            <col width="50">
             <col width="100">
             <col width="120">
+            <col width="50">
+            <col width="50">
             <col width="50">
             <col width="50">
             <col width="200">
@@ -29,8 +33,12 @@
         </colgroup>
         <thead>
             <tr>
+                <th>开课学年</th>
+                <th>开课学期</th>
                 <th>课程编号</th>
                 <th>课程名称</th>
+                <th>课程性质</th>
+                <th>课程学分</th>
                 <th>人数限制</th>
                 <th>已选人数</th>
                 <th>学院限制</th>
@@ -40,8 +48,12 @@
         <tbody>
             <c:forEach items="${paging.dataList}" var="course">
                 <tr>
+                    <td>${course.year}</td>
+                    <td>${course.term}</td>
                     <td>${course.classId}</td>
                     <td>${course.className}</td>
+                    <td>${course.type}</td>
+                    <td>${course.credit}</td>
                     <td>${course.classNum}</td>
                     <td>${course.classChooseNum}</td>
                     <td>
