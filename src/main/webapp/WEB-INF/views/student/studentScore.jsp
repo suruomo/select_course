@@ -19,7 +19,6 @@
             <col width="50">
             <col width="50">
             <col width="50">
-            <col width="50">
             <col width="60">
             <col width="60">
         </colgroup>
@@ -31,7 +30,6 @@
             <th>课程名称</th>
             <th>教师名称</th>
             <th>学分</th>
-            <th>绩点</th>
             <th>分数</th>
             <th>操作</th>
         </tr>
@@ -45,7 +43,6 @@
                 <td>${course.className}</td>
                 <td>${course.teaName}</td>
                 <td>${course.credit}</td>
-                <td>绩点未完待续</td>
                 <td>${course.score}</td>
                 <td>
                     <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="delete_fun(${course.classId})">退课
