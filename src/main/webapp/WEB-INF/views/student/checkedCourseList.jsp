@@ -43,7 +43,7 @@
         <tbody>
         <c:forEach items="${courseList}" var="course">
             <tr>
-               <td>${course.year}</td>
+                <td>${course.year}</td>
                 <td>${course.term}</td>
                 <td>${course.classId}</td>
                 <td>${course.className}</td> 

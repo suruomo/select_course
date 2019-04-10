@@ -13,13 +13,18 @@
     <p style="color:red; margin-top:10px; font-size:15px;">${msg}</p>
     <table class="layui-table" style="margin-top:15px;">
         <colgroup>
-            <col width="100">
-            <col width="120">
-            <col width="80">
-            <col width="50">
-            <col width="50">
-            <col width="50">
-            <col width="60">
+            <col width="10">
+            <col width="10">
+            <col width="10">
+            <col width="10">
+            <col width="10">
+            <col width="10">
+            <col width="10">
+            <col width="10">
+            <col width="10">
+            <col width="10">
+            <col width="10">
+            <col width="10">
         </colgroup>
         <thead>
         <tr>
@@ -28,8 +33,10 @@
             <th>课程编号</th>
             <th>课程名称</th>
             <th>教师名称</th>
-            <th>学分</th>
-            <th>分数</th>
+            <th>课程性质</th>
+            <th>课程类别</th>
+            <th>课程学分</th>
+            <th>成绩</th>   
         </tr>
         </thead>
         <tbody>
@@ -38,8 +45,10 @@
                 <td>${course.year}</td>
                 <td>${course.term}</td>
                 <td>${course.classId}</td>
-                <td>${course.className}</td>
+                <td>${course.className}</td> 
                 <td>${course.teaName}</td>
+                <td>${course.type}</td>
+                <td>${course.classify}</td>
                 <td>${course.credit}</td>
                 <td>${course.score}</td>
             </tr>
