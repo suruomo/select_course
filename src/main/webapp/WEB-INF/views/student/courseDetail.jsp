@@ -39,8 +39,12 @@
                 <td>${course.classChooseNum}</td>
             </tr>
             <tr>
-                <td>类型</td>
+                <td>课程性质</td>
                 <td>${course.type}</td>
+            </tr>
+             <tr>
+                <td>课程类型</td>
+                <td>${course.classify}</td>
             </tr>
             <tr>
                 <td>学分</td>
@@ -53,6 +57,10 @@
                         ${ins}&nbsp;
                     </c:forEach>
                 </td>
+            </tr>
+             <tr>
+                <td>课程简介</td>
+                <td>${course.introduction}</td>
             </tr>
             </tbody>
         </table>

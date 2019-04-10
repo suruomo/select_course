@@ -77,7 +77,7 @@
                 <td>${course.year}</td>
                 <td>${course.term}</td>
                 <td>${course.classId}</td>
-                <td>${course.className}</td>
+                <td><a href="<%=basePath%>student/courseDetail?classId=${course.classId}">${course.className}</a></td> 
                 <td>${course.teaName}</td>
                 <td>${course.type}</td>
                 <td>${course.classify}</td>
