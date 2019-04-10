@@ -17,7 +17,6 @@ public class CourseServiceImpl implements CourseService {
     private CourseDao courseDao;
     @Autowired
     private UserDao userDao;
-
     @Override
     public List<Course> queryAllById(int id) {      //查找课程列表    
         List<Course> course_list= courseDao.queryCourseById(id);
@@ -154,7 +153,7 @@ public class CourseServiceImpl implements CourseService {
             c.setClassLimitInsName(new ArrayList<>());
             List<Integer> limit_list=courseDao.selectInsIdByClassId(c.getClassId());
             for(Integer i:limit_list){
-                c.getClassLimitInsName().add(courseDao.selectNameByInsId(i));
+                c.getClassLimitInsName().add(courseDao.selectNameByInsId(i));   //获取课程限制学院名称
             }
             c.setTeaName(courseDao.selectTeaNameByTeaId(c.getTeaId()));
             c.setIsChoose(0);
@@ -227,14 +226,14 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> queryAllByInsId(int id) {    //查找课程可选学院列表
-        List<Course> course_list= courseDao.queryAllCourse();
+    public List<Course> queryAllByInsId(int id) {    //根据学院id查找列表
+        List<Course> course_list= courseDao.queryAllCourse();   //课程列表
         List<Course> course_Inslist=new ArrayList<>();
         for(Course c:course_list){
             List<Integer> limit_list=courseDao.selectInsIdByClassId(c.getClassId());
             for(int li:limit_list){
                 if(id==li){
-                    course_Inslist.add(c);
+                    course_Inslist.add(c);   //学院id列表
                     break;
                 }
             }
@@ -243,9 +242,37 @@ public class CourseServiceImpl implements CourseService {
             cc.setClassLimitInsName(new ArrayList<>());
             List<Integer> limit_list=courseDao.selectInsIdByClassId(cc.getClassId());
             for(Integer i:limit_list){
-                cc.getClassLimitInsName().add(courseDao.selectNameByInsId(i));
+                cc.getClassLimitInsName().add(courseDao.selectNameByInsId(i));    //学院名称列表
             }
         }
         return course_Inslist;
+    }
+    @Override
+    public List<Course> queryBiXiu(String bixiu) {   //查找必修课程列表
+    	List<Course> course_list= courseDao.queryCourseBybixiu("必修");	 //必修列表
+    	for(Course cc:course_list){     //每门课程限制学院名称以及授课教师名称
+    		   cc.setTeaName(courseDao.selectTeaNameByTeaId(cc.getTeaId()));    //老师姓名
+               cc.setClassLimitInsName(new ArrayList<>());
+               List<Integer> limit_list=courseDao.selectInsIdByClassId(cc.getClassId());
+               for(Integer i:limit_list){
+                   cc.getClassLimitInsName().add(courseDao.selectNameByInsId(i));    //限制学院名称列表
+               }
+           }
+		return course_list;    
+    	
+    }
+    @Override
+    public List<Course> queryXuanXiu(String xuanxiu) {   //查找选修课程列表
+    	List<Course> course_list= courseDao.queryCourseByxuanxiu("选修");	 //选修列表
+    	for(Course cc:course_list){     //每门课程限制学院名称以及授课教师名称
+    		   cc.setTeaName(courseDao.selectTeaNameByTeaId(cc.getTeaId()));    //老师姓名
+               cc.setClassLimitInsName(new ArrayList<>());
+               List<Integer> limit_list=courseDao.selectInsIdByClassId(cc.getClassId());
+               for(Integer i:limit_list){
+                   cc.getClassLimitInsName().add(courseDao.selectNameByInsId(i));    //限制学院名称列表
+               }
+           }
+		return course_list;    
+    	
     }
 }

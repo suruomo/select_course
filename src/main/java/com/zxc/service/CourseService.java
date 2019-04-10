@@ -27,4 +27,6 @@ public interface CourseService {
     public void deleteCourseChoose(int stuId,int classId);
     public List<Course> queryStuCourse(int stuId);
     public List<Course> queryAllByInsId(int id);
+	public List<Course> queryBiXiu(String bixiu);
+	public List<Course> queryXuanXiu(String xuanxiu);
 }

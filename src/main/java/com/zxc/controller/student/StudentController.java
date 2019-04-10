@@ -122,15 +122,22 @@ public class StudentController {
         return "student/courseList";
     }
 
-    @RequestMapping("/searchListByTeaId")    //通过教师查找课程列表
-    public String searchListByTeaId(@Param("teaid") int teaid,Model model){
-        List<Course> cor_list=courseService.queryAllById(teaid);
+    @RequestMapping("/searchListBybixiu")    //查找必修课程列表
+    public String searchListByTeaId(Model model){
+        List<Course> cor_list=courseService.queryBiXiu("必修");
         model.addAttribute("paging",pageService.subList(1,cor_list));
         model.addAttribute("teaList",userService.queryAllTeacher());
         model.addAttribute("insList",courseService.queryAllIns());
         return "student/courseList";
     }
-
+    @RequestMapping("/searchListByxuanxiu")    //查找选修课程列表
+    public String searchListByxuanxiu(Model model){
+        List<Course> cor_list=courseService.queryXuanXiu("选修");
+        model.addAttribute("paging",pageService.subList(1,cor_list));
+        model.addAttribute("teaList",userService.queryAllTeacher());
+        model.addAttribute("insList",courseService.queryAllIns());
+        return "student/courseList";
+    }
     @RequestMapping("/searchListByInsId")    //通过学院查找课程列表
     public String searchListByInsId(@Param("insid") int insid,Model model){
         List<Course> cor_list=courseService.queryAllByInsId(insid);

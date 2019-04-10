@@ -20,7 +20,6 @@
             <col width="50">
             <col width="50">
             <col width="60">
-            <col width="60">
         </colgroup>
         <thead>
         <tr>
@@ -31,7 +30,6 @@
             <th>教师名称</th>
             <th>学分</th>
             <th>分数</th>
-            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -44,24 +42,10 @@
                 <td>${course.teaName}</td>
                 <td>${course.credit}</td>
                 <td>${course.score}</td>
-                <td>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="delete_fun(${course.classId})">退课
-                    </button>
-                </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <script>
-        function delete_fun(classId) {
-            var r = confirm("确认退课吗？")
-            if (r == true) {
-                window.location.href = "<%=basePath%>student/deleteCourse?courseid=" + classId;
-            }
-            else {
-                return;
-            }
-        }
-    </script>
+
 </rapid:override>
 <%@ include file="base.jsp" %>

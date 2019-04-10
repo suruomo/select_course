@@ -16,10 +16,8 @@
                 <div style="display: inline-block">
                     <div style="width: 180px; float: left; margin-left:-100px;">
                         <select class="layui-select" id="teasearch">
-                            <option value="0">教师姓名</option>
-                            <c:forEach items="${teaList}" var="teacher">
-                                <option value="${teacher.teaId}">${teacher.teaName}</option>
-                            </c:forEach>
+                            <option value="0">必修</option>
+                            <option value="1">选修</option>
                         </select>
                     </div>
                     <button type="button" id="tea" class="layui-btn layui-btn-radius layui-btn-normal" style="margin-left:10px;">筛选</button>
@@ -53,8 +51,9 @@
             <col width="10">
             <col width="10">
             <col width="10">
-            <col width="200">
-            <col width="60">
+            <col width="10">
+            <col width="10">
+            <col width="10">
         </colgroup>
         <thead>
         <tr>
@@ -64,6 +63,7 @@
             <th>课程名称</th>
             <th>教师名称</th>
             <th>课程性质</th>
+            <th>课程类别</th>
             <th>课程学分</th>
             <th>人数限制</th>
             <th>已选人数</th>
@@ -80,6 +80,7 @@
                 <td>${course.className}</td>
                 <td>${course.teaName}</td>
                 <td>${course.type}</td>
+                <td>${course.classify}</td>
                 <td>${course.credit}</td>
                 <td>${course.classNum}</td>
                 <td>${course.classChooseNum}</td>
@@ -178,12 +179,12 @@
     <script>
         $(function () {
             $("#tea").click(function () {
-                var teaid=$("#teasearch option:selected").attr("value");
-                if(teaid===0){
-                    alert("请选择正确的教师姓名");
+                var id=$("#teasearch option:selected").val();
+                if(id==0){    //必修
+                	window.location.href="<%=basePath%>student/searchListBybixiu";
                 }
-                else{
-                    window.location.href="<%=basePath%>student/searchListByTeaId?teaid="+teaid;
+                else{   //选修
+                    window.location.href="<%=basePath%>student/searchListByxuanxiu";
                 }
             });
             $("#ins").click(function () {

@@ -17,6 +17,7 @@ public class Course {
     private String introduction;   //课程简介
     private String year;   //开课学年
     private String term;   //开课学期
+    private String classify;  //课程类别
 	public int getClassId() {
 		return classId;
 	}
@@ -100,6 +101,12 @@ public class Course {
 	}
 	public void setTerm(String term) {
 		this.term = term;
+	}
+	public String getClassify() {
+		return classify;
+	}
+	public void setClassify(String classify) {
+		this.classify = classify;
 	}
 	
 }

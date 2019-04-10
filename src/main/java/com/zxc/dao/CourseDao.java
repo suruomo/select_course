@@ -35,4 +35,6 @@ public interface CourseDao {
     public void downChooseNum(int id);
     public void deleteCourseChoose(Course_choose course_choose);
     public int selectScore(Course_choose course_choose);
+	public List<Course> queryCourseBybixiu(String string);
+	public List<Course> queryCourseByxuanxiu(String string);
 }
