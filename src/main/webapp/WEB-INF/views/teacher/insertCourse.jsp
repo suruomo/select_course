@@ -15,9 +15,9 @@
             <label class="layui-form-label">开课学年</label>
             <div class="layui-input-block">
             <select id="year" lay-verify="">
-                <option value="2017-2018">2017-2018学年</option>
-                <option value="2018-2019">2018-2019学年</option>
-                <option value="2019-2020">2019-2020学年</option>
+                <option value="2017-2018">2017-2018</option>
+                <option value="2018-2019">2018-2019</option>
+                <option value="2019-2020">2019-2020</option>
            </select>
            </div>
         </div>

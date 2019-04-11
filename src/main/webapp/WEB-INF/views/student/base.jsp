@@ -33,8 +33,10 @@
         <dl class="layui-nav-child">
             <dd><a href="<%=basePath%>student/courseList?page=1" style="font-size:16px;">选课</a></dd>
             <dd><a href="<%=basePath%>student/checkedCourseList" style="font-size:16px;">选课信息</a></dd>
-            <dd><a href="<%=basePath%>student/studentScore"      style="font-size:16px;">查看成绩</a></dd>
         </dl>
+    </li>
+      <li class="layui-nav-item ">
+         <a href="<%=basePath%>student/studentScore" style="font-size:20px;">查看成绩</a></dd>
     </li>
     <li class="layui-nav-item" style="float:right; "><a href="<%=basePath%>exit" style="font-size: 20px;">退出登录</a></li>
     <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon" style="font-size:18px;" >&#xe612;</i>&nbsp;${sessionScope.username}&nbsp;${sessionScope.stuid}</li>

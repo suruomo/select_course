@@ -84,12 +84,18 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public int updateCourse(String name,String num,int teaid) {   //修改课程
+    public int updateCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,int teaid) {   //修改课程
         Course course=new Course();
-        course.setTeaId(teaid);
-        course.setClassChooseNum(0);
-        course.setClassNum(Integer.parseInt(num));
         course.setClassName(name);
+        course.setClassify(classify);
+        course.setCredit(credit);
+        course.setIntroduction(introduction);
+        course.setYear(year);
+        course.setTerm(term);
+        course.setType(type);
+        course.setTeaId(teaid);
+        course.setClassChooseNum(course.getClassChooseNum());
+        course.setClassNum(Integer.parseInt(num));
         course.setClassId(courseDao.selectMaxCourseId());
         courseDao.updateCourse(course);
         return course.getClassId();

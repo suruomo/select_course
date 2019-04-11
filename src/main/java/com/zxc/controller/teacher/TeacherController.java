@@ -82,11 +82,7 @@ public class TeacherController {
 
     @RequestMapping("/insertCourseSuccess")    //插入课程成功
     public String insertCourseSuccess(@Param("content") String content,@Param("page") int page, Model model, HttpServletRequest request)throws UnsupportedEncodingException{
-    	System.out.println(URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8"));
     	String[] det= URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8").split("\\|");
-        for(int i=0;i<det.length;i++) {
-        	System.out.println(det[i]);
-        }
         //获取插入后的课程编号
         int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],(int)request.getSession().getAttribute("teaid"));
         courseService.insertInsLimit(det[2],courseId);
@@ -98,7 +94,7 @@ public class TeacherController {
     public String updateCourseSuccess(@Param("content") String content,@Param("page") int page, Model model, HttpServletRequest request)throws UnsupportedEncodingException{
         String[] det= URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8").split("\\|");
         System.out.println(det[0]+" "+det[1]+" "+det[2]);
-        int courseId=courseService.updateCourse(det[0],det[1],(int)request.getSession().getAttribute("teaid"));
+        int courseId=courseService.updateCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],(int)request.getSession().getAttribute("teaid"));
         System.out.println(det[2]);
         courseService.updateInsLimit(det[2],courseId);
         model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));

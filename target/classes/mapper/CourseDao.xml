@@ -23,7 +23,13 @@
         className=#{className},
         classNum=#{classNum},
         teaId=#{teaId},
-        classChooseNum=#{classChooseNum}
+        classChooseNum=#{classChooseNum},
+        type=#{type},
+        credit=#{credit},
+        introduction=#{introduction},
+        year=#{year},
+        term=#{term},
+        classify=#{classify}
         WHERE classId=#{classId}
     </update>
     <insert id="insertInsLimit" parameterType="Course_limit">
