@@ -15,8 +15,8 @@
         SELECT insName FROM Institution WHERE insId=#{id}
     </select>
     <insert id="insertCourse" parameterType="Course" useGeneratedKeys="true" keyProperty="classId" keyColumn="classId">
-        INSERT INTO Course(className,classNum,teaId,classChooseNum)
-        VALUES (#{className},#{classNum},#{teaId},#{classChooseNum})
+        INSERT INTO Course(className,classNum,teaId,classChooseNum,type,credit,introduction,year,term,classify)
+        VALUES (#{className},#{classNum},#{teaId},#{classChooseNum},#{type},#{credit},#{introduction},#{year},#{term},#{classify})
     </insert>
     <update id="updateCourse" parameterType="Course">
         UPDATE Course SET

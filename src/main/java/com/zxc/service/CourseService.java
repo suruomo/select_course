@@ -10,7 +10,7 @@ public interface CourseService {
     public List<Course> queryAllById(int id);
     public List<String> queryInsNameByCourse(int id);
     public List<Institution> queryAllIns();
-    public int insertCourse(String name,String num,int teaid);
+    public int insertCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,int teaid);   //添加课程
     public void insertInsLimit(String det,int classId);
     public Course queryInfoById(int id);
     public List<Integer> selectCourseLimit(int classId);

@@ -38,6 +38,7 @@
                 <th>课程编号</th>
                 <th>课程名称</th>
                 <th>课程性质</th>
+                <th>课程类别</th>
                 <th>课程学分</th>
                 <th>人数限制</th>
                 <th>已选人数</th>
@@ -53,6 +54,7 @@
                     <td>${course.classId}</td>
                     <td>${course.className}</td>
                     <td>${course.type}</td>
+                    <td>${course.classify}</td>
                     <td>${course.credit}</td>
                     <td>${course.classNum}</td>
                     <td>${course.classChooseNum}</td>
