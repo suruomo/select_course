@@ -242,6 +242,7 @@ public class CourseServiceImpl implements CourseService {
         List<Course> course_list= courseDao.queryAllCourse();   //课程列表
         List<Course> course_Inslist=new ArrayList<>();
         for(Course c:course_list){
+        	c.setTeaName(courseDao.selectTeaNameByTeaId(c.getTeaId()));    //老师姓名
             List<Integer> limit_list=courseDao.selectInsIdByClassId(c.getClassId());
             for(int li:limit_list){
                 if(id==li){

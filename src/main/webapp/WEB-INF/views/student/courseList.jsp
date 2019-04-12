@@ -190,7 +190,7 @@
             $("#ins").click(function () {
                 var insid=$("#inssearch option:selected").attr("value");
                 if(insid===0){
-                    alert("请选择正确的教师姓名");
+                    alert("请选择正确的学院姓名");
                 }
                 else{
                     window.location.href="<%=basePath%>student/searchListByInsId?insid="+insid;
