@@ -31,6 +31,11 @@ public class StudentController {
     public String studentIndex(){
         return "student/studentIndex";
     }
+    @RequestMapping("/base2")   //查看个人成绩
+    public String base2(Model model,HttpServletRequest request){
+    	 model.addAttribute("courseList",courseService.queryStuCourse((int)request.getSession().getAttribute("stuid")));
+        return "student/base2";
+    }
     
     @RequestMapping("/studentScore")   //查看个人成绩
     public String studentScore(Model model,HttpServletRequest request){
@@ -89,12 +94,17 @@ public class StudentController {
     }
 
     @RequestMapping("/chooseSuccess")       //选择课程成功，继续选课界面
-    public String chooseSuccess(@Param("stuid") int stuid,@Param("courseid") int courseid,Model model){
-        courseService.chooseSuccess(courseid,stuid);
+    public String chooseSuccess(@Param("stuid") int stuid,@Param("courseid") int courseid,Model model,HttpServletRequest request){
+    	if(courseService.checkStu(courseid,(int)request.getSession().getAttribute("stuid"))){
+    		model.addAttribute("msg","已选择!");
+    		return "student/courseList";
+    	}else {
+    	courseService.chooseSuccess(courseid,stuid);
         model.addAttribute("paging",pageService.subList(1,courseService.queryAllCourse(stuid)));
         model.addAttribute("teaList",userService.queryAllTeacher());
         model.addAttribute("insList",courseService.queryAllIns());
         return "student/courseList";
+    	}
     }
 
     @RequestMapping("/deleteCourse")   //删除选课，继续选课界面

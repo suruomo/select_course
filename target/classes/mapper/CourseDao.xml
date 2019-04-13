@@ -107,4 +107,7 @@
      <select id="queryCourseByxuanxiu" parameterType="String" resultType="Course">
         SELECT * FROM Course WHERE type="选修"
     </select>
+     <select id="selectAllCourseById" parameterType="int" resultType="int">
+        SELECT classId FROM Course_score WHERE stuId=#{stuId}
+    </select>
 </mapper>

@@ -29,4 +29,5 @@ public interface CourseService {
     public List<Course> queryAllByInsId(int id);
 	public List<Course> queryBiXiu(String bixiu);
 	public List<Course> queryXuanXiu(String xuanxiu);
+	public boolean checkStu(int classId,int stuId);
 }

@@ -37,4 +37,5 @@ public interface CourseDao {
     public int selectScore(Course_choose course_choose);
 	public List<Course> queryCourseBybixiu(String string);
 	public List<Course> queryCourseByxuanxiu(String string);
+	public List<Integer> selectAllCourseById(int stuId);
 }

@@ -24,7 +24,7 @@
                 </div>
                 <div style="display: inline-block">
                     <div style="width: 180px; float: left; margin-left:300px;">
-                        <select class="layui-select" id="inssearch">
+                        <select  class="layui-select" id="inssearch">
                             <option value="0">学院名称</option>
                             <c:forEach items="${insList}" var="institution">
                                 <option value="${institution.insId}">${institution.insName}</option>
@@ -77,7 +77,7 @@
                 <td>${course.year}</td>
                 <td>${course.term}</td>
                 <td>${course.classId}</td>
-                <td><a href="<%=basePath%>student/courseDetail?classId=${course.classId}">${course.className}</a></td> 
+                <td>${course.className}</td> 
                 <td>${course.teaName}</td>
                 <td>${course.type}</td>
                 <td>${course.classify}</td>

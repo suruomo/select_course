@@ -195,6 +195,8 @@ public class CourseServiceImpl implements CourseService {
     public void chooseSuccess(int classId, int stuId) {     //学生选课成功，添加成绩表信息（初始成绩为0）
         courseDao.addChooseNum(classId);
         Course_choose course_choose=new Course_choose();
+        Course course=new Course();
+        course.setIsChoose(1);
         course_choose.setScore(0);
         course_choose.setClassId(classId);
         course_choose.setStuId(stuId);
@@ -211,7 +213,15 @@ public class CourseServiceImpl implements CourseService {
         }
         return false;
     }
-
+    @Override
+    public boolean checkStu(int classId, int stuId)   {    //检查学生是否已经选择该课程
+    	List<Integer> classId_list=courseDao.selectAllCourseById(stuId);
+        for(int i:classId_list){
+            if(classId==i)
+                return true;
+        }
+        return false;
+    }
     @Override
     public void deleteCourseChoose(int stuId, int classId) {    //删除该选课
         courseDao.downChooseNum(classId);
