@@ -298,4 +298,8 @@ public class CourseServiceImpl implements CourseService {
 		return course_list;    
     	
     }
+    @Override
+	public List<Institution> queryAllproByIns(int insid) {    //根据insId查找该学院的所有专业
+		return courseDao.queryAllByIns(insid);	 //某学院的所有专业列表
+    }
 }

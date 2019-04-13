@@ -110,4 +110,7 @@
      <select id="selectAllCourseById" parameterType="int" resultType="int">
         SELECT classId FROM Course_score WHERE stuId=#{stuId}
     </select>
+    <select id="queryAllByIns" parameterType="int" resultType="Institution">
+        SELECT * FROM Institution WHERE insId=#{insId}
+    </select>
 </mapper>

@@ -30,4 +30,5 @@ public interface CourseService {
 	public List<Course> queryBiXiu(String bixiu);
 	public List<Course> queryXuanXiu(String xuanxiu);
 	public boolean checkStu(int classId,int stuId);
+	public List<Institution> queryAllproByIns(int insid);
 }

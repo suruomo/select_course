@@ -38,4 +38,5 @@ public interface CourseDao {
 	public List<Course> queryCourseBybixiu(String string);
 	public List<Course> queryCourseByxuanxiu(String string);
 	public List<Integer> selectAllCourseById(int stuId);
+	public List<Institution> queryAllByIns(int insid);
 }

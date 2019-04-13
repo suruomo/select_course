@@ -19,7 +19,7 @@
         }
     </style>
 </head>
-<body class="layui-layout-body" style="padding:10px 50px;">
+<body class="layui-layout-body" style="padding:10px 50px;" >
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";

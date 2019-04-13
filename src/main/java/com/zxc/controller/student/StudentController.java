@@ -31,12 +31,6 @@ public class StudentController {
     public String studentIndex(){
         return "student/studentIndex";
     }
-    @RequestMapping("/base2")   //查看个人成绩
-    public String base2(Model model,HttpServletRequest request){
-    	 model.addAttribute("courseList",courseService.queryStuCourse((int)request.getSession().getAttribute("stuid")));
-        return "student/base2";
-    }
-    
     @RequestMapping("/studentScore")   //查看个人成绩
     public String studentScore(Model model,HttpServletRequest request){
     	 model.addAttribute("courseList",courseService.queryStuCourse((int)request.getSession().getAttribute("stuid")));

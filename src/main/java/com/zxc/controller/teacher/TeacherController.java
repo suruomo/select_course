@@ -68,7 +68,13 @@ public class TeacherController {
 
     @RequestMapping("/insertCourse")    //录入课程
     public String insertCourse(Model model){
-        model.addAttribute("insList",courseService.queryAllIns());
+        //model.addAttribute("insList",courseService.queryAllIns());
+        model.addAttribute("jisuanjiList",courseService.queryAllproByIns(1001));
+        model.addAttribute("yiList",courseService.queryAllproByIns(1002));
+        model.addAttribute("guanliList",courseService.queryAllproByIns(1004));
+        model.addAttribute("wenList",courseService.queryAllproByIns(1006));
+        model.addAttribute("jingjiList",courseService.queryAllproByIns(1005));
+        model.addAttribute("liList",courseService.queryAllproByIns(1007));
         return "teacher/insertCourse";
     }
 
