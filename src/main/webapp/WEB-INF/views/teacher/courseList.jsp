@@ -42,7 +42,7 @@
                 <th>课程学分</th>
                 <th>人数限制</th>
                 <th>已选人数</th>
-                <th>学院限制</th>
+                <th>专业限制</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -59,8 +59,8 @@
                     <td>${course.classNum}</td>
                     <td>${course.classChooseNum}</td>
                     <td>
-                        <c:forEach items="${course.classLimitInsName}" var="insname">
-                            ${insname}&nbsp;
+                        <c:forEach items="${course.classLimitProName}" var="proname">
+                            ${proname}&nbsp;
                         </c:forEach>
                     </td>
                     <td>

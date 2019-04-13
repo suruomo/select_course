@@ -81,17 +81,24 @@ public class TeacherController {
     @RequestMapping("/editCourse")    //修改课程
     public String editCourse(@Param("courseid") int courseid, Model model){
         model.addAttribute("courseInfo",courseService.queryInfoById(courseid));
-        model.addAttribute("checkIns",courseService.selectCourseLimit(courseid));
-        model.addAttribute("insList",courseService.queryAllIns());
+        //model.addAttribute("checkIns",courseService.selectCourseLimit(courseid));
+        model.addAttribute("checkpro",courseService.selectCourseLimit(courseid));
+        model.addAttribute("jisuanjiList",courseService.queryAllproByIns(1001));
+        model.addAttribute("yiList",courseService.queryAllproByIns(1002));
+        model.addAttribute("guanliList",courseService.queryAllproByIns(1004));
+        model.addAttribute("wenList",courseService.queryAllproByIns(1006));
+        model.addAttribute("jingjiList",courseService.queryAllproByIns(1005));
+        model.addAttribute("liList",courseService.queryAllproByIns(1007));
         return "teacher/editCourse";
     }
 
     @RequestMapping("/insertCourseSuccess")    //插入课程成功
     public String insertCourseSuccess(@Param("content") String content,@Param("page") int page, Model model, HttpServletRequest request)throws UnsupportedEncodingException{
+    	System.out.println(content);
     	String[] det= URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8").split("\\|");
         //获取插入后的课程编号
         int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],(int)request.getSession().getAttribute("teaid"));
-        courseService.insertInsLimit(det[2],courseId);
+        courseService.insertProLimit(det[2],courseId);
         model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));
         return "teacher/courseList";
     }
@@ -102,7 +109,7 @@ public class TeacherController {
         System.out.println(det[0]+" "+det[1]+" "+det[2]);
         int courseId=courseService.updateCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],(int)request.getSession().getAttribute("teaid"));
         System.out.println(det[2]);
-        courseService.updateInsLimit(det[2],courseId);
+        courseService.updateProLimit(det[2],courseId);
         model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));
         return "teacher/courseList";
     }

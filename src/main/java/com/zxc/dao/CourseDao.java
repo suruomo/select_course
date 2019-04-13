@@ -9,17 +9,17 @@ import java.util.List;
 
 public interface CourseDao {
     public List<Course> queryCourseById(int id);
-    public List<Integer> queryInsIdByCourseId(int id);
-    public String selectNameByInsId(int id);
+   // public List<Integer> queryInsIdByCourseId(int id);   //no
+   // public String selectNameByInsId(int id);   //no
     public List<Institution> queryAllIns();
     public void insertCourse(Course course);
-    public void insertInsLimit(Course_limit course_limit);
+   // public void insertInsLimit(Course_limit course_limit);    //no
     public Course queryCourseInfoById(int id);
     public List<Integer> selectCourseLimit(int classId);
     public void updateCourse(Course course);
     public int selectMaxCourseId();
     public void updateInsLimit(Course_limit course_limit);
-    public void deleteInsLimit(int id);
+    public void deleteInsLimit(int id);   //no
     public void deleteCourseById(int id);
     public void deleteStuByClassId(int id);
     public void deleteLimitByClassId(int id);
@@ -39,4 +39,8 @@ public interface CourseDao {
 	public List<Course> queryCourseByxuanxiu(String string);
 	public List<Integer> selectAllCourseById(int stuId);
 	public List<Institution> queryAllByIns(int insid);
+	public void insertProLimit(Course_limit course_limit);
+	public void deleteProLimit(int classId);
+	public List<Integer> selectProIdByClassId(int classId);
+	public String selectNameByProId(int id);
 }

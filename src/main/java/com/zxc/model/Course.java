@@ -18,6 +18,7 @@ public class Course {
     private String year;   //开课学年
     private String term;   //开课学期
     private String classify;  //课程类别
+    private List<String> classLimitProName;  //课程限制专业名称
 	public int getClassId() {
 		return classId;
 	}
@@ -107,6 +108,12 @@ public class Course {
 	}
 	public void setClassify(String classify) {
 		this.classify = classify;
+	}
+	public List<String> getClassLimitProName() {
+		return classLimitProName;
+	}
+	public void setClassLimitProName(List<String> classLimitProName) {
+		this.classLimitProName = classLimitProName;
 	}
 	
 }

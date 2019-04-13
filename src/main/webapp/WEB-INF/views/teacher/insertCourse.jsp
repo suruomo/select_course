@@ -127,7 +127,7 @@
                 var classify = $('#le input[name="classify"]:checked ').val();      //课程类别
                 var ins = "";             //学院
                 var count=0;
-                $("input[name='ins']:checked").each(function () {
+                $("input[name='pro']:checked").each(function () {
                     count++;
                     if (count === 1) {
                         ins = ins + $(this).attr("value");

@@ -8,11 +8,11 @@
     <select id="queryAllIns" resultType="Institution">
         SELECT * FROM Institution
     </select>
-    <select id="queryInsIdByCourseId" parameterType="int" resultType="int">
-        SELECT insId FROM Course_limit WHERE classId=#{id}
+    <select id="selectProIdByClassId" parameterType="int" resultType="int">
+        SELECT proId FROM Course_limit WHERE classId=#{id}
     </select>
-    <select id="selectNameByInsId" parameterType="int" resultType="java.lang.String">
-        SELECT insName FROM Institution WHERE insId=#{id}
+    <select id="selectNameByProId" parameterType="int" resultType="String">
+        SELECT proName FROM Institution WHERE proId=#{id}
     </select>
     <insert id="insertCourse" parameterType="Course" useGeneratedKeys="true" keyProperty="classId" keyColumn="classId">
         INSERT INTO Course(className,classNum,teaId,classChooseNum,type,credit,introduction,year,term,classify)
@@ -36,6 +36,10 @@
         INSERT INTO Course_limit (classId,insId)
         VALUES (#{classId},#{insId})
     </insert>
+    <insert id="insertProLimit" parameterType="Course_limit">
+        INSERT INTO Course_limit (classId,proId)
+        VALUES (#{classId},#{proId})
+    </insert>
     <insert id="updateInsLimit" parameterType="Course_limit">
         UPDATE Course_limit SET
         insId=#{insId}
@@ -45,12 +49,12 @@
         SELECT * FROM Course WHERE classId=#{id}
     </select>
     <select id="selectCourseLimit" parameterType="int" resultType="int">
-        SELECT insId FROM Course_limit WHERE classId=#{classId}
+        SELECT proId FROM Course_limit WHERE classId=#{classId}
     </select>
     <select id="selectMaxCourseId" resultType="int">
         SELECT MAX(classId) FROM Course
     </select>
-    <delete id="deleteInsLimit" parameterType="int">
+    <delete id="deleteProLimit" parameterType="int">
         DELETE FROM Course_limit WHERE classId=#{id}
     </delete>
     <delete id="deleteCourseById" parameterType="int">

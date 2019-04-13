@@ -10,7 +10,7 @@
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
     %>
-    <form class="layui-form" id="changeform" method="post" action="<%=basePath%>teacher/changeTeaPass" style="margin:80px 400px; width:450px;">
+    <form class="layui-form" id="changeform" method="post" action="<%=basePath%>teacher/changeTeaPass" style="margin:80px 400px; width:700px;height: 500px; overflow:scroll">
              <div class="layui-form-item">
             <label class="layui-form-label">开课学年</label>
             <div class="layui-input-block">
@@ -65,15 +65,78 @@
         <div class="layui-form-item">
             <label class="layui-form-label">学院限制</label>
             <div class="layui-input-block">
-                <c:forEach items="${insList}" var="ins">
-                    <input type="checkbox" name="ins" value="${ins.insId}" title="${ins.insName}"
-                    <c:forEach items="${checkIns}" var="checkins">
-                        <c:if test="${ins.insId==checkins}">
-                            checked
-                        </c:if>
-                    </c:forEach>
-                    >
-                </c:forEach>
+                <label class="layui-form-label">计算机学院</label>   
+                   <div class="layui-form-item">  
+                       <c:forEach items="${jisuanjiList}" var="pro">
+                         <input type="checkbox" name="pro" value="${pro.proId}" title="${pro.proName}"
+                            <c:forEach items="${checkpro}" var="checkpro">
+                               <c:if test="${pro.proId==checkpro}">
+                                checked
+                               </c:if>
+                            </c:forEach>
+                         >
+                        </c:forEach>   
+                    </div>  
+            <label class="layui-form-label">医学院</label>  
+                   <div class="layui-form-item">  
+                        <c:forEach items="${yiList}" var="pro">
+                         <input type="checkbox" name="pro" value="${pro.proId}" title="${pro.proName}"
+                          <c:forEach items="${checkpro}" var="checkpro">
+                               <c:if test="${pro.proId==checkpro}">
+                                checked
+                               </c:if>
+                            </c:forEach>
+                         >
+                        </c:forEach>   
+                   </div>   
+            <label class="layui-form-label">文学院</label>  
+                   <div class="layui-form-item">  
+                        <c:forEach items="${wenList}" var="pro">
+                         <input type="checkbox" name="pro" value="${pro.proId}" title="${pro.proName}"
+                          <c:forEach items="${checkpro}" var="checkpro">
+                               <c:if test="${pro.proId==checkpro}">
+                                checked
+                               </c:if>
+                            </c:forEach>
+                         >
+                        </c:forEach>   
+                   </div>  
+            <label class="layui-form-label">管理学院</label>  
+                   <div class="layui-form-item">  
+                        <c:forEach items="${guanliList}" var="pro">
+                         <input type="checkbox" name="pro" value="${pro.proId}" title="${pro.proName}"
+                          <c:forEach items="${checkpro}" var="checkpro">
+                               <c:if test="${pro.proId==checkpro}">
+                                checked
+                               </c:if>
+                            </c:forEach>
+                         >
+                        </c:forEach>   
+                   </div>  
+             <label class="layui-form-label">经济学院</label>  
+                   <div class="layui-form-item">  
+                        <c:forEach items="${jingjiList}" var="pro">
+                         <input type="checkbox" name="pro" value="${pro.proId}" title="${pro.proName}"
+                          <c:forEach items="${checkpro}" var="checkpro">
+                               <c:if test="${pro.proId==checkpro}">
+                                checked
+                               </c:if>
+                            </c:forEach>
+                         >
+                        </c:forEach>   
+                   </div>  
+              <label class="layui-form-label">理学院</label>  
+                   <div class="layui-form-item">  
+                        <c:forEach items="${liList}" var="pro">
+                         <input type="checkbox" name="pro" value="${pro.proId}" title="${pro.proName}"
+                          <c:forEach items="${checkpro}" var="checkpro">
+                               <c:if test="${pro.proId==checkpro}">
+                                checked
+                               </c:if>
+                            </c:forEach>
+                         >
+                        </c:forEach>   
+                   </div>    
             </div>
         </div>
          <div class="layui-form-item">
@@ -105,7 +168,7 @@
                 var classify = $('#le input[name="classify"]:checked ').val();      //课程类别
                 var ins = "";
                 var count=0;
-                $("input[name='ins']:checked").each(function () {
+                $("input[name='pro']:checked").each(function () {
                     count++;
                     if (count === 1) {
                         ins = ins + $(this).attr("value");
@@ -127,6 +190,7 @@
                 myform.method = "POST";
                 myform.action = "<%=basePath%>teacher/updateCourseSuccess?page="+1;
                 myform.submit();
+                alert("修改已保存");
                 document.body.removeChild(myform);
             })
         })

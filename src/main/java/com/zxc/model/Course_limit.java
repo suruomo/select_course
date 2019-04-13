@@ -4,7 +4,7 @@ package com.zxc.model;
 public class Course_limit {
     private int classId;   //课程id
     private int insId;   //学院id
-
+    private int proId;
     public void setClassId(int classId) {
         this.classId = classId;
     }
@@ -20,4 +20,13 @@ public class Course_limit {
     public int getInsId() {
         return insId;
     }
+
+	public int getProId() {
+		return proId;
+	}
+
+	public void setProId(int proId) {
+		this.proId = proId;
+	}
+    
 }

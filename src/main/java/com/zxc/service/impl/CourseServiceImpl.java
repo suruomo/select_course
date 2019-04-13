@@ -21,10 +21,10 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> queryAllById(int id) {      //查找课程列表    
         List<Course> course_list= courseDao.queryCourseById(id);
         for(Course c:course_list){
-            c.setClassLimitInsName(new ArrayList<>());
-            List<Integer> limit_list=courseDao.selectInsIdByClassId(c.getClassId());
+            c.setClassLimitProName(new ArrayList<>());
+            List<Integer> limit_list=courseDao.selectProIdByClassId(c.getClassId());
             for(Integer i:limit_list){
-                c.getClassLimitInsName().add(courseDao.selectNameByInsId(i));  //查找课程限制学院列表
+                c.getClassLimitProName().add(courseDao.selectNameByProId(i));  //查找课程限制专业列表
             }
         }
         return course_list;
@@ -63,13 +63,13 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void insertInsLimit(String det,int classId) {     //插入课程限制学院
-        String[] insList=det.split(",");
-        for(String in:insList){
+    public void insertProLimit(String det,int classId) {     //插入课程限制学院
+        String[] proList=det.split(",");
+        for(String in:proList){
             Course_limit course_limit=new Course_limit();
             course_limit.setClassId(classId);
-            course_limit.setInsId(Integer.parseInt(in));
-            courseDao.insertInsLimit(course_limit);
+            course_limit.setProId(Integer.parseInt(in));
+            courseDao.insertProLimit(course_limit);
         }
     }
 
@@ -102,14 +102,14 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void updateInsLimit(String det, int classId) {
-        String[] insList=det.split(",");
-        courseDao.deleteInsLimit(classId);
-        for(String ins:insList){
+    public void updateProLimit(String det, int classId) {
+        String[] proList=det.split(",");
+        courseDao.deleteProLimit(classId);
+        for(String ins:proList){
             Course_limit course_limit=new Course_limit();
             course_limit.setClassId(classId);
-            course_limit.setInsId(Integer.parseInt(ins));
-            courseDao.insertInsLimit(course_limit);
+            course_limit.setProId(Integer.parseInt(ins));
+            courseDao.insertProLimit(course_limit);
         }
     }
 

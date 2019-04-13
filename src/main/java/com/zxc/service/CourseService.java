@@ -11,11 +11,11 @@ public interface CourseService {
     public List<String> queryInsNameByCourse(int id);
     public List<Institution> queryAllIns();
     public int insertCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,int teaid);   //添加课程
-    public void insertInsLimit(String det,int classId);
+    //public void insertInsLimit(String det,int classId);     //no  
     public Course queryInfoById(int id);
     public List<Integer> selectCourseLimit(int classId);
     public int updateCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,int teaid);
-    public void updateInsLimit(String det,int classId);
+   //    public void updateInsLimit(String det,int classId);   //no
     public void deleteCourse(int id);
     public List<Student> queryStuByCourseId(int id);
     public void updateScore(int classId,int stuId,int score);
@@ -31,4 +31,6 @@ public interface CourseService {
 	public List<Course> queryXuanXiu(String xuanxiu);
 	public boolean checkStu(int classId,int stuId);
 	public List<Institution> queryAllproByIns(int insid);
+	public void insertProLimit(String det,int classId);
+	public void updateProLimit(String det,int classId);
 }
