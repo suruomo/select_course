@@ -14,7 +14,7 @@ public interface CourseService {
     //public void insertInsLimit(String det,int classId);     //no  
     public Course queryInfoById(int id);
     public List<Integer> selectCourseLimit(int classId);
-    public int updateCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,int teaid);
+    public int updateCourse(int id,String num,String credit,String introduction,String year,String term,String type,String classify,String name,int teaid);
    //    public void updateInsLimit(String det,int classId);   //no
     public void deleteCourse(int id);
     public List<Student> queryStuByCourseId(int id);

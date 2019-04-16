@@ -84,7 +84,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public int updateCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,int teaid) {   //修改课程
+    public int updateCourse(int id,String num,String credit,String introduction,String year,String term,String type,String classify,String name,int teaid) {   //修改课程
         Course course=new Course();
         course.setClassName(name);
         course.setClassify(classify);
@@ -96,7 +96,7 @@ public class CourseServiceImpl implements CourseService {
         course.setTeaId(teaid);
         course.setClassChooseNum(course.getClassChooseNum());
         course.setClassNum(Integer.parseInt(num));
-        course.setClassId(courseDao.selectMaxCourseId());
+        course.setClassId(id);
         courseDao.updateCourse(course);
         return course.getClassId();
     }

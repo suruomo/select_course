@@ -163,6 +163,7 @@
             	var type=$('#ty input[name="type"]:checked ').val();    //单选框选课程性质
             	var credit=$("#credit").val();    //学分
                 var name = $("#name").val();     //课程名称
+                var id = ${courseInfo.classId}
                 var introduction = $("#introduction").val();    //简介
                 var num = $("#num").val();         //课程容量
                 var classify = $('#le input[name="classify"]:checked ').val();      //课程类别
@@ -177,7 +178,7 @@
                         ins = ins + "," + $(this).attr("value");
                     }
                 })
-                var content=name+"|"+num+"|"+ins+"|"+credit+"|"+introduction+"|"+year+"|"+term+"|"+type+"|"+classify;
+                var content=id+"|"+num+"|"+ins+"|"+credit+"|"+introduction+"|"+year+"|"+term+"|"+type+"|"+classify+"|"+name;
                 var myform=document.createElement("form");
                 myform.id = "form1";
                 myform.name = "form1";

@@ -100,14 +100,16 @@ public class TeacherController {
         int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],(int)request.getSession().getAttribute("teaid"));
         courseService.insertProLimit(det[2],courseId);
         model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));
-        return "teacher/courseList";
+        return "redict:teacher/courseList";
     }
 
     @RequestMapping("/updateCourseSuccess")   //修改课程成功
     public String updateCourseSuccess(@Param("content") String content,@Param("page") int page, Model model, HttpServletRequest request)throws UnsupportedEncodingException{
         String[] det= URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8").split("\\|");
-        System.out.println(det[0]+" "+det[1]+" "+det[2]);
-        int courseId=courseService.updateCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],(int)request.getSession().getAttribute("teaid"));
+        for(int i=0;i<det.length;i++) {
+        	System.out.println(det[i]);
+        }
+        int courseId=courseService.updateCourse(Integer.parseInt(det[0]),det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],(int)request.getSession().getAttribute("teaid"));
         System.out.println(det[2]);
         courseService.updateProLimit(det[2],courseId);
         model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));
