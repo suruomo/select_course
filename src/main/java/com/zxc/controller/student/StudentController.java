@@ -6,7 +6,7 @@ import com.zxc.service.CourseService;
 import com.zxc.service.PageService;
 import com.zxc.service.UserService;
 import org.apache.ibatis.annotations.Param;
-import org.apache.xpath.operations.Mod;
+//import org.apache.xpath.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +45,22 @@ public class StudentController {
     @RequestMapping("/editStuPass")    //个人资料页点击修改个人密码
     public String editTeaPass(){
         return "student/editStuPass";
+    }
+    @RequestMapping("/selectCourse")    //选课主页面
+    public String selectCourse(){
+        return "student/selectCourse";
+    }
+    @RequestMapping("/publicCourse")    //选课主页面
+    public String publicCourse(){
+        return "student/publicCourse";
+    }
+    @RequestMapping("/professionCourse")    //选课主页面
+    public String professionCourse(){
+        return "student/professionCourse";
+    }
+    @RequestMapping("/tongShiCourse")    //选课主页面
+    public String tongShiCourse(){
+        return "student/tongShiCourse";
     }
 
     @RequestMapping("/changeStuPass")   //修改密码
