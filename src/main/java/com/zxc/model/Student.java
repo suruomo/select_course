@@ -14,6 +14,8 @@ public class Student {
     private String photo;    //头像
     private int proId;    //专业代码
     private String proName;    //专业名称
+    private String grade;   //年级
+    private String state;  //用户状态
 	public int getStuId() {
 		return stuId;
 	}
@@ -92,6 +94,18 @@ public class Student {
 	}
 	public void setProName(String proName) {
 		this.proName = proName;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
     
 

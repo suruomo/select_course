@@ -253,7 +253,7 @@ public class CourseServiceImpl implements CourseService {
         List<Course> course_Inslist=new ArrayList<>();
         for(Course c:course_list){
         	c.setTeaName(courseDao.selectTeaNameByTeaId(c.getTeaId()));    //老师姓名
-            List<Integer> limit_list=courseDao.selectInsIdByClassId(c.getClassId());
+            List<Integer> limit_list=courseDao.selectProIdByClassId(c.getClassId());
             for(int li:limit_list){
                 if(id==li){
                     course_Inslist.add(c);   //学院id列表
@@ -263,7 +263,7 @@ public class CourseServiceImpl implements CourseService {
         }
         for(Course cc:course_Inslist){
             cc.setClassLimitProName(new ArrayList<>());
-            List<Integer> limit_list=courseDao.selectInsIdByClassId(cc.getClassId());
+            List<Integer> limit_list=courseDao.selectProIdByClassId(cc.getClassId());
             for(Integer i:limit_list){
                 cc.getClassLimitProName().add(courseDao.selectNameByProId(i));    //学院名称列表
             }
@@ -290,7 +290,7 @@ public class CourseServiceImpl implements CourseService {
     	for(Course cc:course_list){     //每门课程限制学院名称以及授课教师名称
     		   cc.setTeaName(courseDao.selectTeaNameByTeaId(cc.getTeaId()));    //老师姓名
                cc.setClassLimitProName(new ArrayList<>());
-               List<Integer> limit_list=courseDao.selectInsIdByClassId(cc.getClassId());
+               List<Integer> limit_list=courseDao.selectProIdByClassId(cc.getClassId());
                for(Integer i:limit_list){
                    cc.getClassLimitProName().add(courseDao.selectNameByProId(i));    //限制学院名称列表
                }

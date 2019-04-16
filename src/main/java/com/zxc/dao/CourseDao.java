@@ -26,7 +26,7 @@ public interface CourseDao {
     public List<Course_choose> queryStuIdByCourseId(int id);
     public void updateScore(Course_choose course_choose);
     public List<Course> queryAllCourse();
-    public List<Integer> selectInsIdByClassId(int classId);
+   // public List<Integer> selectProIdByClassId(int classId);
     public String selectTeaNameByTeaId(int id);
     public Course selectCourseByClassId(int id);
     public void addChooseNum(int id);

@@ -24,6 +24,14 @@
             <td>姓名</td>
             <td>${student.stuName}</td>
         </tr>
+        <tr>
+            <td>年级</td>
+            <td>${student.grade}</td>
+        </tr>
+         <tr>
+            <td>用户状态</td>
+            <td>${student.state}</td>
+        </tr>
          <tr>
             <td>年龄</td>
             <td>${student.sex}</td>

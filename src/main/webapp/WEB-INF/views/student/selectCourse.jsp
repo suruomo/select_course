@@ -26,9 +26,5 @@
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/modernizr.js"></script>
 <script src='${pageContext.request.contextPath}/static/js/angular.js'></script>
-    <script>
-   // function changePass() {
-   // window.location.href = "courseList?page=1";
-    //}
-    </script>
+
 <%@ include file="base.jsp" %>
