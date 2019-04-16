@@ -38,7 +38,7 @@
         </tr>
          <tr>
             <td>专业</td>
-            <td>${student.profession}</td>
+            <td>${student.proName}</td>
         </tr>
          <tr>
             <td>学院</td>

@@ -51,10 +51,10 @@
                 <td>${course.credit}</td>
             </tr>
             <tr>
-                <td>学院限制</td>
+                <td>专业限制</td>
                 <td>
-                    <c:forEach items="${course.classLimitInsName}" var="ins">
-                        ${ins}&nbsp;
+                    <c:forEach items="${course.classLimitProName}" var="pro">
+                        ${pro}&nbsp;
                     </c:forEach>
                 </td>
             </tr>
@@ -79,7 +79,6 @@
         //后面有时间或者下一个版本考虑加入学分 甚至是同学院学分绩点的排名等。。。
         function choose_fun(classId) {
             //判断是否有权限选
-            window.alert(${course.isChoose});
             var r=confirm("确认选择这门课程？");
             if (r==true)
             {

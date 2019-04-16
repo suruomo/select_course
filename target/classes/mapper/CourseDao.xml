@@ -51,9 +51,6 @@
     <select id="selectCourseLimit" parameterType="int" resultType="int">
         SELECT proId FROM Course_limit WHERE classId=#{classId}
     </select>
-    <select id="selectMaxCourseId" resultType="int">
-        SELECT MAX(classId) FROM Course
-    </select>
     <delete id="deleteProLimit" parameterType="int">
         DELETE FROM Course_limit WHERE classId=#{id}
     </delete>
@@ -77,9 +74,6 @@
     <select id="queryAllCourse" resultType="Course">
         SELECT * FROM Course;
     </select>
-    <select id="selectInsIdByClassId" parameterType="int" resultType="int">
-        SELECT insId FROM Course_limit where classId=#{classId}
-    </select>
     <select id="selectTeaNameByTeaId" parameterType="int" resultType="String">
         SELECT teaName FROM Teacher where teaId=#{id}
     </select>
@@ -102,7 +96,7 @@
     <delete id="deleteCourseChoose" parameterType="Course_choose">
         DELETE FROM Course_score WHERE stuId=#{stuId} AND classId=#{classId}
     </delete>
-    <select id="selectScore" parameterType="Course_choose" resultType="int">
+    <select id="selectScore" parameterType="Course_choose" resultType="String">
         SELECT score FROM Course_score WHERE classId=#{classId} AND stuId=#{stuId}
     </select>
     <select id="queryCourseBybixiu" parameterType="String" resultType="Course">

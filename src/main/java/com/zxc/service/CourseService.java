@@ -18,12 +18,12 @@ public interface CourseService {
    //    public void updateInsLimit(String det,int classId);   //no
     public void deleteCourse(int id);
     public List<Student> queryStuByCourseId(int id);
-    public void updateScore(int classId,int stuId,int score);
+    public void updateScore(int classId,int stuId,String score);   //改成绩
     public List<Student> queryStuByStuId(int classid,int stuid);
     public List<Course> queryAllCourse(int stuid);
     public Course queryCourse(int id);
     public void chooseSuccess(int classId,int stuId);
-    public boolean checkStuIns(int classId,int stuId);
+    public boolean checkStuPro(int classId,int stuId);
     public void deleteCourseChoose(int stuId,int classId);
     public List<Course> queryStuCourse(int stuId);
     public List<Course> queryAllByInsId(int id);

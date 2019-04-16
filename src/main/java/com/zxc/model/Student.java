@@ -9,10 +9,11 @@ public class Student {
     private int sage;   //年龄
     private String sex;   //性别
     private String tele;   //电话
-    private String profession;  //专业
-    private int tempScore;   //成绩
+    private String tempScore;   //成绩
     private String address;   //地址
     private String photo;    //头像
+    private int proId;    //专业代码
+    private String proName;    //专业名称
 	public int getStuId() {
 		return stuId;
 	}
@@ -61,17 +62,12 @@ public class Student {
 	public void setTele(String tele) {
 		this.tele = tele;
 	}
-	public String getProfession() {
-		return profession;
-	}
-	public void setProfession(String profession) {
-		this.profession = profession;
-	}
-	public int getTempScore() {
+
+	public String getTempScore() {
 		return tempScore;
 	}
-	public void setTempScore(int tempScore) {
-		this.tempScore = tempScore;
+	public void setTempScore(String score) {
+		this.tempScore = score;
 	}
 	public String getAddress() {
 		return address;
@@ -84,6 +80,18 @@ public class Student {
 	}
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+	public int getProId() {
+		return proId;
+	}
+	public void setProId(int proId) {
+		this.proId = proId;
+	}
+	public String getProName() {
+		return proName;
+	}
+	public void setProName(String proName) {
+		this.proName = proName;
 	}
     
 

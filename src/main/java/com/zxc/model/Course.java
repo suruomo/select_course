@@ -9,8 +9,7 @@ public class Course {
     private int teaId;   //授课教师id
     private String teaName;    //授课教师名称
     private int classChooseNum;   //课程所选数量
-    private List<String> classLimitInsName;  //课程限制学院名称
-    private int score;    //成绩
+    private String score;    //成绩
     private int isChoose;   //是否选择
     private String type;   //课程类型
     private String credit;   //课程学分
@@ -55,17 +54,11 @@ public class Course {
 	public void setClassChooseNum(int classChooseNum) {
 		this.classChooseNum = classChooseNum;
 	}
-	public List<String> getClassLimitInsName() {
-		return classLimitInsName;
-	}
-	public void setClassLimitInsName(List<String> classLimitInsName) {
-		this.classLimitInsName = classLimitInsName;
-	}
-	public int getScore() {
+	public String getScore() {
 		return score;
 	}
-	public void setScore(int score) {
-		this.score = score;
+	public void setScore(String string) {
+		this.score = string;
 	}
 	public int getIsChoose() {
 		return isChoose;

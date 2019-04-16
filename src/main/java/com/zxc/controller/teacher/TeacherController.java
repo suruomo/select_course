@@ -130,7 +130,7 @@ public class TeacherController {
     }
 
     @RequestMapping("/updateScore")   //修改成绩
-    public String updateScore(@Param("courseid") int courseid,@Param("stuId") int stuId,@Param("score") int score,@Param("page") Integer page,Model model){
+    public String updateScore(@Param("courseid") int courseid,@Param("stuId") int stuId,@Param("score") String score,@Param("page") Integer page,Model model){
         courseService.updateScore(courseid,stuId,score);
         model.addAttribute("paging",pageService.subList(page,courseService.queryStuByCourseId(courseid)));
         return "teacher/courseDetail";

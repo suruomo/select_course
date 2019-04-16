@@ -22,17 +22,6 @@
                     </div>
                     <button type="button" id="tea" class="layui-btn layui-btn-radius layui-btn-normal" style="margin-left:10px;">筛选</button>
                 </div>
-                <div style="display: inline-block">
-                    <div style="width: 180px; float: left; margin-left:300px;">
-                        <select  class="layui-select" id="inssearch">
-                            <option value="0">学院名称</option>
-                            <c:forEach items="${insList}" var="institution">
-                                <option value="${institution.insId}">${institution.insName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <button type="button" id="ins" class="layui-btn layui-btn-radius layui-btn-normal" style="margin-left:10px;">筛选</button>
-                </div>
                 <button type="button" class="layui-btn layui-btn-radius layui-btn-normal"style="float:right;" onclick="search()">搜索</button>
                 <input type="text" id="search" class="layui-input" style="float:right; width:200px;"
                        placeholder="请输入课程编号">
@@ -85,8 +74,8 @@
                 <td>${course.classNum}</td>
                 <td>${course.classChooseNum}</td>
                 <td>
-                    <c:forEach items="${course.classLimitInsName}" var="insname">
-                        ${insname}&nbsp;
+                    <c:forEach items="${course.classLimitProName}" var="proname">
+                        ${proname}&nbsp;
                     </c:forEach>
                 </td>
                 <td>
@@ -187,15 +176,7 @@
                     window.location.href="<%=basePath%>student/searchListByxuanxiu";
                 }
             });
-            $("#ins").click(function () {
-                var insid=$("#inssearch option:selected").attr("value");
-                if(insid===0){
-                    alert("请选择正确的学院姓名");
-                }
-                else{
-                    window.location.href="<%=basePath%>student/searchListByInsId?insid="+insid;
-                }
-            });
+
         })
     </script>
 </rapid:override>

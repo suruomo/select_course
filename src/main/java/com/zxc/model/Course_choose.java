@@ -5,7 +5,7 @@ public class Course_choose {
     private int chooseId;
     private int stuId;   //学生id
     private int classId;  //课程id
-    private int score;   //成绩
+    private String score;   //成绩
 
     public void setStuId(int stuId) {
         this.stuId = stuId;
@@ -19,7 +19,7 @@ public class Course_choose {
         this.chooseId = chooseId;
     }
 
-    public void setScore(int score) {
+    public void setScore(String score) {
         this.score = score;
     }
 
@@ -35,7 +35,7 @@ public class Course_choose {
         return chooseId;
     }
 
-    public int getScore() {
+    public String getScore() {
         return score;
     }
 }

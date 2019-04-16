@@ -74,12 +74,12 @@ public class StudentController {
 
     @RequestMapping("/courseDetail")    //通过classid查找课程详情并显示
     public String courseDetail(@Param("classId") int classId,Model model,HttpServletRequest request){
-        if(courseService.checkStuIns(classId,(int)request.getSession().getAttribute("stuid"))){   //检查学生所在学院是否可选当前课程
+        if(courseService.checkStuPro(classId,(int)request.getSession().getAttribute("stuid"))){   //检查学生所在学院是否可选当前课程
             model.addAttribute("course",courseService.queryCourse(classId));
             return "student/courseDetail";   //进入课程详情页
         }
         else{
-            model.addAttribute("msg","请注意课程的学院限制");
+            model.addAttribute("msg","请注意课程的专业限制");
             model.addAttribute("paging",pageService.subList(1,courseService.queryAllCourse((int)request.getSession().getAttribute("stuid"))));
             model.addAttribute("teaList",userService.queryAllTeacher());
             model.addAttribute("insList",courseService.queryAllIns());
