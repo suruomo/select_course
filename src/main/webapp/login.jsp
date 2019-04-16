@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/loginCss.css">
     <script src="${pageContext.request.contextPath}/static/layui.all.js"></script>
+    <script src="${pageContext.request.contextPath}/static/layui.js"></script>
     <style type="text/css">
         .formdiv{
             padding:120px 500px;
@@ -35,7 +36,7 @@
          <input placeholder="学号" type="text" name="userid" id="userid" >
         </fieldset>
         <fieldset  class="layui-input-inline">
-         <i class="layui-icon layui-icon-password" style="position: absolute;top:8px;right: 8px;">&#xe673;</i>
+         <i class="layui-icon " style="position: absolute;top:8px;right: 8px;">&#xe64c;</i>
             <input placeholder="密码" type="password" name="userpass" >
         </fieldset>
         <fieldset>
