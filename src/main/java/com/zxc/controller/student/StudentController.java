@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.ws.spi.http.HttpContext;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,10 @@ public class StudentController {
     }
     @RequestMapping("/studentScore")   //查看个人成绩
     public String studentScore(Model model,HttpServletRequest request){
-    	 model.addAttribute("courseList",courseService.queryStuCourse((int)request.getSession().getAttribute("stuid")));
+    	 List<Course> cor_list=courseService.queryStuCourse((int)request.getSession().getAttribute("stuid"));
+         model.addAttribute("paging",pageService.subList(1,cor_list));
+         model.addAttribute("teaList",userService.queryAllTeacher());
+         model.addAttribute("insList",courseService.queryAllIns());
         return "student/studentScore";
     }
     
@@ -50,15 +55,20 @@ public class StudentController {
     public String selectCourse(){
         return "student/selectCourse";
     }
-    @RequestMapping("/publicCourse")    //选课主页面
+    @RequestMapping("/publicCourse")    //公共课页面
     public String publicCourse(){
         return "student/publicCourse";
     }
-    @RequestMapping("/professionCourse")    //选课主页面
-    public String professionCourse(){
+    @RequestMapping("/professionCourse")    //专业课页面
+    public String professionCourse(Model model,HttpServletRequest request){
+       // model.addAttribute("courseList",courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("stuid")));
+        List<Course> cor_list=courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("stuid"));
+        model.addAttribute("paging",pageService.subList(1,cor_list));
+        model.addAttribute("teaList",userService.queryAllTeacher());
+        model.addAttribute("insList",courseService.queryAllIns());
         return "student/professionCourse";
     }
-    @RequestMapping("/tongShiCourse")    //选课主页面
+    @RequestMapping("/tongShiCourse")    //通识课页面
     public String tongShiCourse(){
         return "student/tongShiCourse";
     }
@@ -105,16 +115,11 @@ public class StudentController {
 
     @RequestMapping("/chooseSuccess")       //选择课程成功，继续选课界面
     public String chooseSuccess(@Param("stuid") int stuid,@Param("courseid") int courseid,Model model,HttpServletRequest request){
-    	if(courseService.checkStu(courseid,(int)request.getSession().getAttribute("stuid"))){
-    		model.addAttribute("msg","已选择!");
-    		return "student/courseList";
-    	}else {
     	courseService.chooseSuccess(courseid,stuid);
         model.addAttribute("paging",pageService.subList(1,courseService.queryAllCourse(stuid)));
         model.addAttribute("teaList",userService.queryAllTeacher());
         model.addAttribute("insList",courseService.queryAllIns());
         return "student/courseList";
-    	}
     }
 
     @RequestMapping("/deleteCourse")   //删除选课，继续选课界面
@@ -128,7 +133,10 @@ public class StudentController {
 
     @RequestMapping("/checkedCourseList")      //通过stuid查找已选课程列表
     public String checkedCourseList(Model model,HttpServletRequest request){
-        model.addAttribute("courseList",courseService.queryStuCourse((int)request.getSession().getAttribute("stuid")));
+    	List<Course> cor_list=courseService.queryStuCourse((int)request.getSession().getAttribute("stuid"));
+        model.addAttribute("paging",pageService.subList(1,cor_list));
+        model.addAttribute("teaList",userService.queryAllTeacher());
+        model.addAttribute("insList",courseService.queryAllIns());
         return "student/checkedCourseList";
     }
 
@@ -141,7 +149,29 @@ public class StudentController {
         model.addAttribute("insList",courseService.queryAllIns());
         return "student/courseList";
     }
-
+    @RequestMapping("/searchTea")   //通过className查找所有挂牌课程，继续选课界面
+    public String searchTea(@Param("id") int id, Model model){
+    	   System.out.println(id);
+    	   String courseName;
+    	   if(id==0) {
+    		   courseName="大学物理";
+    	   }
+    	   else if(id==1) {
+    		   courseName="大学英语";
+    	   }
+    	   else if(id==2) {
+    		   courseName="高等数学";
+    	   }
+    	   else  {
+    		   courseName="大学体育";
+    	   }
+    	   List<Course> cor_list=courseService.queryCourseByName(courseName);
+           model.addAttribute("paging",pageService.subList(1,cor_list));
+           model.addAttribute("teaList",userService.queryAllTeacher());
+           model.addAttribute("insList",courseService.queryAllIns());
+           return "student/publicCourse";
+    }
+    
     @RequestMapping("/searchListBybixiu")    //查找必修课程列表
     public String searchListByTeaId(Model model){
         List<Course> cor_list=courseService.queryBiXiu("必修");

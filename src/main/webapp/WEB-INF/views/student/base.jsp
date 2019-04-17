@@ -31,8 +31,9 @@
     <li class="layui-nav-item ">
         <a href="javascript:;" style="font-size:20px;">选课</a>
         <dl class="layui-nav-child">
-            <dd><a href="<%=basePath%>student/courseList?page=1" style="font-size:16px;">选课</a></dd>
-            <dd><a href="<%=basePath%>student/selectCourse" style="font-size:16px;">选课信息</a></dd>
+            <dd><a href="<%=basePath%>student/courseList?page=1" style="font-size:16px;">全部选课</a></dd>
+            <dd><a href="<%=basePath%>student/selectCourse" style="font-size:16px;">分类选课</a></dd>
+            <dd><a href="<%=basePath%>student/checkedCourseList" style="font-size:16px;">选课信息</a></dd>
         </dl>
     </li>
       <li class="layui-nav-item ">

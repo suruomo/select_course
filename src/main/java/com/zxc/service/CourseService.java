@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CourseService {
     public List<Course> queryAllById(int id);
-    public List<String> queryInsNameByCourse(int id);
+   // public List<String> queryInsNameByCourse(int id);
     public List<Institution> queryAllIns();
     public int insertCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,int teaid);   //添加课程
     //public void insertInsLimit(String det,int classId);     //no  
@@ -33,4 +33,6 @@ public interface CourseService {
 	public List<Institution> queryAllproByIns(int insid);
 	public void insertProLimit(String det,int classId);
 	public void updateProLimit(String det,int classId);
+	public List<Course> queryCourseByName(String courseName);   //通过课程名查找所有挂牌课程
+	public List<Course> queryStuCourseByProfession(int stuId);   //通过学生专业查找所有专业课
 }

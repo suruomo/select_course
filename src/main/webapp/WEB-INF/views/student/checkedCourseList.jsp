@@ -41,7 +41,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${courseList}" var="course">
+        <c:forEach items="${paging.dataList}" var="course">
             <tr>
                 <td>${course.year}</td>
                 <td>${course.term}</td>
@@ -54,7 +54,7 @@
                 <td>${course.classNum}</td>
                 <td>${course.classChooseNum}</td>
                 <td>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="delete_fun(${course.classId})">退课
+                    <button class="layui-btn layui-btn-radius layui-btn-danger" onclick="delete_fun(${course.classId})">退课
                     </button>
                 </td>
             </tr>
@@ -67,34 +67,34 @@
                 页/共 ${paging.totalPage} 页</p>
             <c:choose>
                 <c:when test="${paging.totalPage==0}">
-                    <button class="layui-btn layui-btn-radius layui-btn-normal layui-btn-disabled" onclick="goPage(1)">首页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal layui-btn-disabled" onclick="goPage(${paging.currentPage-1})">上一页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal layui-btn-disabled" onclick="goPage(${paging.currentPage+1})">下一页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normallayui-btn-disabled" onclick="goPage(${paging.totalPage})">末页</button>
+                    <button class="layui-btn layui-btn-radius  layui-btn-disabled" onclick="goPage(1)">首页</button>
+                    <button class="layui-btn layui-btn-radius  layui-btn-disabled" onclick="goPage(${paging.currentPage-1})">上一页</button>
+                    <button class="layui-btn layui-btn-radius  layui-btn-disabled" onclick="goPage(${paging.currentPage+1})">下一页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(${paging.totalPage})">末页</button>
                 </c:when>
                 <c:when test="${paging.currentPage==1 && paging.totalPage==1}">
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="goPage(1)">首页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal layui-btn-disabled" onclick="goPage(${paging.currentPage-1})">上一页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal layui-btn-disabled" onclick="goPage(${paging.currentPage+1})">下一页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="goPage(${paging.totalPage})">末页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(1)">首页</button>
+                    <button class="layui-btn layui-btn-radius  layui-btn-disabled" onclick="goPage(${paging.currentPage-1})">上一页</button>
+                    <button class="layui-btn layui-btn-radius  layui-btn-disabled" onclick="goPage(${paging.currentPage+1})">下一页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(${paging.totalPage})">末页</button>
                 </c:when>
                 <c:when test="${paging.currentPage==1 && paging.totalPage>1}">
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="goPage(1)">首页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal layui-btn-disabled" onclick="goPage(${paging.currentPage-1})">上一页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="goPage(${paging.currentPage+1})">下一页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="goPage(${paging.totalPage})">末页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(1)">首页</button>
+                    <button class="layui-btn layui-btn-radius  layui-btn-disabled" onclick="goPage(${paging.currentPage-1})">上一页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(${paging.currentPage+1})">下一页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(${paging.totalPage})">末页</button>
                 </c:when>
                 <c:when test="${paging.currentPage>1 && paging.currentPage<paging.totalPage}">
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="goPage(1)">首页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="goPage(${paging.currentPage-1})">上一页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="goPage(${paging.currentPage+1})">下一页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="goPage(${paging.totalPage})">末页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(1)">首页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(${paging.currentPage-1})">上一页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(${paging.currentPage+1})">下一页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(${paging.totalPage})">末页</button>
                 </c:when>
                 <c:when test="${paging.currentPage>1 && paging.currentPage==paging.totalPage}">
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="goPage(1)">首页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="goPage(${paging.currentPage-1})">上一页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal layui-btn-disabled" onclick="goPage(${paging.currentPage+1})">下一页</button>
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="goPage(${paging.totalPage})">末页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(1)">首页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(${paging.currentPage-1})">上一页</button>
+                    <button class="layui-btn layui-btn-radius  layui-btn-disabled" onclick="goPage(${paging.currentPage+1})">下一页</button>
+                    <button class="layui-btn layui-btn-radius " onclick="goPage(${paging.totalPage})">末页</button>
                 </c:when>
             </c:choose>
         </c:if>

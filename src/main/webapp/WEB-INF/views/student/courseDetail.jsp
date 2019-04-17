@@ -83,6 +83,7 @@
             if (r==true)
             {
                 window.location.href="<%=basePath%>student/chooseSuccess?stuid=<%=stuId%>&courseid="+classId;
+                alert("选择成功");
             }
             else
             {

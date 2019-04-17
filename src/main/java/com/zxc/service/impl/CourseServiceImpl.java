@@ -30,16 +30,6 @@ public class CourseServiceImpl implements CourseService {
         return course_list;
     }
 
-//    @Override
-//    public List<String> queryInsNameByCourse(int id) {   //根据课程id查找学院列表 
-//        List<String> insNameList=new ArrayList<>();
-//        List<Integer> insIdList=courseDao.queryProIdByCourseId(id);
-//        for(int i:insIdList){
-//            insNameList.add(courseDao.selectNameByProId(i));
-//        }
-//        return insNameList;
-//    }
-
     @Override
     public List<Institution> queryAllIns() {     //查找所有学院
         return courseDao.queryAllIns();
@@ -304,8 +294,53 @@ public class CourseServiceImpl implements CourseService {
     }
 
 	@Override
-	public List<String> queryInsNameByCourse(int id) {
+	public List<Course> queryCourseByName(String courseName) {   //根据className查找挂牌课程
 		// TODO Auto-generated method stub
-		return null;
+		List<Course> course_list= courseDao.queryCourseByName(courseName);	 //课程列表
+    	for(Course cc:course_list){     //每门课程限制专业名称以及授课教师名称
+    		   cc.setTeaName(courseDao.selectTeaNameByTeaId(cc.getTeaId()));    //老师姓名
+               cc.setClassLimitProName(new ArrayList<>());
+               List<Integer> limit_list=courseDao.selectProIdByClassId(cc.getClassId());
+               for(Integer i:limit_list){
+                   cc.getClassLimitProName().add(courseDao.selectNameByProId(i));    //限制学院名称列表
+               }
+           }
+		return course_list;  
+	}
+
+	@Override
+	public List<Course> queryStuCourseByProfession(int stuId) {    //通过学生id查找所在专业的所有专业课
+		// TODO Auto-generated method stub
+		int proId=courseDao.queryProIdByStuId(stuId);  //学生专业id
+		System.out.println(proId);
+		List<Course> course_list= courseDao.queryAllCourse();   //所有课程列表
+		List<Course> course_prolist=new ArrayList<>();  //限制专业课程列表
+		List<Course> professionlist=new ArrayList<>();    //专业课程列表;
+	        for(Course c:course_list){
+	        	c.setTeaName(courseDao.selectTeaNameByTeaId(c.getTeaId()));    //老师姓名
+	            List<Integer> limit_list=courseDao.selectProIdByClassId(c.getClassId());
+	            for(int li:limit_list){
+	                if(proId==li){
+	                	course_prolist.add(c);   //查找所有限制专业id列表
+	                    break;
+	                }
+	            }
+	        }
+	        for(Course cc:course_prolist){
+	            cc.setClassLimitProName(new ArrayList<>());
+	            List<Integer> limit_list=courseDao.selectProIdByClassId(cc.getClassId());
+	            for(Integer i:limit_list){
+	                cc.getClassLimitProName().add(courseDao.selectNameByProId(i));    //专业名称列表
+	            }
+	        }
+	        for(Course c:course_prolist){
+	        	c.setClassify(courseDao.selectClassifyByClassId(c.getClassId()));
+	        	 System.out.println(c.getClassName());
+	        	if(c.getClassify().equals("专业课")) {
+	        	     System.out.println(c.getClassName());
+	        	     professionlist.add(c);    //最终查询结果
+	        	}
+	        }
+	        return professionlist;
 	}
 }

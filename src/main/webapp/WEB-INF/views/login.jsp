@@ -30,13 +30,15 @@
         <h3>网上选课系统</h3>
         <h4>欢迎使用</h4>
         <h4 style="color:red;">${msg}</h4>
-        <fieldset>
-            <input placeholder="学号" type="text" name="userid" id="userid" tabindex="1" required autofocus>
+        <fieldset class="layui-input-inline">
+         <i class="layui-icon layui-icon-username" style="position: absolute;top:8px;right: 8px;">&#xe612;</i>
+         <input placeholder="学号" type="text" name="userid" id="userid" >
         </fieldset>
-        <fieldset>
-            <input placeholder="密码" type="password" name="userpass" tabindex="2" required>
+        <fieldset  class="layui-input-inline">
+         <i class="layui-icon " style="position: absolute;top:8px;right: 8px;">&#xe64c;</i>
+            <input placeholder="密码" type="password" name="userpass" >
         </fieldset>
-        <fieldset>
+        <fieldset>   
             <input name="sub" type="button" onclick="tijiao()" id="contact-submit" value="登录" />
         </fieldset>
     </form>

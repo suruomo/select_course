@@ -43,4 +43,7 @@ public interface CourseDao {
 	public void deleteProLimit(int classId);
 	public List<Integer> selectProIdByClassId(int classId);
 	public String selectNameByProId(int id);
+	public List<Course> queryCourseByName(String courseName);
+	public int queryProIdByStuId(int stuId);
+	public String selectClassifyByClassId(int classId);
 }

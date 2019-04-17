@@ -15,12 +15,14 @@
             <div class="layui-input-block">
                 <div style="display: inline-block">
                     <div style="width: 180px; float: left; margin-left:-100px;">
-                        <select class="layui-select" id="teasearch">
-                            <option value="0">必修</option>
-                            <option value="1">选修</option>
+                        <select class="layui-select" id="coursesearch">
+                            <option value="0">大学物理</option>
+                            <option value="1">大学英语</option>
+                            <option value="2">高等数学</option>
+                            <option value="3">大学体育</option>
                         </select>
                     </div>
-                    <button type="button" id="tea" class="layui-btn layui-btn-radius " style="margin-left:10px;">筛选</button>
+                    <button type="button" id="tea"  class="layui-btn layui-btn-radius " style="margin-left:10px;">查看挂牌教师</button>
                 </div>
                 <button type="button" class="layui-btn layui-btn-radius"style="float:right;" onclick="search()">搜索</button>
                 <input type="text" id="search" class="layui-input" style="float:right; width:200px;"
@@ -56,7 +58,7 @@
             <th>课程学分</th>
             <th>人数限制</th>
             <th>已选人数</th>
-            <th>学院限制</th>
+            <th>专业限制</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -168,13 +170,8 @@
     <script>
         $(function () {
             $("#tea").click(function () {
-                var id=$("#teasearch option:selected").val();
-                if(id==0){    //必修
-                	window.location.href="<%=basePath%>student/searchListBybixiu";
-                }
-                else{   //选修
-                    window.location.href="<%=basePath%>student/searchListByxuanxiu";
-                }
+                var id=$("#coursesearch option:selected").val();
+                window.location.href="<%=basePath%>student/searchTea?id="+id;  
             });
 
         })

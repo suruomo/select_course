@@ -5,11 +5,20 @@
     <select id="queryCourseById" parameterType="int" resultType="Course">
         SELECT * FROM Course WHERE teaId=#{id}
     </select>
+    <select id="queryCourseByName" parameterType="String" resultType="Course">
+        SELECT * FROM Course WHERE className=#{courseName}
+    </select>
     <select id="queryAllIns" resultType="Institution">
         SELECT * FROM Institution
     </select>
     <select id="selectProIdByClassId" parameterType="int" resultType="int">
         SELECT proId FROM Course_limit WHERE classId=#{id}
+    </select>
+    <select id="selectClassifyByClassId" parameterType="int" resultType="String">
+        SELECT classify FROM Course WHERE classId=#{classId}
+    </select>
+     <select id="queryProIdByStuId" parameterType="int" resultType="int">
+        SELECT proId FROM Student WHERE stuId=#{stuId}
     </select>
     <select id="selectNameByProId" parameterType="int" resultType="String">
         SELECT proName FROM Institution WHERE proId=#{id}

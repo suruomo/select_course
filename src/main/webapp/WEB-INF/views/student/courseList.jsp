@@ -89,7 +89,7 @@
                             <button class="layui-btn layui-btn-radius" onclick="detail_fun(${course.classId})" disabled
                                     style="background-color: gray;">已选
                             </button>
-                            <button class="layui-btn layui-btn-radius" onclick="delete_fun(${course.classId})">退课
+                            <button class="layui-btn layui-btn-radius layui-btn-danger"  onclick="delete_fun(${course.classId})">退课
                             </button>
                         </c:when>
                         <c:otherwise>

@@ -39,7 +39,7 @@
          <i class="layui-icon " style="position: absolute;top:8px;right: 8px;">&#xe64c;</i>
             <input placeholder="密码" type="password" name="userpass" >
         </fieldset>
-        <fieldset>
+        <fieldset >
             <input name="sub" type="button" onclick="tijiao()" id="contact-submit" value="登录" />
         </fieldset>
     </form>
