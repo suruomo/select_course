@@ -99,12 +99,15 @@ public class StudentController {
     }
 
     @RequestMapping("/courseDetail")    //通过classid查找课程详情并显示
-    public String courseDetail(@Param("classId") int classId,Model model,HttpServletRequest request){
-        if(courseService.checkStuPro(classId,(int)request.getSession().getAttribute("stuid"))){   //检查学生所在学院是否可选当前课程
+    public String courseDetail(@Param("flag") int flag,@Param("classId") int classId,Model model,HttpServletRequest request){
+        if(courseService.checkStuPro(classId,(int)request.getSession().getAttribute("stuid"))){   //检查学生所在专业是否可选当前课程
             model.addAttribute("course",courseService.queryCourse(classId));
+            System.out.println("详情的"+flag);
+            model.addAttribute("flag",flag);
             return "student/courseDetail";   //进入课程详情页
-        }
-        else{
+   
+        } 
+        else {
             model.addAttribute("msg","请注意课程的专业限制");
             model.addAttribute("paging",pageService.subList(1,courseService.queryAllCourse((int)request.getSession().getAttribute("stuid"))));
             model.addAttribute("teaList",userService.queryAllTeacher());
@@ -114,21 +117,63 @@ public class StudentController {
     }
 
     @RequestMapping("/chooseSuccess")       //选择课程成功，继续选课界面
-    public String chooseSuccess(@Param("stuid") int stuid,@Param("courseid") int courseid,Model model,HttpServletRequest request){
-    	courseService.chooseSuccess(courseid,stuid);
-        model.addAttribute("paging",pageService.subList(1,courseService.queryAllCourse(stuid)));
-        model.addAttribute("teaList",userService.queryAllTeacher());
-        model.addAttribute("insList",courseService.queryAllIns());
-        return "student/courseList";
+    public String chooseSuccess(@Param("flag") int flag,@Param("stuid") int stuid,@Param("courseid") int courseid,Model model,HttpServletRequest request){ 	
+        courseService.chooseSuccess(courseid,stuid);    //选课
+        System.out.println("选课的"+flag);
+        String url="";
+        switch(flag) {
+        case 0:   //全部课程页面
+        	 model.addAttribute("paging",pageService.subList(1,courseService.queryAllCourse(stuid)));
+             model.addAttribute("teaList",userService.queryAllTeacher());
+             model.addAttribute("insList",courseService.queryAllIns());
+             url="student/courseList";
+             break;
+        case 1:    //公共课页面
+        	url="student/publicCourse";
+        	break;
+        case 2:    //专业选课页面
+        	 List<Course> cor_list=courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("stuid"));
+             model.addAttribute("paging",pageService.subList(1,cor_list));
+             model.addAttribute("teaList",userService.queryAllTeacher());
+             model.addAttribute("insList",courseService.queryAllIns());
+             url="student/professionCourse";
+             break;
+        }
+        return url;
     }
 
     @RequestMapping("/deleteCourse")   //删除选课，继续选课界面
-    public String deleteCourse(@Param("courseid") int courseid,Model model,HttpServletRequest request){
+    public String deleteCourse(@Param("flag") int flag,@Param("courseid") int courseid,Model model,HttpServletRequest request){
         courseService.deleteCourseChoose((int)request.getSession().getAttribute("stuid"),courseid);
-        model.addAttribute("paging",pageService.subList(1,courseService.queryAllCourse((int)request.getSession().getAttribute("stuid"))));
-        model.addAttribute("teaList",userService.queryAllTeacher());
-        model.addAttribute("insList",courseService.queryAllIns());
-        return "student/courseList";
+        System.out.println("删除的"+flag);
+        String url="";
+        switch(flag) {
+        case 0:   //全部课程页面
+        	 model.addAttribute("paging",pageService.subList(1,courseService.queryAllCourse((int)request.getSession().getAttribute("stuid"))));
+             model.addAttribute("teaList",userService.queryAllTeacher());
+             model.addAttribute("insList",courseService.queryAllIns());
+             url="student/courseList";
+             break;
+        case 1:    //公共课页面
+        	url="student/publicCourse";
+        	break;
+        case 2:    //专业选课页面
+        	 List<Course> cor_list=courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("stuid"));
+             model.addAttribute("paging",pageService.subList(1,cor_list));
+             model.addAttribute("teaList",userService.queryAllTeacher());
+             model.addAttribute("insList",courseService.queryAllIns());
+             url="student/professionCourse";
+             break;
+        case 3:    //已选课程页面
+        	List<Course> list=courseService.queryStuCourse((int)request.getSession().getAttribute("stuid"));
+            model.addAttribute("paging",pageService.subList(1,list));
+            model.addAttribute("teaList",userService.queryAllTeacher());
+            model.addAttribute("insList",courseService.queryAllIns());
+            url="student/checkedCourseList";
+            break;
+        }
+        return url;
+     
     }
 
     @RequestMapping("/checkedCourseList")      //通过stuid查找已选课程列表

@@ -12,6 +12,7 @@
         int stuId=(int)request.getSession().getAttribute("stuid");
     %>
     <div>
+    <input type="hidden" id="flag" value='${flag}'>
         <table class="layui-table" style="width:280px; margin:25px 480px 25px;">
             <colgroup>
                 <col width="100">
@@ -80,9 +81,11 @@
         function choose_fun(classId) {
             //判断是否有权限选
             var r=confirm("确认选择这门课程？");
+            var f=$("#flag").val();
+            console.log(f);
             if (r==true)
             {
-                window.location.href="<%=basePath%>student/chooseSuccess?stuid=<%=stuId%>&courseid="+classId;
+                window.location.href="<%=basePath%>student/chooseSuccess?flag=<%=request.getAttribute("flag")%>&stuid=<%=stuId%>&courseid="+classId;
                 alert("选择成功");
             }
             else

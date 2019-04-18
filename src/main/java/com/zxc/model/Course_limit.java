@@ -8,16 +8,13 @@ public class Course_limit {
         this.classId = classId;
     }
 
-
     public int getClassId() {
         return classId;
     }
 
-
 	public int getProId() {
 		return proId;
 	}
-
 	public void setProId(int proId) {
 		this.proId = proId;
 	}

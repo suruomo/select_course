@@ -103,7 +103,7 @@
         function delete_fun(classId) {
             var r = confirm("确认退课吗？")
             if (r == true) {
-                window.location.href = "<%=basePath%>student/deleteCourse?courseid=" + classId;
+                window.location.href = "<%=basePath%>student/deleteCourse?flag=<%=3%>&courseid=" + classId;
             }
             else {
                 return;

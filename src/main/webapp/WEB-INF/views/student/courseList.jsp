@@ -82,7 +82,7 @@
                     <c:choose>
                         <c:when test="${course.classNum==course.classChooseNum}">
                             <button class="layui-btn layui-btn-radius" onclick="detail_fun(${course.classId})" disabled
-                                    style="background-color: gray;">选择
+                                    style="background-color: gray;">已满
                             </button>
                         </c:when>
                         <c:when test="${course.isChoose==1}">
@@ -152,13 +152,13 @@
         }
 
         function detail_fun(classId) {
-            window.location.href = "<%=basePath%>student/courseDetail?classId=" + classId;
+            window.location.href = "<%=basePath%>student/courseDetail?flag=<%=0%>&classId=" + classId;
         }
 
         function delete_fun(classId) {
             var r = confirm("确认退课吗？")
             if (r == true) {
-                window.location.href = "<%=basePath%>student/deleteCourse?courseid=" + classId;
+                window.location.href = "<%=basePath%>student/deleteCourse?flag=<%=0%>&courseid=" + classId;
             }
             else {
                 return;
