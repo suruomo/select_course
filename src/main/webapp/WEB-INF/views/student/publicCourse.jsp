@@ -84,7 +84,7 @@
                     <c:choose>
                         <c:when test="${course.classNum==course.classChooseNum}">
                             <button class="layui-btn layui-btn-radius" onclick="detail_fun(${course.classId})" disabled
-                                    style="background-color: gray;">选择
+                                    style="background-color: gray;">已满
                             </button>
                         </c:when>
                         <c:when test="${course.isChoose==1}">
