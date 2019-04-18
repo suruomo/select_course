@@ -100,7 +100,7 @@ public class TeacherController {
         int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],(int)request.getSession().getAttribute("teaid"));
         courseService.insertProLimit(det[2],courseId);
         model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));
-        return "redict:teacher/courseList";
+        return "teacher/courseList";
     }
 
     @RequestMapping("/updateCourseSuccess")   //修改课程成功
