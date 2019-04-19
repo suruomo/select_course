@@ -8,6 +8,9 @@
     <select id="queryCourseByName" parameterType="String" resultType="Course">
         SELECT * FROM Course WHERE className=#{courseName}
     </select>
+      <select id="queryCourseByItem" parameterType="String" resultType="Course">
+        SELECT * FROM Course WHERE item=#{courseName}
+    </select>
     <select id="queryAllIns" resultType="Institution">
         SELECT * FROM Institution
     </select>

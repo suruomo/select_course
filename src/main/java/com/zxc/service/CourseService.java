@@ -34,4 +34,5 @@ public interface CourseService {
 	public void updateProLimit(String det,int classId);
 	public List<Course> queryCourseByName(String courseName);   //通过课程名查找所有挂牌课程
 	public List<Course> queryStuCourseByProfession(int stuId);   //通过学生专业查找所有专业课
+	public List<Course> queryCourseByItem(String courseName);    //通过体育项目查找所有挂牌课程
 }

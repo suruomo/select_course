@@ -33,7 +33,7 @@
             <td>${student.state}</td>
         </tr>
          <tr>
-            <td>年龄</td>
+            <td>性别</td>
             <td>${student.sex}</td>
         </tr>
         <tr>

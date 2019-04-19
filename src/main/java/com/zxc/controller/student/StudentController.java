@@ -196,7 +196,7 @@ public class StudentController {
     }
     @RequestMapping("/searchTea")   //通过className查找所有挂牌课程，继续选课界面
     public String searchTea(@Param("id") int id, Model model){
-    	   System.out.println(id);
+    	   System.out.println("文化"+id);
     	   String courseName;
     	   if(id==0) {
     		   courseName="大学物理";
@@ -204,11 +204,8 @@ public class StudentController {
     	   else if(id==1) {
     		   courseName="大学英语";
     	   }
-    	   else if(id==2) {
+    	   else {
     		   courseName="高等数学";
-    	   }
-    	   else  {
-    		   courseName="大学体育";
     	   }
     	   List<Course> cor_list=courseService.queryCourseByName(courseName);
            model.addAttribute("paging",pageService.subList(1,cor_list));
@@ -216,7 +213,28 @@ public class StudentController {
            model.addAttribute("insList",courseService.queryAllIns());
            return "student/publicCourse";
     }
-    
+    @RequestMapping("/searchTiTea")   //通过体育项目查找所有挂牌课程，继续选课界面
+    public String searchTiTea(@Param("id") int id, Model model){
+    	   System.out.println("体育"+id);
+    	   String courseName;
+    	   if(id==0) {
+    		   courseName="乒乓球";
+    	   }
+    	   else if(id==1) {
+    		   courseName="羽毛球";
+    	   }
+    	   else if(id==2){
+    		   courseName="篮球";
+    	   }
+    	   else {
+    		   courseName="田径";
+    	   }
+    	   List<Course> cor_list=courseService.queryCourseByItem(courseName);
+           model.addAttribute("paging",pageService.subList(1,cor_list));
+           model.addAttribute("teaList",userService.queryAllTeacher());
+           model.addAttribute("insList",courseService.queryAllIns());
+           return "student/publicCourse";
+    }
     @RequestMapping("/searchListBybixiu")    //查找必修课程列表
     public String searchListByTeaId(Model model){
         List<Course> cor_list=courseService.queryBiXiu("必修");

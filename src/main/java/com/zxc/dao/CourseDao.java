@@ -46,4 +46,5 @@ public interface CourseDao {
 	public List<Course> queryCourseByName(String courseName);
 	public int queryProIdByStuId(int stuId);
 	public String selectClassifyByClassId(int classId);
+	public List<Course> queryCourseByItem(String courseName);
 }

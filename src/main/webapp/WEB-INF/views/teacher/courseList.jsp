@@ -73,7 +73,7 @@
                     <td>
                         <button class="layui-btn layui-btn-radius" onclick="edit(${course.classId})">修改</button>
                         <button class="layui-btn layui-btn-radius layui-btn-danger" onclick="delete_fun(${course.classId})">删除</button>
-                        <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="detail_fun(${course.classId})">录入成绩</button>
+                        <button class="layui-btn layui-btn-radius layui-btn-primary" onclick="detail_fun(${course.classId})">录入成绩</button>
                     </td>
                 </tr>
             </c:forEach>

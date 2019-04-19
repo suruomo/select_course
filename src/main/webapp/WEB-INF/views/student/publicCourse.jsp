@@ -19,10 +19,20 @@
                             <option value="0">大学物理</option>
                             <option value="1">大学英语</option>
                             <option value="2">高等数学</option>
-                            <option value="3">大学体育</option>
                         </select>
                     </div>
-                    <button type="button" id="tea"  class="layui-btn layui-btn-radius " style="margin-left:10px;">查看挂牌教师</button>
+                    <button type="button" id="tea"  class="layui-btn layui-btn-radius " style="margin-left:10px;">查看文化课挂牌教师</button>
+                </div>
+                   <div style="display: inline-block">
+                    <div style="width: 180px; float:left; margin-left:100px;">
+                        <select class="layui-select" id="itemsearch">
+                            <option value="0">乒乓球</option>
+                            <option value="1">羽毛球</option>
+                            <option value="2">篮球</option>
+                            <option value="3">田径</option>
+                        </select>
+                    </div>
+                    <button type="button" id="item"  class="layui-btn layui-btn-radius " style="margin-left:10px;">查看体育项目挂牌教师</button>
                 </div>
                 <button type="button" class="layui-btn layui-btn-radius"style="float:right;" onclick="search()">搜索</button>
                 <input type="text" id="search" class="layui-input" style="float:right; width:200px;"
@@ -45,6 +55,7 @@
             <col width="10">
             <col width="10">
             <col width="10">
+            <col width="10">
         </colgroup>
         <thead>
         <tr>
@@ -54,6 +65,7 @@
             <th>课程名称</th>
             <th>教师名称</th>
             <th>课程性质</th>
+            <th>课程项目</th>
             <th>课程类别</th>
             <th>课程学分</th>
             <th>人数限制</th>
@@ -71,6 +83,7 @@
                 <td>${course.className}</td> 
                 <td>${course.teaName}</td>
                 <td>${course.type}</td>
+                <td>${course.item}</td>
                 <td>${course.classify}</td>
                 <td>${course.credit}</td>
                 <td>${course.classNum}</td>
@@ -172,6 +185,11 @@
             $("#tea").click(function () {
                 var id=$("#coursesearch option:selected").val();
                 window.location.href="<%=basePath%>student/searchTea?id="+id;  
+            });
+            $("#item").click(function () {
+            	var id=$("#itemsearch option:selected").val();
+                window.location.href="<%=basePath%>student/searchTiTea?id="+id;  
+             
             });
 
         })

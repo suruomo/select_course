@@ -306,24 +306,6 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<Course> queryStuCourseByProfession(int stuId) {    //通过学生id查找所在专业的所有专业课
 		// TODO Auto-generated method stub
-//		 List<Course> course_list= courseDao.queryAllCourse();    //所有课程
-//	        List<Integer> stu_courselist=courseDao.queryCourseIdByStuId(stuid);   //查找该学生选择的课程
-//	        for(Course c:course_list){
-//	            c.setClassLimitProName(new ArrayList<>());
-//	            List<Integer> limit_list=courseDao.selectProIdByClassId(c.getClassId());
-//	            for(Integer i:limit_list){
-//	                c.getClassLimitProName().add(courseDao.selectNameByProId(i));   //获取课程限制专业名称
-//	            }
-//	            c.setTeaName(courseDao.selectTeaNameByTeaId(c.getTeaId()));
-//	            c.setIsChoose(0);
-//	            for(int i:stu_courselist){
-//	                if(c.getClassId()==i){
-//	                    c.setIsChoose(1);
-//	                    break;
-//	                }
-//	            }
-//	        }
-//	        return course_list;
 		int proId=courseDao.queryProIdByStuId(stuId);  //学生专业id
 		List<Course> course_list= courseDao.queryAllCourse();   //所有课程列表
 		List<Course> course_prolist=new ArrayList<>();  //限制专业课程列表
@@ -360,5 +342,20 @@ public class CourseServiceImpl implements CourseService {
 	        	}
 	        }
 	        return professionlist;
+	}
+
+	@Override
+	public List<Course> queryCourseByItem(String courseName) {    //根据体育项目选择所有课程
+		// TODO Auto-generated method stub
+		List<Course> course_list= courseDao.queryCourseByItem(courseName);	 //课程列表
+    	for(Course cc:course_list){     //每门课程限制专业名称以及授课教师名称
+    		   cc.setTeaName(courseDao.selectTeaNameByTeaId(cc.getTeaId()));    //老师姓名
+               cc.setClassLimitProName(new ArrayList<>());
+               List<Integer> limit_list=courseDao.selectProIdByClassId(cc.getClassId());
+               for(Integer i:limit_list){
+                   cc.getClassLimitProName().add(courseDao.selectNameByProId(i));    //限制学院名称列表
+               }
+           }
+		return course_list; 
 	}
 }
