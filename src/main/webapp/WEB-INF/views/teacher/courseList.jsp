@@ -11,11 +11,15 @@
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
     %>
     <div>
-        <button type="button" onclick="insert()" class="layui-btn layui-btn-lg layui-btn-warm" style="margin-top:15px;">添加新课程</button>
+        <button type="button" onclick="insert()" class="layui-btn layui-btn-lg layui-btn-warm" style="margin-top:15px;">添加非体育课程</button>
+        <button type="button" onclick="insertTi()" class="layui-btn layui-btn-lg " style="margin-top:15px;">添加体育课程</button>
     </div>
     <script>
         function insert() {
             window.location.href="<%=basePath%>teacher/insertCourse";
+        }
+        function insertTi() {
+            window.location.href="<%=basePath%>teacher/insertTiCourse";
         }
     </script>
     <table class="layui-table" style="margin-top:15px;">
@@ -24,6 +28,7 @@
             <col width="50">
             <col width="100">
             <col width="120">
+            <col width="50">
             <col width="50">
             <col width="50">
             <col width="50">
@@ -37,6 +42,7 @@
                 <th>开课学期</th>
                 <th>课程编号</th>
                 <th>课程名称</th>
+                <th>课程项目</th>
                 <th>课程性质</th>
                 <th>课程类别</th>
                 <th>课程学分</th>
@@ -53,6 +59,7 @@
                     <td>${course.term}</td>
                     <td>${course.classId}</td>
                     <td>${course.className}</td>
+                    <td>${course.item}</td>
                     <td>${course.type}</td>
                     <td>${course.classify}</td>
                     <td>${course.credit}</td>

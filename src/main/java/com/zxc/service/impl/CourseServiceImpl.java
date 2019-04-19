@@ -36,7 +36,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public int insertCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,int teaid) {    //录入课程
+    public int insertCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,String item,int teaid) {    //录入课程
         Course course=new Course();
         course.setClassName(name);
         course.setClassify(classify);
@@ -45,6 +45,7 @@ public class CourseServiceImpl implements CourseService {
         course.setYear(year);
         course.setTerm(term);
         course.setType(type);
+        course.setItem(item);
         course.setClassNum(Integer.parseInt(num));
         course.setClassChooseNum(0);
         course.setTeaId(teaid);
@@ -74,7 +75,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public int updateCourse(int id,String num,String credit,String introduction,String year,String term,String type,String classify,String name,int teaid) {   //修改课程
+    public int updateCourse(int id,String num,String credit,String introduction,String year,String term,String type,String classify,String name,String item,int teaid) {   //修改课程
         Course course=new Course();
         course.setClassName(name);
         course.setClassify(classify);
@@ -84,6 +85,7 @@ public class CourseServiceImpl implements CourseService {
         course.setTerm(term);
         course.setType(type);
         course.setTeaId(teaid);
+        course.setItem(item);
         course.setClassChooseNum(course.getClassChooseNum());
         course.setClassNum(Integer.parseInt(num));
         course.setClassId(id);

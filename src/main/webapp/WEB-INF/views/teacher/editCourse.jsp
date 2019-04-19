@@ -14,7 +14,7 @@
              <div class="layui-form-item">
             <label class="layui-form-label">开课学年</label>
             <div class="layui-input-block">
-            <select id="year" lay-verify="">
+            <select id="year">
                <c:if test="${courseInfo.year=='2017-2018'}">
                 <option value="2017-2018" selected="selected">2017-2018</option>
                 <option value="2018-2019">2018-2019</option>
@@ -36,7 +36,7 @@
          <div class="layui-form-item">
             <label class="layui-form-label">开课学期</label>
             <div class="layui-input-block">
-            <select id="term" lay-verify="">
+            <select id="term" >
                <c:if test="${courseInfo.term=='第一学期'}">
                  <option value="第一学期" selected="selected">第一学期</option>
                  <option value="第二学期">第二学期</option>
@@ -74,13 +74,35 @@
              <c:if test="${courseInfo.classify=='公共课'}">
                 <input type="radio" id="classify" name="classify" value="公共课" title="公共课" checked >
                 <input type="radio" id="classify" name="classify" value="专业课" title="专业课" >
+                <input type="radio" id="classify" name="classify" value="通识课" title="通识课" >
              </c:if>
              <c:if test="${courseInfo.classify=='专业课'}">
                 <input type="radio" id="classify" name="classify" value="公共课" title="公共课"  >
                 <input type="radio" id="classify" name="classify" value="专业课" title="专业课" checked>
+                <input type="radio" id="classify" name="classify" value="通识课" title="通识课" >
              </c:if>
-                 
+              <c:if test="${courseInfo.classify=='通识课'}">
+                <input type="radio" id="classify" name="classify" value="公共课" title="公共课"  >
+                <input type="radio" id="classify" name="classify" value="专业课" title="专业课" >
+                <input type="radio" id="classify" name="classify" value="通识课" title="通识课" checked>
+             </c:if>   
             </div>
+        </div>
+       <div class="layui-form-item">
+            <label class="layui-form-label">课程项目</label>
+            <div class="layui-input-block" >
+              <select id="item" lay-verify="">
+               <c:if test="${courseInfo.className=='大学体育'}">
+                   <option value="乒乓球" selected="selected">乒乓球</option>
+                   <option value="羽毛球">羽毛球</option>
+                   <option value="田径">田径</option>
+                   <option value="篮球">篮球</option>
+               </c:if>
+               <c:if test="${courseInfo.className!='大学体育'}">
+                   <option value="无" selected="selected">无</option>
+               </c:if>  
+             </select>
+            </div>    
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">课程学分</label>
@@ -196,6 +218,7 @@
             	var credit=$("#credit").val();    //学分
                 var name = $("#name").val();     //课程名称
                 var id = ${courseInfo.classId}
+                var item=$("#item option:selected").val();   //体育项目
                 var introduction = $("#introduction").val();    //简介
                 var num = $("#num").val();         //课程容量
                 var classify = $('#le input[name="classify"]:checked ').val();      //课程类别
@@ -210,7 +233,7 @@
                         ins = ins + "," + $(this).attr("value");
                     }
                 })
-                var content=id+"|"+num+"|"+ins+"|"+credit+"|"+introduction+"|"+year+"|"+term+"|"+type+"|"+classify+"|"+name;
+                var content=id+"|"+num+"|"+ins+"|"+credit+"|"+introduction+"|"+year+"|"+term+"|"+type+"|"+classify+"|"+name+"|"+item;
                 var myform=document.createElement("form");
                 myform.id = "form1";
                 myform.name = "form1";

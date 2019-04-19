@@ -18,6 +18,14 @@ public class Course {
     private String term;   //开课学期
     private String classify;  //课程类别
     private List<String> classLimitProName;  //课程限制专业名称
+    private String item;   //体育项目
+    
+	public String getItem() {
+		return item;
+	}
+	public void setItem(String item) {
+		this.item = item;
+	}
 	public int getClassId() {
 		return classId;
 	}

@@ -51,6 +51,17 @@
                  <input type="radio" name="classify" id="classify" value="通识课" title="通识课" >
             </div>
         </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">课程项目</label>
+            <div class="layui-input-block" >
+               <select id="item" lay-verify="">
+                 <option value="乒乓球" selected="selected">乒乓球</option>
+                 <option value="羽毛球">羽毛球</option>
+                 <option value="田径">田径</option>
+                 <option value="篮球">篮球</option>
+                </select>   
+                </div> 
+        </div>
         <div class="layui-form-item">
             <label class="layui-form-label">课程学分</label>
             <div class="layui-input-block">
@@ -125,6 +136,7 @@
                 var name = $("#name").val();     //课程名称
                 var introduction = $("#introduction").val();    //简介
                 var num = $("#num").val();         //课程容量
+                var item=$("#item option:selected").val();   //体育课项目
                 var classify = $('#le input[name="classify"]:checked ').val();      //课程类别
                 var ins = "";             //学院
                 var count=0;
@@ -137,7 +149,7 @@
                         ins = ins + "," + $(this).attr("value");
                     }
                 })
-                var content=name+"|"+num+"|"+ins+"|"+credit+"|"+introduction+"|"+year+"|"+term+"|"+type+"|"+classify;
+                var content=name+"|"+num+"|"+ins+"|"+credit+"|"+introduction+"|"+year+"|"+term+"|"+type+"|"+classify+"|"+item;
                 var myform=document.createElement("form");
                 myform.id = "form1";
                 myform.name = "form1";

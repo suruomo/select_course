@@ -24,8 +24,8 @@
         SELECT proName FROM Institution WHERE proId=#{id}
     </select>
     <insert id="insertCourse" parameterType="Course" useGeneratedKeys="true" keyProperty="classId" keyColumn="classId">
-        INSERT INTO Course(className,classNum,teaId,classChooseNum,type,credit,introduction,year,term,classify)
-        VALUES (#{className},#{classNum},#{teaId},#{classChooseNum},#{type},#{credit},#{introduction},#{year},#{term},#{classify})
+        INSERT INTO Course(className,classNum,teaId,classChooseNum,type,credit,introduction,year,term,classify,item)
+        VALUES (#{className},#{classNum},#{teaId},#{classChooseNum},#{type},#{credit},#{introduction},#{year},#{term},#{classify},#{item})
     </insert>
     <update id="updateCourse" parameterType="Course">
         UPDATE Course SET
@@ -38,7 +38,8 @@
         introduction=#{introduction},
         year=#{year},
         term=#{term},
-        classify=#{classify}
+        classify=#{classify},
+        item=#{item}
         WHERE classId=#{classId}
     </update>
     <insert id="insertInsLimit" parameterType="Course_limit">
