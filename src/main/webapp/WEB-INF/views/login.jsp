@@ -32,7 +32,7 @@
         <h4 style="color:red;">${msg}</h4>
         <fieldset class="layui-input-inline">
          <i class="layui-icon layui-icon-username" style="position: absolute;top:8px;right: 8px;">&#xe612;</i>
-         <input placeholder="学号" type="text" name="userid" id="userid" >
+         <input placeholder="账号" type="text" name="userid" id="userid" >
         </fieldset>
         <fieldset  class="layui-input-inline">
          <i class="layui-icon " style="position: absolute;top:8px;right: 8px;">&#xe64c;</i>
