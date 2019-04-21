@@ -34,9 +34,7 @@
                     </div>
                     <button type="button" id="item"  class="layui-btn layui-btn-radius " style="margin-left:10px;">查看体育项目挂牌教师</button>
                 </div>
-                <button type="button" class="layui-btn layui-btn-radius"style="float:right;" onclick="search()">搜索</button>
-                <input type="text" id="search" class="layui-input" style="float:right; width:200px;"
-                       placeholder="请输入课程编号">
+             
             </div>
         </div>
     </form>
@@ -157,11 +155,7 @@
     </div>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script>
-        function search() {
-            var courseid = document.getElementById("search").value;
-            window.location.href = "<%=basePath%>student/searchCourse?courseid=" + courseid;
-        }
-
+  
         function goPage(page) {
             window.location.href = "<%=basePath%>student/courseList?page=" + page;
         }

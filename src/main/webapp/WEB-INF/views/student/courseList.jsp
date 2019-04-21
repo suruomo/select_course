@@ -22,7 +22,7 @@
                     </div>
                     <button type="button" id="tea" class="layui-btn layui-btn-radius " style="margin-left:10px;">筛选</button>
                 </div>
-                <button type="button" class="layui-btn layui-btn-radius"style="float:right;" onclick="search()">搜索</button>
+                <button id="sea" type="button" class="layui-btn layui-btn-radius"style="float:right;" onclick="search()">搜索</button>
                 <input type="text" id="search" class="layui-input" style="float:right; width:200px;"
                        placeholder="请输入课程编号">
             </div>
@@ -143,7 +143,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script>
         function search() {
-            var courseid = document.getElementById("search").value;
+            var courseid =$("#search").val()
             window.location.href = "<%=basePath%>student/searchCourse?courseid=" + courseid;
         }
 
@@ -175,6 +175,10 @@
                 else{   //选修
                     window.location.href="<%=basePath%>student/searchListByxuanxiu";
                 }
+            });
+            $("#sea").click(function () {
+            	 var courseid =$("#search").val()
+                 window.location.href = "<%=basePath%>student/searchCourse?courseid=" + courseid;
             });
 
         })

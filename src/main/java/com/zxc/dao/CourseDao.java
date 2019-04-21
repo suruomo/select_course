@@ -47,4 +47,5 @@ public interface CourseDao {
 	public int queryProIdByStuId(int stuId);
 	public String selectClassifyByClassId(int classId);
 	public List<Course> queryCourseByItem(String courseName);
+	public List<Course> queryCourseByTongShi(String string);
 }

@@ -19,7 +19,7 @@
   </button>
   <button class="map-point" style="top:35%;left:50%" onclick="location.href='professionCourse'">
   </button>
-  <button class="map-point" style="top:45%;left:75%" onclick="location.href='tongShiCourse'">
+  <button class="map-point" style="top:45%;left:75%" onclick="location.href='tongShiCourse?page=1'">
   </button>
 </div>
 </rapid:override>

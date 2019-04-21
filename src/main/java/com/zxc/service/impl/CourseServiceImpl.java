@@ -358,4 +358,19 @@ public class CourseServiceImpl implements CourseService {
            }
 		return course_list; 
 	}
+
+	@Override 
+	public List queryTongShi() {            //查找通识课
+		// TODO Auto-generated method stub
+		List<Course> course_list= courseDao.queryCourseByTongShi("通识课");	 //通识列表
+    	for(Course cc:course_list){     //每门课程限制学院名称以及授课教师名称
+    		   cc.setTeaName(courseDao.selectTeaNameByTeaId(cc.getTeaId()));    //老师姓名
+               cc.setClassLimitProName(new ArrayList<>());
+               List<Integer> limit_list=courseDao.selectProIdByClassId(cc.getClassId());
+               for(Integer i:limit_list){
+                   cc.getClassLimitProName().add(courseDao.selectNameByProId(i));    //限制学院名称列表
+               }
+           }
+		return course_list;    
+	}
 }

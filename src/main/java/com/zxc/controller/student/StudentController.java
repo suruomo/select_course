@@ -69,9 +69,13 @@ public class StudentController {
         return "student/professionCourse";
     }
     @RequestMapping("/tongShiCourse")    //通识课页面
-    public String tongShiCourse(){
+    public String tongShiCourse(@Param("page") int page, Model model,HttpServletRequest request){
+        model.addAttribute("paging",pageService.subList(page,courseService.queryTongShi()));
+        model.addAttribute("teaList",userService.queryAllTeacher());
+        model.addAttribute("insList",courseService.queryAllIns());
         return "student/tongShiCourse";
     }
+
 
     @RequestMapping("/changeStuPass")   //修改密码
     public String changPass(@RequestParam("prepass") String prepass, @RequestParam("nowpass") String nowpass, Model model, HttpServletRequest request){
@@ -187,6 +191,7 @@ public class StudentController {
 
     @RequestMapping("/searchCourse")   //通过courseid查找课程，继续选课界面
     public String searchCourse(@Param("courseid") int courseid, Model model){
+    	System.out.println(courseid);
         List<Course> cor_list=new ArrayList<>();
         cor_list.add(courseService.queryCourse(courseid));
         model.addAttribute("paging",pageService.subList(1,cor_list));
