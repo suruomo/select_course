@@ -19,12 +19,28 @@ public class AdminController {
 	    @Resource
 	    private CourseService courseService;
 
-	    @RequestMapping("/adminIndex")   //头部导航栏
+	    @RequestMapping("/adminIndex")   //导航栏
 	    public String studentIndex(){
 	        return "admin/adminIndex";
 	    }
-	    @RequestMapping("/welcome")   
-	    public String welcome(){
-	        return "admin/welcome";
+	    @RequestMapping("/studentList")   //学生管理界面
+	    public String studentList(){
+	        return "admin/studentList";
+	    }
+	    @RequestMapping("/teacherList")   //教师管理界面
+	    public String teacherList(){
+	        return "admin/teacherList";
+	    }
+	    @RequestMapping("/adminIndex")   //课程管理界面
+	    public String adminIndex(){
+	        return "admin/adminIndex";
+	    }
+	    @RequestMapping("/adminInfo")   //个人资料界面
+	    public String adminInfo(){
+	        return "admin/adminInfo";
+	    }
+	    @RequestMapping("/editPass")   //修改界面
+	    public String editPass(){
+	        return "admin/editPass";
 	    }
 }
