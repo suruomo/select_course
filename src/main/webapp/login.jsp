@@ -49,11 +49,8 @@
             $("#contact-submit").click(function () {
                 var testnum = /^\d{10}$/;
                 var id=$("#userid").val();    
-                if (testnum.test(id)) {         //检验是数字提交服务器
                     $("#contact").submit();
-                }
-                else {
-                    alert("请输入正确学号");}
+
             })
         })
     </script>

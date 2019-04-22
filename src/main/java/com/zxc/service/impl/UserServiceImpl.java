@@ -17,13 +17,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int checkAccount(int id, String pass) {     //检查账户和密码是否正确
+    	
         if(Integer.toString(id).charAt(4)=='1'){   //若账号第四位是1则是老师账号
             if(userDao.selectTeaById(id).getTeaPass().equals(pass))  //验证正确
                 return 2;
             else
                 return 0;
         }
-        else if(Integer.toString(id).substring(0,3)=="100"){     //管理员账号
+        else if(Integer.toString(id).charAt(2)=='0'){     //管理员账号
         	if(userDao.selectAdminById(id).getAdminPass().equals(pass))   
                  return 3;
              else

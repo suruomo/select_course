@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/font.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/weadmin.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
-    
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css">
     <style type="text/css">
         .layui-nav-item.side a {
@@ -29,7 +29,7 @@
         }
     </style>
 </head>
-<body class="layui-layout-body" style="padding:10px 50px;" >
+<body class="layui-layout-body"  >
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -37,7 +37,7 @@
 <!-- 顶部开始 -->
 		<div class="container">
 			<div class="logo">
-				<a href="./index.html">WeAdmin v1.0</a>
+				<a href="javascript:;">网上选课后台管理系统</a>
 			</div>
 			<div class="left_open">
 				<i title="展开左侧栏" class="iconfont">&#xe699;</i>
@@ -278,11 +278,11 @@
 		<div class="page-content">
 			<div class="layui-tab tab" lay-filter="wenav_tab" id="WeTabTip" lay-allowclose="true">
 				<ul class="layui-tab-title" id="tabName">
-					<li>我的桌面</li>
+					<li>首页</li>
 				</ul>
 				<div class="layui-tab-content">
 					<div class="layui-tab-item layui-show">
-						<iframe src='./pages/welcome.html' frameborder="0" scrolling="yes" class="weIframe"></iframe>
+						<iframe src='<%=basePath%>admin/welcome' frameborder="0" scrolling="yes" class="weIframe"></iframe>
 					</div>
 				</div>
 			</div>
@@ -292,7 +292,7 @@
 		<!-- 中部结束 -->
 		<!-- 底部开始 -->
 		<div class="footer">
-			<div class="copyright">Copyright ©2018 WeAdmin v1.0 All Rights Reserved</div>
+			<div class="copyright">Copyright ©2019 网上选课系统 By suruomo</div>
 		</div>
 		<!-- 底部结束 -->
 <rapid:block name="content"></rapid:block>
