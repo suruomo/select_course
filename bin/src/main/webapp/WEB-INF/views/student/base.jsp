@@ -5,6 +5,7 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>
 <html>
 <head>
+
     <rapid:block name="head"></rapid:block>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css">

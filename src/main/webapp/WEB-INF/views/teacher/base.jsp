@@ -33,6 +33,7 @@
     <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon" style="font-size:18px;" >&#xe612;</i>${sessionScope.username}&nbsp;${sessionScope.teaid}</li>
 </ul>
 <rapid:block name="content"></rapid:block>
+
 <script src="${pageContext.request.contextPath}/static/layui.all.js"></script>
 </body>
 </html>

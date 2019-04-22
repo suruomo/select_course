@@ -10,7 +10,9 @@
     <select id="selectTeaById" resultType="Teacher" parameterType="int">
         SELECT * FROM Teacher WHERE teaId=#{id}
     </select>
-
+      <select id="selectAdminById" resultType="Admin" parameterType="int">
+        SELECT * FROM Admin WHERE adminId=#{id}
+    </select>
     <update id="updateStuPass" parameterType="Student">
         UPDATE Student SET
         stuPass=#{stuPass}

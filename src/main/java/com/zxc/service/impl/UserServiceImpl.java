@@ -23,7 +23,13 @@ public class UserServiceImpl implements UserService {
             else
                 return 0;
         }
-        else{
+        else if(Integer.toString(id).substring(0,3)=="100"){     //管理员账号
+        	if(userDao.selectAdminById(id).getAdminPass().equals(pass))   
+                 return 3;
+             else
+                 return 0;
+        }
+        else {
             if(userDao.selectStuById(id).getStuPass().equals(pass))   //否则是学生账号
                 return 1;
             else
@@ -73,4 +79,10 @@ public class UserServiceImpl implements UserService {
     public List<Teacher> queryAllTeacher() {
         return userDao.queryAllTeacher();
     }
+
+	@Override
+	public String getAdminNameById(int id) {
+		// TODO Auto-generated method stub
+		return userDao.selectAdminById(id).getAdminName();
+	}
 }

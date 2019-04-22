@@ -1,5 +1,6 @@
 package com.zxc.dao;
 
+import com.zxc.model.Admin;
 import com.zxc.model.Student;
 import com.zxc.model.Teacher;
 
@@ -13,4 +14,5 @@ public interface UserDao {
     public List<Teacher> queryAllTeacher();
     public void updateStuInfo(Student student);
 	public void updateTeaInfo(Teacher teacher);
+	public Admin selectAdminById(int id);
 }

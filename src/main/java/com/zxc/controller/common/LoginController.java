@@ -34,6 +34,11 @@ public class LoginController {
             model.addAttribute("stuid",id);
             return "student/studentIndex";
         }
+        else if(userService.checkAccount(id, pass) == 3) {   //管理员账号正确
+        	model.addAttribute("username",userService.getAdminNameById(id));
+            model.addAttribute("adminid",id);
+            return "student/adminIndex";
+        }
         else{                                 //账号与密码不匹配,重新登陆
             model.addAttribute("msg","密码错误");
             //这里不加redirect，否则前端取不到userid值

@@ -16,4 +16,5 @@ public interface UserService {
     public void changeStuInfo(Student student);
     public List<Teacher> queryAllTeacher();
 	public void changeTeaInfo(Teacher teacher);
+	public String getAdminNameById(int id);
 }
