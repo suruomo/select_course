@@ -11,8 +11,12 @@
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
     %>
     <div>
-        <button type="button" onclick="insert()" class="layui-btn layui-btn-lg layui-btn-warm" style="margin-top:15px;">添加非体育课程</button>
-        <button type="button" onclick="insertTi()" class="layui-btn layui-btn-lg " style="margin-top:15px;">添加体育课程</button>
+       <c:if test="${teacher.insName=='体育学院'}">
+         <button type="button" onclick="insertTi()" class="layui-btn layui-btn-lg layui-btn-warm" style="margin-top:15px;">添加体育课程</button>
+       </c:if>
+       <c:if test="${teacher.insName!='体育学院'}">
+         <button type="button" onclick="insert()" class="layui-btn layui-btn-lg " style="margin-top:15px;">添加非体育课程</button>       
+       </c:if>
     </div>
     <script>
         function insert() {

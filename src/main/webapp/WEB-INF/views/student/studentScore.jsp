@@ -10,6 +10,22 @@
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
     %>
+        <form class="layui-form" style="margin:10px 15px 10px;">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <div style="display: inline-block">
+                    <div style="width: 180px; float: left; margin-left:-100px;">
+                        <select class="layui-select" id="teasearch">
+                            <option value="0">必修</option>
+                            <option value="1">选修</option>
+                        </select>
+                    </div>
+                    <button type="button" id="tea" class="layui-btn layui-btn-radius " style="margin-left:10px;">筛选</button>
+                </div>
+                <button id="out" type="button" class="layui-btn layui-btn-radius"style="float:right;">导出成绩</button>
+            </div>
+        </div>
+    </form>
     <p style="color:red; margin-top:10px; font-size:15px;">${msg}</p>
     <table class="layui-table" style="margin-top:15px;">
         <colgroup>
@@ -94,4 +110,12 @@
         </c:if>
     </div>
 </rapid:override>
+<script>
+        $(function () {
+            $("#out").click(function () { 
+                window.location.href="outputScore";  
+            });
+
+        })
+    </script>
 <%@ include file="base.jsp" %>

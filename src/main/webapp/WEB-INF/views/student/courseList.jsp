@@ -182,6 +182,7 @@
             });
 
         })
+        
     </script>
 </rapid:override>
 <%@ include file="base.jsp" %>

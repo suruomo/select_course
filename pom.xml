@@ -21,7 +21,6 @@
   </properties>
 
   <dependencies>
-
     <!-- java ee -->
     <dependency>
       <groupId>javax</groupId>

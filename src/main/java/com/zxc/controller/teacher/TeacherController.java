@@ -62,6 +62,7 @@ public class TeacherController {
 
     @RequestMapping("/courseList")    //查看所有课程列表
     public String courseList(@Param("page") int page, Model model,HttpServletRequest request){
+    	model.addAttribute("teacher", userService.getTeaInfoById((int)request.getSession().getAttribute("teaid")));
         model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));
         return "teacher/courseList";
     }
@@ -110,6 +111,7 @@ public class TeacherController {
         //获取插入后的课程编号
         int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],(int)request.getSession().getAttribute("teaid"));
         courseService.insertProLimit(det[2],courseId);
+        model.addAttribute("teacher", userService.getTeaInfoById((int)request.getSession().getAttribute("teaid")));
         model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));
         return "teacher/courseList";
     }
@@ -123,6 +125,7 @@ public class TeacherController {
         int courseId=courseService.updateCourse(Integer.parseInt(det[0]),det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],det[10],(int)request.getSession().getAttribute("teaid"));
         System.out.println(det[2]);
         courseService.updateProLimit(det[2],courseId);
+        model.addAttribute("teacher", userService.getTeaInfoById((int)request.getSession().getAttribute("teaid")));
         model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));
         return "teacher/courseList";
     }
@@ -131,6 +134,7 @@ public class TeacherController {
     public String deleteCourse(@Param("courseid") int courseid, Model model,HttpServletRequest request){
         courseService.deleteCourse(courseid);
         model.addAttribute("paging",pageService.subList(1,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));
+        model.addAttribute("teacher", userService.getTeaInfoById((int)request.getSession().getAttribute("teaid")));
         return "teacher/courseList";
     }
 
