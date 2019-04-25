@@ -8,7 +8,7 @@
     <rapid:block name="head"></rapid:block>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="UTF-8">
-	<title>网上选课后台管理</title>
+	<title >网上选课后台管理</title>
 	<meta http-equiv="Cache-Control" content="no-siteapp" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/font.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/weadmin.css">
@@ -24,14 +24,17 @@
 <!-- 顶部开始 -->
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <div class="layui-logo">网上选课系统后台管理</div>
+    <div class="layui-logo" style="font-size:18px;">网上选课系统后台管理</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
-      <li class="layui-nav-item"><a href="">控制台</a></li>
-      <li class="layui-nav-item"><a href="">商品管理</a></li>
-      <li class="layui-nav-item"><a href="">用户</a></li>
+     <li class="layui-nav-item ">
+         <a href="<%=basePath%>student/studentScore" style="font-size:15px;">课程审核</a>
+     </li>
+      <li class="layui-nav-item ">
+         <a href="<%=basePath%>student/studentScore" style="font-size:15px;">通知管理</a>
+    </li>
       <li class="layui-nav-item">
-        <a href="javascript:;">其它系统</a>
+        <a href="javascript:;">其它</a>
         <dl class="layui-nav-child">
           <dd><a href="">邮件管理</a></dd>
           <dd><a href="">消息管理</a></dd>
@@ -54,22 +57,25 @@
     <div class="layui-side-scroll">
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-       <li class="layui-nav-item layui-nav-itemd">
-        <a href="javascript:;">学生管理</a>
+       <li class="layui-nav-item layui-nav-itemd" >
+        <a href="javascript:;" style="font-size:20px;">学生管理</a>
         <dl class="layui-nav-child">
-          <dd><a href="<%=basePath%>admin/studentList">查看学生信息</a></dd>
+          <dd><a href="<%=basePath%>admin/studentList">管理学生信息</a></dd>
+          <dd><a href="<%=basePath%>admin/studentList">添加学生</a></dd>
         </dl>
        </li>
         <li class="layui-nav-item layui-nav-itemd">
-          <a href="javascript:;">教师管理</a>
+          <a href="javascript:;" style="font-size:20px;">教师管理</a>
           <dl class="layui-nav-child">
-           <dd><a href="<%=basePath%>admin/teacherList">查看教师信息</a></dd>
+           <dd><a href="<%=basePath%>admin/teacherList">管理教师信息</a></dd>
+           <dd><a href="<%=basePath%>admin/studentList">添加教师</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item layui-nav-itemd">
-          <a href="javascript:;">课程管理</a>
+          <a href="javascript:;" style="font-size:20px;">课程管理</a>
           <dl class="layui-nav-child">
-           <dd><a href="<%=basePath%>admin/courseList">查看课程信息</a></dd>
+           <dd><a href="<%=basePath%>admin/courseList">管理课程信息</a></dd>
+           <dd><a href="<%=basePath%>admin/studentList">添加课程</a></dd>
           </dl>
         </li>
       </ul>

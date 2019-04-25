@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,6 +59,12 @@ public class AdminController {
 	    @RequestMapping("/teacherList")   //教师管理界面
 	    public String teacherList(){
 	        return "admin/teacherList";
+	    }
+	    @RequestMapping("/updateStudent")   
+	    public String updateStudent(int id,Model model){
+	    	System.out.println(id);
+	    	model.addAttribute("student",userService.getStuInfoById(id));   //根据id查找学生信息
+	        return "admin/updateStudent";   //根据id查找学生信息
 	    }
 	    @RequestMapping("/courseList")   //课程管理界面
 	    public String courseList(){
