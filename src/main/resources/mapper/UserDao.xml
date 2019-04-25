@@ -38,5 +38,7 @@
     <select id="queryAllTeacher" resultType="Teacher">
         SELECT * FROM Teacher
     </select>
-
+    <select id="queryAllStu" resultType="Student" >
+        SELECT * FROM Student 
+    </select>
 </mapper>

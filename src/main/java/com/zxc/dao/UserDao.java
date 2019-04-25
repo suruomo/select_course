@@ -15,4 +15,5 @@ public interface UserDao {
     public void updateStuInfo(Student student);
 	public void updateTeaInfo(Teacher teacher);
 	public Admin selectAdminById(int id);
+	public List<Student> queryAllStu();
 }

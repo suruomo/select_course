@@ -86,4 +86,10 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDao.selectAdminById(id).getAdminName();
 	}
+
+	@Override
+	public List<Student> queryAllStu() {
+		// TODO Auto-generated mequeryAllStuthod stub
+		return userDao.queryAllStu();
+	}
 }

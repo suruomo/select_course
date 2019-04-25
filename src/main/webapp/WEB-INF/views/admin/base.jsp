@@ -15,11 +15,12 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css">
 </head>
-<body class="layui-layout-body"  >
+
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+<body>
 <!-- 顶部开始 -->
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
@@ -40,7 +41,7 @@
     </ul>
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item" style="float:right; "><a href="<%=basePath%>exit" style="font-size: 20px;">退出登录</a></li>
-      <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon" style="font-size:18px;" >&#xe612;</i>&nbsp;${sessionScope.username}&nbsp;${sessionScope.stuid}
+      <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon" style="font-size:18px;" >&#xe612;</i>&nbsp;${sessionScope.username}&nbsp;${sessionScope.adminid}
         <dl class="layui-nav-child">
           <dd><a href="<%=basePath%>admin/adminInfo">基本资料</a></dd>
           <dd><a href="<%=basePath%>admin/editPass">修改密码</a></dd>
@@ -74,13 +75,16 @@
       </ul>
     </div>
   </div>
+    <div class="layui-body">
+    <!-- 内容主体区域 -->
+    
+    </div>
   <div class="layui-footer">
     <!-- 底部固定区域 -->
     <div class="copyright">Copyright ©2019 网上选课系统 by suruomo</div>
   </div>
 </div>
-<rapid:block name="content"></rapid:block>
-<script src="${pageContext.request.contextPath}/static/layui.all.js"></script>
 </body>
-
+<script src="${pageContext.request.contextPath}/static/layui.all.js"></script>
+<rapid:block name="content"></rapid:block>
 </html>
