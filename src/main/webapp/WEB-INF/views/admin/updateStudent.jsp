@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c"
+           uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +12,9 @@
 	<title>网上选课后台管理</title>
 	<meta http-equiv="Cache-Control" content="no-siteapp" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/font.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/weadmin.css">
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/lay/modules/table.js" charset="utf-8"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/lay/modules/table.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css"   media="all">
   <style>
   	.layui-input{
@@ -28,45 +30,59 @@
   	$(function(){
   		$("button").click(function(){
   			//取得表单的值
-  			var id = $("input[name=id]").val()
-  			var musicName = $("input[name=musicName]").val(); 
-  			var singerId = $("input[name=singerId]").val(); 
-  			var musicURL = $("input[name=musicURL]").val(); 
-  			var typeId = $("input[name=typeId]").val(); 
-  			var photo = $("input[name=photo]").val(); 
-  			
+  			var stuId = $("input[name=id]").val()
+  			var stuName = $("input[name=name]").val(); 
+  			var sex = $('#sex input[name="sex"]:checked ').val()
+  			var grade = $("input[name=grade]").val(); 
+  			var proName = $("input[name=pro]").val(); 
+  			var insName= $("input[name=ins]").val(); 
+  			var tele = $("input[name=tele]").val(); 
   			$.ajax({
-  				url:'${pageContext.request.contextPath}/updateStudentSuccess',
+  				url:'<%=basePath%>admin/updateStudentSuccess',   //提交修改数据
   				method:'POST',
-  				data:{"id":id,"musicName":musicName,"singerId":singerId,
-					   "musicURL":musicURL,"typeId":typeId,"photo":photo},
+  				data:{"stuId":stuId,"stuName":stuName,"sex":sex,
+					   "grade":grade,"proName":proName,"insName":insName,"tele":tele},
 				dataType:'text',
 				success:function(data){
-					alert(data);
-				}
+					layer.alert("已修改");
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					parent.layer.close(index); //再执行关闭
+			},
+				error:function(data){
+					layer.alert("已修改");
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					parent.layer.close(index); //再执行关闭
+				}, 
   			});
   		});
   	});
   </script>
 </head>
 <body>
-
+<form class="layui-form">
 <div class="layui-form-item">
     <label class="layui-form-label">学号</label>
     <div class="layui-input-block">
       <input type="text" name="id" disabled="disabled" value="${student.stuId}" class="layui-input">
     </div>
-  </div>
+</div>
 	<div class="layui-form-item">
     <label class="layui-form-label">姓名</label>
     <div class="layui-input-block">
       <input type="text" name="name" value="${student.stuName}" placeholder="请输入姓名" autocomplete="off" class="layui-input">
     </div>
   </div>
-  <div class="layui-form-item">
+   <div class="layui-form-item">
     <label class="layui-form-label">性别</label>
-    <div class="layui-input-block">
-      <input type="text" name="sex" value="${student.sex}" placeholder="请输入年级" autocomplete="off" class="layui-input">
+    <div class="layui-input-block" id="sex">
+     <c:if test="${student.sex=='女'}">
+                 <input type="radio" name="sex" value="女" title="女" checked>
+                 <input type="radio" name="sex" value="男" title="男" >
+               </c:if>
+      <c:if test="${student.sex=='男'}">
+                  <input type="radio" name="sex" value="女" title="女" >
+                  <input type="radio" name="sex" value="男" title="男" checked>
+      </c:if>
     </div>
   </div>
   <div class="layui-form-item">
@@ -78,13 +94,13 @@
   <div class="layui-form-item">
     <label class="layui-form-label">专业</label>
     <div class="layui-input-block">
-      <input type="text" name="pro" value="${student.proName}" placeholder="请输入专业" autocomplete="off" class="layui-input">
+      <input type="text" name="pro" value="${student.proName}" disabled="disabled"  placeholder="请输入专业" autocomplete="off" class="layui-input">
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">学院</label>
     <div class="layui-input-block">
-      <input type="text" name="ins" value="${student.insName}" placeholder="请输入学院" autocomplete="off" class="layui-input">
+      <input type="text" name="ins" value="${student.insName}" disabled="disabled"  placeholder="请输入学院" autocomplete="off" class="layui-input">
     </div>
   </div>
   <div class="layui-form-item">
@@ -94,5 +110,7 @@
     </div>
   </div>
   <button class="layui-btn">确定修改</button>
+  </form>
 </body>
+
 </html>

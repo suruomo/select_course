@@ -61,10 +61,24 @@ public class AdminController {
 	        return "admin/teacherList";
 	    }
 	    @RequestMapping("/updateStudent")   
-	    public String updateStudent(int id,Model model){
+	    public String updateStudent(Integer id,Model model){
 	    	System.out.println(id);
 	    	model.addAttribute("student",userService.getStuInfoById(id));   //根据id查找学生信息
 	        return "admin/updateStudent";   //根据id查找学生信息
+	    }
+	    @RequestMapping("/deleteStudent")   
+	    @ResponseBody
+	    public String deleteStudent(Integer id){     //删除学生
+	    	System.out.println(id);
+	    	userService.delStu(id);   
+	        return "admin/updateStudent";   //根据id查找学生信息
+	    }
+	    @RequestMapping(value="/updateStudentSuccess") 
+	    @ResponseBody
+	    public String updateStudentSuccess(Student student){
+	    	System.out.println(student.getStuName());
+	    	userService.updateStuInfo(student);   //修改信息
+	        return "修改成功";   
 	    }
 	    @RequestMapping("/courseList")   //课程管理界面
 	    public String courseList(){

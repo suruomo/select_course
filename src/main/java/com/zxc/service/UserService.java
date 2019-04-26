@@ -18,4 +18,6 @@ public interface UserService {
 	public void changeTeaInfo(Teacher teacher);
 	public String getAdminNameById(int id);
 	public List<Student> queryAllStu();
+	public void updateStuInfo(Student student);
+	public void delStu(Integer id);
 }

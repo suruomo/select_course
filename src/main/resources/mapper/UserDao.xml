@@ -18,10 +18,15 @@
         stuPass=#{stuPass}
         WHERE stuId=#{stuId}
     </update>
+    <delete id="delStu" parameterType="int">
+        DELETE FROM Student WHERE stuId=#{id}
+    </delete>
    <update id="updateStuInfo" parameterType="Student">
         UPDATE Student SET
-        tele=#{tele},
-        address=#{address}
+        stuName=#{stuName},
+        sex=#{sex},
+        grade=#{grade},
+        tele=#{tele}
         WHERE stuId=#{stuId}
     </update>
     <update id="updateTeaInfo" parameterType="Teacher">

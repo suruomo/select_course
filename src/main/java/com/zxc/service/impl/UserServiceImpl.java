@@ -92,4 +92,17 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated mequeryAllStuthod stub
 		return userDao.queryAllStu();
 	}
+
+	@Override
+	public void updateStuInfo(Student student) {
+		// TODO Auto-generated method stub
+		userDao.updateStuInfo(student);
+		
+	}
+
+	@Override
+	public void delStu(Integer id) {
+		// TODO Auto-generated method stub
+		userDao.delStu(id);
+	}
 }

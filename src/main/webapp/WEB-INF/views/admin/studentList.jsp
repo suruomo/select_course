@@ -8,7 +8,7 @@
 	<title>网上选课后台管理</title>
 	<meta http-equiv="Cache-Control" content="no-siteapp" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/font.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/weadmin.css">
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/lay/modules/table.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css"   media="all">
@@ -53,13 +53,13 @@
             ,cols: [[
                  {type: 'checkbox', fixed: 'left'}
                 ,{field:'stuId', title:'学号', width:150, fixed: 'left', sort: true}
-                ,{field:'stuName', title:'姓名', width:120, edit: 'text'}
-                ,{field:'sage', title:'年龄', width:80}
-                ,{field:'sex', title:'性别', width:80}
-                ,{field:'tele', title:'电话', width:100}
-                ,{field:'address', title:'地址', width:100}
+                ,{field:'stuName', title:'姓名', width:80, edit: 'text'}
+                ,{field:'sage', title:'年龄', width:70}
+                ,{field:'sex', title:'性别', width:70}
+                ,{field:'tele', title:'电话', width:120}
+                ,{field:'address', title:'地址', width:70}
                 ,{field:'proName', title:'专业', width:120}                      
-                ,{field:'grade', title:'年级', width:120}
+                ,{field:'grade', title:'年级', width:100}
                 ,{field:'state', title:'状态', width:120}
                 ,{field:'insName', title:'学院名称', width:120}      
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:180}
@@ -92,16 +92,19 @@
 		    		}
 		    	});
 		     }else if(obj.event === 'modify'){   //修改数据
-		    var data = obj.data;   //获得当前行数据
 		    	layer.open({
 					  type: 2, 
 					  title:'修改数据'   //标题 
 					  ,area:['500px','550px']    //宽高
-					  ,content:'<%=basePath%>/admin/updateStudent?id='+data.stuId 
-				}); 			  
+					  ,content:['${pageContext.request.contextPath}/admin/updateStudent?id='+data.stuId,'no']
+		    	      ,end: function () {
+		                location.reload();
+		            }
+		    	}); 			  
 		    } 
 		 });
     });
 </script>
+
 </rapid:override>
 <%@ include file="base.jsp"%>
