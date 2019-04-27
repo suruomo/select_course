@@ -17,4 +17,5 @@ public interface UserDao {
 	public Admin selectAdminById(int id);
 	public List<Student> queryAllStu();
 	public void delStu(int id);
+	public void insertStuInfo(Student student);
 }

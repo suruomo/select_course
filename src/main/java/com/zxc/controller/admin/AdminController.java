@@ -91,10 +91,17 @@ public class AdminController {
 	    }
 	    @RequestMapping(value="/updateStudentSuccess") 
 	    @ResponseBody
-	    public String updateStudentSuccess(Student student){
+	    public String updateStudentSuccess(Student student){     //学生修改信息
 	    	System.out.println(student.getStuName());
-	    	userService.updateStuInfo(student);   //修改信息
+	    	userService.updateStuInfo(student);   
 	        return "修改成功";   
+	    }
+	    @RequestMapping(value="/addStu.action") 
+	    @ResponseBody
+	    public String addStu(Student student){         //添加学生信息
+	    	System.out.println(student.getStuName());
+	    	userService.insertStuInfo(student);   
+	        return "添加成功";   
 	    }
 	    @RequestMapping("/courseList")   //课程管理界面
 	    public String courseList(){

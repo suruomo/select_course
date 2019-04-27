@@ -20,4 +20,5 @@ public interface UserService {
 	public List<Student> queryAllStu();
 	public void updateStuInfo(Student student);
 	public void delStu(Integer id);
+	public void insertStuInfo(Student student);
 }

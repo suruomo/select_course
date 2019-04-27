@@ -60,8 +60,9 @@
     </div>
 </script>
 <script>
-    layui.use('table',  function(){
+    layui.use(['layer','table'],  function(){
     	 var table = layui.table;
+    	 var layer = layui.layer;
         //方法渲染
         table.render({
             elem: '#demo'  //绑定table表格 
@@ -73,7 +74,7 @@
             ,toolbar: '#toolbarDemo'  //开启表格头部工具栏区域
             ,cols: [[
                  {type: 'checkbox', fixed: 'left'}
-                ,{field:'stuId', title:'学号', width:150, fixed: 'left', sort: true}
+                ,{field:'stuId', title:'学号', width:130, fixed: 'left', sort: true}
                 ,{field:'stuName', title:'姓名', width:80, edit: 'text'}
                 ,{field:'sage', title:'年龄', width:70}
                 ,{field:'sex', title:'性别', width:70}

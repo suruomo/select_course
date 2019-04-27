@@ -109,8 +109,8 @@
       <input type="text" name="tele" value="${student.tele}" placeholder="请输入电话" autocomplete="off" class="layui-input">
     </div>
   </div>
-  <button type="button" class="layui-btn">确定修改</button>
   </form>
+    <button type="button" class="layui-btn">确定修改</button>
 </body>
 
 </html>

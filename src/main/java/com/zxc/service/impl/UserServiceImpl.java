@@ -105,4 +105,10 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		userDao.delStu(id);
 	}
+
+	@Override
+	public void insertStuInfo(Student student) {
+		// TODO Auto-generated method stub
+		userDao.insertStuInfo(student);
+	}
 }
