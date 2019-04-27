@@ -44,7 +44,7 @@
 					   "grade":grade,"proName":proName,"insName":insName,"tele":tele},
 				dataType:'text',
 				success:function(data){
-					layer.alert("已修改");
+					layer.alert("已修改"); 
 					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 					parent.layer.close(index); //再执行关闭
 			},
@@ -109,7 +109,7 @@
       <input type="text" name="tele" value="${student.tele}" placeholder="请输入电话" autocomplete="off" class="layui-input">
     </div>
   </div>
-  <button class="layui-btn">确定修改</button>
+  <button type="button" class="layui-btn">确定修改</button>
   </form>
 </body>
 

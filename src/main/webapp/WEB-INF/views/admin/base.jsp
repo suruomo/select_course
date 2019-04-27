@@ -11,6 +11,7 @@
 	<title >网上选课后台管理</title>
 	<meta http-equiv="Cache-Control" content="no-siteapp" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/font.css">
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/weadmin.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css">
@@ -61,7 +62,7 @@
         <a href="javascript:;" style="font-size:20px;">学生管理</a>
         <dl class="layui-nav-child">
           <dd><a href="<%=basePath%>admin/studentList">管理学生信息</a></dd>
-          <dd><a href="<%=basePath%>admin/studentList">添加学生</a></dd>
+          <dd><a href="<%=basePath%>admin/InsertStudent">添加学生</a></dd>
         </dl>
        </li>
         <li class="layui-nav-item layui-nav-itemd">
@@ -90,7 +91,8 @@
     <div class="copyright">Copyright ©2019 网上选课系统 by suruomo</div>
   </div>
 </div>
-</body>
 <script src="${pageContext.request.contextPath}/static/layui.all.js"></script>
 <rapid:block name="content"></rapid:block>
+</body>
+
 </html>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zxc.model.Institution;
 import com.zxc.model.Page;
 import com.zxc.model.Student;
 import com.zxc.service.CourseService;
@@ -56,6 +57,21 @@ public class AdminController {
 	    	map.put("count",count);
 	    	return map;    	
 	    }
+	    @RequestMapping(value="/queryPro",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
+	    public @ResponseBody Map<String, Object> queryPro(int ins){
+            System.out.println(ins);
+	    	List<Institution> proList=courseService.queryAllproByIns(ins);
+	    	Map<String, Object> map = new HashMap<>();
+	    	int count=proList.size();
+	    	//用json来传值     	
+	    	JSONArray json = JSONArray.fromObject(proList);
+            //*****转为layui需要的json格式，必须要这一步，博主也是没写这一步，在页面上数据就是数据接口异常    	    
+	    	map.put("code",0);
+	    	map.put("msg","");
+	    	map.put("data",json);
+	    	map.put("count",count);
+	    	return map;    	
+	    }
 	    @RequestMapping("/teacherList")   //教师管理界面
 	    public String teacherList(){
 	        return "admin/teacherList";
@@ -71,7 +87,7 @@ public class AdminController {
 	    public String deleteStudent(Integer id){     //删除学生
 	    	System.out.println(id);
 	    	userService.delStu(id);   
-	        return "admin/updateStudent";   //根据id查找学生信息
+	        return "删除成功";   //根据id查找学生信息
 	    }
 	    @RequestMapping(value="/updateStudentSuccess") 
 	    @ResponseBody
@@ -87,6 +103,11 @@ public class AdminController {
 	    @RequestMapping("/adminInfo")   //个人资料界面
 	    public String adminInfo(){
 	        return "admin/adminInfo";
+	    }
+	    @RequestMapping("/InsertStudent")  
+	    public String InsertStudent(Model model){
+	    	
+	        return "admin/InsertStudent";
 	    }
 	    @RequestMapping("/editPass")   //修改界面
 	    public String editPass(){
