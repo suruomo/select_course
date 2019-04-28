@@ -52,4 +52,8 @@
         INSERT INTO Student(stuName,sage,tele,sex,stuPass,insId,insName,proId,proName,address,photo,grade,state)
         VALUES (#{stuName},#{sage},#{tele},#{sex},000,#{insId},#{insName},#{proId},#{proName},#{address},#{photo},#{grade},"正常")
     </insert>
+     <insert id="insertTeaInfo" parameterType="Teacher" useGeneratedKeys="true" keyProperty="teaId" keyColumn="teaId">
+        INSERT INTO Teacher(teaName,teaPass,tage,tsex,tele,insId,insName,address,photo)
+        VALUES (#{teaName},000,#{tage},#{tsex},#{tele},#{insId},#{insName},#{address},#{photo})
+    </insert>
 </mapper>

@@ -136,6 +136,13 @@ public class AdminController {
 	    	userService.insertStuInfo(student);   
 	        return "添加成功";   
 	    }
+	    @RequestMapping(value="/addTea.action") 
+	    @ResponseBody
+	    public String addTea(Teacher teacher){         //添加学生信息
+	    	System.out.println(teacher.getTeaName());
+	    	userService.insertTeaInfo(teacher);   
+	        return "添加成功";   
+	    }
 	    @RequestMapping("/courseList")   //课程管理界面
 	    public String courseList(){
 	        return "admin/courseList";
@@ -144,10 +151,13 @@ public class AdminController {
 	    public String adminInfo(){
 	        return "admin/adminInfo";
 	    }
-	    @RequestMapping("/InsertStudent")  
-	    public String InsertStudent(Model model){
-	    	
-	        return "admin/InsertStudent";
+	    @RequestMapping("/insertStudent")  
+	    public String insertStudent(Model model){	
+	        return "admin/insertStudent";
+	    }
+	    @RequestMapping("/insertTeacher")  
+	    public String insertTeacher(Model model){	
+	        return "admin/insertTeacher";
 	    }
 	    @RequestMapping("/editPass")   //修改界面
 	    public String editPass(){

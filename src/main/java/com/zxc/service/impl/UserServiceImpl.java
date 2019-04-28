@@ -111,4 +111,9 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		userDao.insertStuInfo(student);
 	}
+	@Override
+	public void insertTeaInfo(Teacher teacher) {
+		// TODO Auto-generated method stub
+		userDao.insertTeaInfo(teacher);
+	}
 }

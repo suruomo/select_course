@@ -64,14 +64,14 @@
         <a href="javascript:;" style="font-size:20px;">学生管理</a>
         <dl class="layui-nav-child">
           <dd><a href="<%=basePath%>admin/studentList">管理学生信息</a></dd>
-          <dd><a href="<%=basePath%>admin/InsertStudent">添加学生</a></dd>
+          <dd><a href="<%=basePath%>admin/insertStudent">添加学生</a></dd>
         </dl>
        </li>
         <li class="layui-nav-item layui-nav-itemd">
           <a href="javascript:;" style="font-size:20px;">教师管理</a>
           <dl class="layui-nav-child">
            <dd><a href="<%=basePath%>admin/teacherList">管理教师信息</a></dd>
-           <dd><a href="<%=basePath%>admin/studentList">添加教师</a></dd>
+           <dd><a href="<%=basePath%>admin/insertTeacher">添加教师</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item layui-nav-itemd">

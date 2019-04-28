@@ -21,4 +21,5 @@ public interface UserService {
 	public void updateStuInfo(Student student);
 	public void delStu(Integer id);
 	public void insertStuInfo(Student student);
+	public void insertTeaInfo(Teacher teacher);
 }
