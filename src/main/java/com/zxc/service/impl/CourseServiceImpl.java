@@ -373,4 +373,10 @@ public class CourseServiceImpl implements CourseService {
            }
 		return course_list;    
 	}
+
+	@Override
+	public List<Course> queryAllCourse() {
+		// TODO Auto-generated method stub
+		return courseDao.queryAllCourse();
+	}
 }

@@ -21,6 +21,9 @@
     <delete id="delStu" parameterType="int">
         DELETE FROM Student WHERE stuId=#{id}
     </delete>
+    <delete id="delTea" parameterType="int">
+        DELETE FROM Teacher WHERE teaId=#{id}
+    </delete>
    <update id="updateStuInfo" parameterType="Student">
         UPDATE Student SET
         stuName=#{stuName},

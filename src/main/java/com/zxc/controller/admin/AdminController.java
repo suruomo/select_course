@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zxc.model.Course;
 import com.zxc.model.Institution;
 import com.zxc.model.Page;
 import com.zxc.model.Student;
@@ -76,6 +77,24 @@ public class AdminController {
 	    	map.put("count",count);
 	    	return map;    	
 	    }
+	    @RequestMapping(value="/courseList.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
+	    public @ResponseBody Map<String, Object> courseListAction(@Param("page") int page, @Param("limit") int limit){
+	    	int before = limit * (page - 1) + 1;
+            int after = page * limit;
+            System.out.println(before+","+after);
+	    	List<Course> courseList=courseService.queryAllCourse();
+	    	Map<String, Object> map = new HashMap<>();
+	    	int count=courseList.size();
+	    	//用json来传值     	
+	    	JSONArray json = JSONArray.fromObject(courseList);
+	    	System.out.println(json);
+            //*****转为layui需要的json格式，必须要这一步，博主也是没写这一步，在页面上数据就是数据接口异常    
+	    	map.put("code",0);
+	    	map.put("msg","");
+	    	map.put("data",json);
+	    	map.put("count",count);
+	    	return map;    	
+	    }
 	    @RequestMapping(value="/queryPro",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
 	    public @ResponseBody Map<String, Object> queryPro(int ins){
             System.out.println(ins);
@@ -113,6 +132,20 @@ public class AdminController {
 	    	System.out.println(id);
 	    	userService.delStu(id);   
 	        return "删除成功";   //根据id查找学生信息
+	    }
+	    @RequestMapping("/deleteCourse")   
+	    @ResponseBody
+	    public String deleteCourse(Integer id){     //删除课程
+	    	System.out.println(id);
+	    	courseService.deleteCourse(id);   
+	        return "删除成功";   
+	    }
+	    @RequestMapping("/deleteteacher")   
+	    @ResponseBody
+	    public String deleteteacher(Integer id){     //删除教师
+	    	System.out.println(id);
+	    	userService.delTea(id);   
+	        return "删除成功"; 
 	    }
 	    @RequestMapping(value="/updateStudentSuccess") 
 	    @ResponseBody

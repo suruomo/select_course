@@ -116,4 +116,12 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		userDao.insertTeaInfo(teacher);
 	}
+
+	@Override
+	public void delTea(Integer id) {
+		// TODO Auto-generated method stub
+		userDao.delTea(id);
+	}
+
+
 }

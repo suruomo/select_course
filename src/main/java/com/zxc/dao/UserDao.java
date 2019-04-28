@@ -19,4 +19,5 @@ public interface UserDao {
 	public void delStu(int id);
 	public void insertStuInfo(Student student);
 	public void insertTeaInfo(Teacher teacher);
+	public void delTea(Integer id);
 }
