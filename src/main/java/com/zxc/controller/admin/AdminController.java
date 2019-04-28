@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zxc.model.Institution;
 import com.zxc.model.Page;
 import com.zxc.model.Student;
+import com.zxc.model.Teacher;
 import com.zxc.service.CourseService;
 import com.zxc.service.PageService;
 import com.zxc.service.UserService;
@@ -57,6 +58,24 @@ public class AdminController {
 	    	map.put("count",count);
 	    	return map;    	
 	    }
+	    @RequestMapping(value="/teacherList.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
+	    public @ResponseBody Map<String, Object> teacherListAction(@Param("page") int page, @Param("limit") int limit){
+	    	int before = limit * (page - 1) + 1;
+            int after = page * limit;
+            System.out.println(before+","+after);
+	    	List<Teacher> teaList=userService.queryAllTeacher();
+	    	Map<String, Object> map = new HashMap<>();
+	    	int count=teaList.size();
+	    	//用json来传值     	
+	    	JSONArray json = JSONArray.fromObject(teaList);
+	    	System.out.println(json);
+            //*****转为layui需要的json格式，必须要这一步，博主也是没写这一步，在页面上数据就是数据接口异常    
+	    	map.put("code",0);
+	    	map.put("msg","");
+	    	map.put("data",json);
+	    	map.put("count",count);
+	    	return map;    	
+	    }
 	    @RequestMapping(value="/queryPro",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
 	    public @ResponseBody Map<String, Object> queryPro(int ins){
             System.out.println(ins);
@@ -82,6 +101,12 @@ public class AdminController {
 	    	model.addAttribute("student",userService.getStuInfoById(id));   //根据id查找学生信息
 	        return "admin/updateStudent";   //根据id查找学生信息
 	    }
+	    @RequestMapping("/updateTeacher")   
+	    public String updateTeacher(Integer id,Model model){
+	    	System.out.println(id);
+	    	model.addAttribute("teacher",userService.getTeaInfoById(id));   //根据id查找教师信息
+	        return "admin/updateTeacher";   //根据id查找学生信息
+	    }
 	    @RequestMapping("/deleteStudent")   
 	    @ResponseBody
 	    public String deleteStudent(Integer id){     //删除学生
@@ -94,6 +119,14 @@ public class AdminController {
 	    public String updateStudentSuccess(Student student){     //学生修改信息
 	    	System.out.println(student.getStuName());
 	    	userService.updateStuInfo(student);   
+	        return "修改成功";   
+	    }
+	    @RequestMapping(value="/updateTeacherSuccess") 
+	    @ResponseBody
+	    public String updateTeacherSuccess(Teacher teacher){     //教师修改信息
+	    	System.out.println(teacher.getTeaName());
+	    	System.out.println(teacher.getTsex());
+	    	userService.changeTeaInfo(teacher);   
 	        return "修改成功";   
 	    }
 	    @RequestMapping(value="/addStu.action") 

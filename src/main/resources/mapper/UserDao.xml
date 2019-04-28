@@ -31,6 +31,8 @@
     </update>
     <update id="updateTeaInfo" parameterType="Teacher">
         UPDATE Teacher SET
+        teaName=#{teaName},
+        tsex=#{tsex},
         tele=#{tele},
         address=#{address}
         WHERE teaId=#{teaId}
