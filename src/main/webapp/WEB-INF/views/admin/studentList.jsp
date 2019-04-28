@@ -32,8 +32,6 @@
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >
     <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除</button>
-    <button class="layui-btn layui-btn-sm" lay-event="out">导出</button>
-    <button class="layui-btn layui-btn-sm" lay-event="print">打印</button> 
   </div>
 </script>
 <script>
@@ -67,32 +65,40 @@
 
         //监听表格复选框选择
        table.on('checkbox(test)', function(obj){     //待修改
-    	   alert(obj.type);
-        	 layer.confirm('真的删除所选行么', function(index){
-                                
-              });
        });
         //监听头工具栏事件
        	table.on('toolbar(test)', function(obj){  //注：toolbar是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
-       	 alert("s");
        	var checkStatus = table.checkStatus(obj.config.id);
-        alert(checkStatus);
-         switch(obj.event){
+        switch(obj.event){
            case 'deleteAll':
-             layer.msg('批量删除');
-           break;
-           case 'out':
-             layer.msg('导出');
-           break;
-           case 'print':
-             layer.msg('打印');
+         	if(checkStatus.data.length==0){
+         		parent.layer.msg('请先选择要删除的数据行！', {icon: 2});
+         		return ;
+         	}
+         	var ids = "";
+         	for(var i=0;i<checkStatus.data.length;i++){
+         		ids += checkStatus.data[i].id+",";
+         	}
+            layer.confirm('真的删除行么', function(index){
+            parent.layer.msg('删除中...', {icon: 16,shade: 0.3,time:5000});
+		    	$.ajax({
+		    		url:'${pageContext.request.contextPath}/admin/deleteMultiStu?id='+ids,
+		    		method:'GET',
+		    		dataType:'text',
+		    		success:function(data){	
+		    			layer.msg("删除成功");
+		    			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+						parent.layer.close(index); //再执行关闭
+		    			obj.del();   //删除对应行（tr）的DOM结构，并更新缓存
+		    		}
+		    	});
+           });
            break;
                };
 	});
   	  //监听行工具事件
 		table.on('tool(test)', function(obj){  //注：tool是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
-		    var data = obj.data;   //获得当前行数据
-		  
+		    var data = obj.data;   //获得当前行数据  
 		    if(obj.event === 'del'){   //删除数据
 		    	//执行ajax请求
            layer.confirm('真的删除行么', function(index){
