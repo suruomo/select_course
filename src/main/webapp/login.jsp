@@ -11,10 +11,14 @@
 <head>
     <title>登录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/loginCss.css">
-    <script src="${pageContext.request.contextPath}/static/layui.all.js"></script>
-    <script src="${pageContext.request.contextPath}/static/layui.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/font.css">
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/weadmin.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.all.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/layui/css/modules/layer/default/layer.css">
     <style type="text/css">
         .formdiv{
             padding:120px 500px;
@@ -32,7 +36,7 @@
         <h4>欢迎使用</h4>
         <h4 style="color:red;">${msg}</h4>
         <fieldset class="layui-input-inline">
-         <i class="layui-icon layui-icon-username" style="position: absolute;top:8px;right: 8px;">&#xe612;</i>
+         <i class="layui-icon " style="position: absolute;top:8px;right: 8px;">&#xe612;</i>
          <input placeholder="账号" type="text" name="userid" id="userid" >
         </fieldset>
         <fieldset  class="layui-input-inline">

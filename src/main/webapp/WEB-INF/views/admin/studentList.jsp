@@ -1,17 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <rapid:override name="head">
-	<title>首页</title>
-    <rapid:block name="head"></rapid:block>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta charset="UTF-8">
-	<title>网上选课后台管理</title>
-	<meta http-equiv="Cache-Control" content="no-siteapp" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/font.css">
-	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/lay/modules/table.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css"   media="all">
+	<title>学生列表</title>
 </rapid:override>
 <rapid:override name="content">
 	<%
@@ -21,8 +11,8 @@
 <div class="layui-body">
     <!-- 内容主体区域 -->
 
-     <div style="padding: 80px;border:45px;">
-        <form class="layui-form" style="border:45px;">
+     <div style="padding: 70px;border:30px;">
+        <form class="layui-form">
         <div class="layui-form-item">
             <div class="layui-input-block"> 
                 <input type="text" id="search" class="layui-input" style="float:left; width:200px;"
@@ -30,34 +20,21 @@
                 <button data-type="reload" class="layui-btn layui-btn-radius"style="float:left;" onclick="search()">搜索</button>
             </div>
         </div>
-    </form>
-     <table class="layui-hide" id="demo" lay-filter="demo"></table>
+        </form>
+     <table class="layui-hide" id="demo" lay-filter="test"></table>
    </div>
   </div>
      
-  <script type="text/html" id="barDemo">
-  
-  <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="modify">修改</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="modify"><i class="layui-icon">&#xe642;</i>修改</a>
+  <a class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="del"><i class="layui-icon">&#x1006;</i>删除</a>
 </script>
-<script type="text/html" id="toolbarDemo">
-			<div class="layui-row">
-        <div class="layui-col-md2 layui-col-sm3 layui-col-xs6" style="text-align: left;padding-left: 10px;">
-            <div class="layui-input-inline yutons-btn-margin-right">
-               <span class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="table_export">导出</span>
-               <span class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="table_export">打印</span>
-            </div>
-        </div>
-        <div class="layui-col-md10 layui-col-sm9 layui-col-xs6" style="text-align: right;">
-            <div class="layui-input-inline yutons-btn-margin-right" style="margin-right: 0px;">
-				<span class="layui-inline yutons-header-tool" title="导出" lay-event="LAYTABLE_EXPORT">
-				                    <i class="layui-icon layui-icon-export"></i></span>
-				<span class="layui-inline yutons-header-tool" title="打印" lay-event="LAYTABLE_PRINT">
-							<i class="layui-icon layui-icon-print"></i>
-				</span>
-            </div>
-        </div>
-    </div>
+<script type="text/html"  id="toolbarDemo">
+  <div class="layui-btn-container" >
+    <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除</button>
+    <button class="layui-btn layui-btn-sm" lay-event="out">导出</button>
+    <button class="layui-btn layui-btn-sm" lay-event="print">打印</button> 
+  </div>
 </script>
 <script>
     layui.use(['layer','table'],  function(){
@@ -70,11 +47,11 @@
             ,page:true    //true表示分页
             ,limit: 10
             ,title:'学生信息表'
-            ,id:'contenttable'
+            ,id:'studentList'
             ,toolbar: '#toolbarDemo'  //开启表格头部工具栏区域
             ,cols: [[
                  {type: 'checkbox', fixed: 'left'}
-                ,{field:'stuId', title:'学号', width:130, fixed: 'left', sort: true}
+                ,{field:'stuId', title:'学号', width:110, fixed: 'left', sort: true}
                 ,{field:'stuName', title:'姓名', width:80, edit: 'text'}
                 ,{field:'sage', title:'年龄', width:70}
                 ,{field:'sex', title:'性别', width:70}
@@ -88,17 +65,32 @@
             ]]
         }); 
 
-        //监听表格行点击
-        table.on('tr', function(obj){
-            console.log(obj)
-        });
- 
         //监听表格复选框选择
-        table.on('checkbox(demo)', function(obj){
-            console.log(obj)
-        });
+       table.on('checkbox(test)', function(obj){     //待修改
+    	   alert(obj.type);
+        	 layer.confirm('真的删除所选行么', function(index){
+                                
+              });
+       });
+        //监听头工具栏事件
+       	table.on('toolbar(test)', function(obj){  //注：toolbar是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
+       	 alert("s");
+       	var checkStatus = table.checkStatus(obj.config.id);
+        alert(checkStatus);
+         switch(obj.event){
+           case 'deleteAll':
+             layer.msg('批量删除');
+           break;
+           case 'out':
+             layer.msg('导出');
+           break;
+           case 'print':
+             layer.msg('打印');
+           break;
+               };
+	});
   	  //监听行工具事件
-		  table.on('tool(demo)', function(obj){  //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+		table.on('tool(test)', function(obj){  //注：tool是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
 		    var data = obj.data;   //获得当前行数据
 		  
 		    if(obj.event === 'del'){   //删除数据

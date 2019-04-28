@@ -78,11 +78,15 @@
     <div class="layui-input-block">
       <input type="text" name="address"  placeholder="请输入地址" autocomplete="off" class="layui-input">
     </div>
-  </div>
+  </div>    
   </form>
-  <button name="add" id="add" class="layui-btn" style="margin:0 250px;" type="button" onClick="return check()">确定修改</button>
-  <button class="layui-btn layui-btn-danger" style="margin:0 250px;" type="button">取消保存</button>
-  </div>
+    <div class="layui-input-inline">
+          <button name="add" id="add" class="layui-btn" style="margin:0 250px;" type="button" onClick="return check()">确定修改</button>
+         </div>
+         <div class="layui-input-inline">
+          <button class="layui-btn layui-btn-danger" style="margin:0 250px;" type="button">取消保存</button>
+         </div>
+    </div>
   </div>
   <script type="text/javascript">
     layui.use(['layer','form'], function(){
@@ -138,42 +142,12 @@
 					"tele":tele,"address":address,"insId":insId,"insName":insName},
 			dataType:'text',
 			success:function(data){
-				alert("修改成功");
+				 alert("添加成功");
 				 window.location.href = "<%=basePath%>admin/studentList";
 			}
 		});
  }
   
-  </script>
-   <script>
-  	$(function(){
-  		$("add").click(function(){         //提交表单数据
-  			//取得表单的值
-  			alert("sd");
-  			var stuName = $("input[name=name]").val(); 
-  			var sage = $("input[name=age]").val(); 
-  			var sex = $("input[name=musicURL]").val(); 
-  			var insId = $("#ins option:selected").val();
-  			var insName = $("#ins option:selected").text();
-  			var proId = $("#pro option:selected").val();
-  			var proName = $("#pro option:selected").text();
-  			var grade = $("#grade option:selected").val();
-  			var tele = $("input[name=tele]").val(); 
-  			var address = $("input[name=address]").val(); 
-  			//执行ajax请求
-  			$.ajax({
-  				url:'${pageContext.request.contextPath}/admin/addStu.action',
-  				method:'POST',
-  				data:{"stuName":stuName,"sage":sage,
-  						"sex":sex,"proId":proId,"proName":proName,"grade":grade,
-  						"tele":tele,"address":address,"insId":insId,"insName":insName},
-  				dataType:'text',
-  				success:function(data){
-  					alert(data);
-  				}
-  			});
-  		})
-  	})
   </script>
 </rapid:override>
 <%@ include file="base.jsp"%>

@@ -14,7 +14,9 @@
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/weadmin.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.all.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/layui/css/modules/layer/default/layer.css">
 </head>
 
 <%
@@ -45,7 +47,7 @@
     </ul>
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item" style="float:right; "><a href="<%=basePath%>exit" style="font-size: 20px;">退出登录</a></li>
-      <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon" style="font-size:18px;" >&#xe612;</i>&nbsp;${sessionScope.username}&nbsp;${sessionScope.adminid}
+      <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon " style="font-size:18px;" >&#xe612;</i>&nbsp;${sessionScope.username}&nbsp;${sessionScope.adminid}
         <dl class="layui-nav-child">
           <dd><a href="<%=basePath%>admin/adminInfo">基本资料</a></dd>
           <dd><a href="<%=basePath%>admin/editPass">修改密码</a></dd>
