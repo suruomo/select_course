@@ -102,7 +102,7 @@ function sendmail(){
   	  //监听行工具事件
 		table.on('tool(test)', function(obj){  //注：tool是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
 		    var data = obj.data;   //获得当前行数据  
-		    if(obj.event === 'send'){   //删除数据
+		    if(obj.event === 'send'){   //发送数据
 		    	//执行ajax请求
            layer.confirm('确认发送通知邮件么', function(index){
         	 parent.layer.msg('发送中...', {icon: 16,shade: 0.3,time:5000});

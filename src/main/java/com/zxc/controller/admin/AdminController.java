@@ -1,11 +1,21 @@
 package com.zxc.controller.admin;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +36,14 @@ import net.sf.json.JSONObject;
 @Controller
 @RequestMapping("admin")
 public class AdminController {
-	 @Resource
+	    @Resource
 	    private UserService userService;
 	    @Resource
 	    private PageService pageService;
 	    @Resource
 	    private CourseService courseService;
-
+	    @Autowired
+	    private JavaMailSender javaMailSender;//在spring中配置的邮件发送的bean
 	    @RequestMapping("/adminIndex")   //导航栏
 	    public String adminIndex(){
 	        return "admin/adminIndex";
@@ -193,16 +204,37 @@ public class AdminController {
 	    @RequestMapping("/sendmail")   
 	    @ResponseBody
 	    public String sendmail(int classId,String ids){     //发送邮件
-	    	System.out.println(ids);
+	    	System.out.println("发送邮件");
 	    	System.out.println(classId);
-	    	String id[]=ids.split(",");
-	    	int stuId[]=new int[id.length];
-	    	for(int i=0;i<id.length;i++) {
-	    		stuId[i]=Integer.parseInt(id[i]);
-	    		System.out.println(stuId[i]);
-	    	}
-	    	 
-	        return "发送成功"; 
+	    	System.out.println(ids);
+//	    	String id[]=ids.split(",");
+//	    	int stuId[]=new int[id.length];
+//	    	for(int i=0;i<id.length;i++) {
+//	    		stuId[i]=Integer.parseInt(id[i]);
+//	    		System.out.println(stuId[i]);
+//	    	}
+//	    	 
+//	        return "发送成功"; 
+	    	MimeMessage mMessage=javaMailSender.createMimeMessage();//创建邮件对象
+	        MimeMessageHelper mMessageHelper;
+	        Properties prop = new Properties();
+	        String from;
+	        try {
+	            //从配置文件中拿到发件人邮箱地址
+	            prop.load(this.getClass().getResourceAsStream("/mail.properties"));
+	            from = prop.get("mail.smtp.username")+"";
+	            mMessageHelper=new MimeMessageHelper(mMessage,true);
+	            mMessageHelper.setFrom(from);//发件人邮箱
+	            mMessageHelper.setTo("805987815@qq.com");//收件人邮箱
+	            mMessageHelper.setSubject("提醒选课通知");//邮件的主题
+	            mMessageHelper.setText("<p>选课时间即将截止，您还有一门课未选，请尽快登陆选课系统进行选课</p><br/>" ,true);//邮件的文本内容，true表示文本以html格式打开
+	            javaMailSender.send(mMessage);//发送邮件
+	        } catch (MessagingException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	        return "发送成功";
 	    }
 	    @RequestMapping(value="/updateStudentSuccess") 
 	    @ResponseBody
