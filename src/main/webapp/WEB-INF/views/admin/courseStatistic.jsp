@@ -38,8 +38,8 @@
   </div>
      
 <script type="text/html" id="barDemo">
-  <a class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="modify"><i class="layui-icon">&#xe642;</i>已选名单</a>
-  <a class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="del"><i class="layui-icon">&#x1006;</i>未选名单</a>
+  <a class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="checked"><i class="layui-icon">&#xe605;</i>已选名单</a>
+  <a class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="unchecked"><i class="layui-icon">&#x1006;</i>未选名单</a>
 </script>
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >   
@@ -69,7 +69,7 @@
                 ,{field:'classNum', title:'课程容量', width:100}
                 ,{field:'classChooseNum', title:'已选数量', width:100}
                 ,{field:'item', title:'项目', width:80}   
-                ,{fixed: 'right', title:'查看名单', toolbar: '#barDemo', width:200}
+                ,{fixed: 'right', title:'查看名单', toolbar: '#barDemo', width:230}
             ]]
         }); 
 
@@ -109,29 +109,25 @@
   	  //监听行工具事件
 		table.on('tool(test)', function(obj){  //注：tool是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
 		    var data = obj.data;   //获得当前行数据  
-		    if(obj.event === 'del'){   //删除数据
+		    if(obj.event === 'checked'){   //已选名单
 		    	//执行ajax请求
-           layer.confirm('真的删除行么', function(index){
-		    	$.ajax({
-		    		url:'${pageContext.request.contextPath}/admin/deleteCourse?id='+data.classId,
-		    		method:'GET',
-		    		dataType:'text',
-		    		success:function(data){
-		    			layer.msg("删除成功");
-		    			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-						parent.layer.close(index); //再执行关闭
-		    			obj.del();   //删除对应行（tr）的DOM结构，并更新缓存
-		    		}
-		    	});
-           });
-		     }else if(obj.event === 'modify'){   //修改数据
 		    	layer.open({
 					  type: 2, 
-					  title:'修改数据'   //标题 
-					  ,area:['380px','480px']    //宽高
-					  ,content:['${pageContext.request.contextPath}/admin/updateCourse?id='+data.classId,'no']
+					  title:'已选名单'   //标题 
+					  ,area:['400px','400px']    //宽高
+					  ,content:['${pageContext.request.contextPath}/admin/checkedList?id='+data.classId,'yes']
 		    	      ,end: function () {
-		    	    	 location.reload();
+		    	    	// location.reload();
+		               }
+		    	});
+		     }else if(obj.event === 'unchecked'){   //未选名单
+		    	layer.open({
+					  type: 2, 
+					  title:'未选名单'   //标题 
+					  ,area:['380px','480px']    //宽高
+					  ,content:['${pageContext.request.contextPath}/admin/uncheckedList?id='+data.classId,'yes']
+		    	      ,end: function () {
+		    	    	 //location.reload();
 		               }
 		    	}); 			  
 		    } 
