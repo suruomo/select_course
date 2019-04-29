@@ -203,10 +203,10 @@ public class AdminController {
 	    }
 	    @RequestMapping("/sendmail")   
 	    @ResponseBody
-	    public String sendmail(int classId,String ids){     //发送邮件
+	    public String sendmail(int classId,int id){     //发送邮件
 	    	System.out.println("发送邮件");
 	    	System.out.println(classId);
-	    	System.out.println(ids);
+	    	System.out.println(id);
 //	    	String id[]=ids.split(",");
 //	    	int stuId[]=new int[id.length];
 //	    	for(int i=0;i<id.length;i++) {
@@ -215,6 +215,9 @@ public class AdminController {
 //	    	}
 //	    	 
 //	        return "发送成功"; 
+	    	Student student=userService.getStuInfoById(id);
+	    	String mail=student.getEmail();
+	    	Course course=courseService.queryInfoById(classId);
 	    	MimeMessage mMessage=javaMailSender.createMimeMessage();//创建邮件对象
 	        MimeMessageHelper mMessageHelper;
 	        Properties prop = new Properties();
@@ -225,15 +228,51 @@ public class AdminController {
 	            from = prop.get("mail.smtp.username")+"";
 	            mMessageHelper=new MimeMessageHelper(mMessage,true);
 	            mMessageHelper.setFrom(from);//发件人邮箱
-	            mMessageHelper.setTo("805987815@qq.com");//收件人邮箱
+	            mMessageHelper.setTo(mail);//收件人邮箱
 	            mMessageHelper.setSubject("提醒选课通知");//邮件的主题
-	            mMessageHelper.setText("<p>选课时间即将截止，您还有一门课未选，请尽快登陆选课系统进行选课</p><br/>" ,true);//邮件的文本内容，true表示文本以html格式打开
+	            mMessageHelper.setText("<p>选课时间即将截止，您的"+course.getClassName()+"未选，请尽快登陆选课系统进行选课</p><br/>" ,true);//邮件的文本内容，true表示文本以html格式打开
 	            javaMailSender.send(mMessage);//发送邮件
 	        } catch (MessagingException e) {
 	            e.printStackTrace();
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
+	        return "发送成功";
+	    }
+	    @RequestMapping("/sendAllMail")   
+	    @ResponseBody
+	    public String sendAllMail(int classId,String id){     //批量发送邮件
+	    	System.out.println("发送邮件");
+	    	System.out.println(classId);
+	    	System.out.println(id);
+	    	String ids[]=id.split(",");
+	    	int stuId[]=new int[ids.length];
+	    	for(int i=0;i<ids.length;i++) {
+	    	    System.out.println(ids[i]);
+	    	    stuId[i]=Integer.parseInt(ids[i]);
+	    	    Student student=userService.getStuInfoById(stuId[i]);
+		    	String mail=student.getEmail();
+		    	Course course=courseService.queryInfoById(classId);
+		    	MimeMessage mMessage=javaMailSender.createMimeMessage();//创建邮件对象
+		        MimeMessageHelper mMessageHelper;
+		        Properties prop = new Properties();
+		        String from;
+		        try {
+		            //从配置文件中拿到发件人邮箱地址
+		            prop.load(this.getClass().getResourceAsStream("/mail.properties"));
+		            from = prop.get("mail.smtp.username")+"";
+		            mMessageHelper=new MimeMessageHelper(mMessage,true);
+		            mMessageHelper.setFrom(from);//发件人邮箱
+		            mMessageHelper.setTo(mail);//收件人邮箱
+		            mMessageHelper.setSubject("提醒选课通知");//邮件的主题
+		            mMessageHelper.setText("<p>"+student.getStuName()+"您好，选课时间即将截止，您的"+course.getClassName()+"未选，请尽快登陆选课系统进行选课</p><br/>" ,true);//邮件的文本内容，true表示文本以html格式打开
+		            javaMailSender.send(mMessage);//发送邮件
+		        } catch (MessagingException e) {
+		            e.printStackTrace();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+	    	}	    	 
 	        return "发送成功";
 	    }
 	    @RequestMapping(value="/updateStudentSuccess") 

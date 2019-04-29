@@ -30,24 +30,7 @@
   <div class="layui-btn-container" >
     <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="sendAll"><i class="layui-icon">&#xe613;</i>批量发送邮件</button>
   </div>
-</script>
-<script>
-function sendmail(){
-	layer.confirm('确认您将向所有未选课学生发送选课通知？', function(index){
-	    parent.layer.msg('发送中...', {icon: 16,shade: 0.3,time:5000});
-	    	$.ajax({
-	    		url:'${pageContext.request.contextPath}/admin/sengmail?id='+ids,
-	    		method:'GET',
-	    		dataType:'text',
-	    		success:function(data){	
-	    			layer.msg("删除成功");
-	    			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-					parent.layer.close(index); //再执行关闭
-	    			obj.del();   //删除对应行（tr）的DOM结构，并更新缓存
-	    		}
-	    	});
-}
-</script>  
+</script> 
 <script>
     layui.use(['layer','table'],  function(){
     	 var table = layui.table;
@@ -81,16 +64,17 @@ function sendmail(){
          	}
          	var ids = "";
          	for(var i=0;i<checkStatus.data.length;i++){
-         		ids += checkStatus.data[i].id+",";
+         		ids+=checkStatus.data[i].stuId+",";
          	}
+         	alert(ids);
             layer.confirm('确认您将向选中的学生发送选课通知', function(index){
             parent.layer.msg('发送中...', {icon: 16,shade: 0.3,time:5000});
 		    	$.ajax({
-		    		url:'${pageContext.request.contextPath}/admin/sendmail?classId=<%=request.getAttribute("classId")%>&id='+ids,
+		    		url:'${pageContext.request.contextPath}/admin/sendAllMail?classId=<%=request.getAttribute("classId")%>&id='+ids,
 		    		method:'GET',
 		    		dataType:'text',
 		    		success:function(data){	
-		    			layer.msg("发送成功");
+		    			parent.layer.msg("发送成功");
 		    			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 						parent.layer.close(index); //再执行关闭
 		    		}
@@ -101,7 +85,7 @@ function sendmail(){
 	});
   	  //监听行工具事件
 		table.on('tool(test)', function(obj){  //注：tool是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
-		    var data = obj.data;   //获得当前行数据  
+		    var data = obj.data;   //获得当前行数据 
 		    if(obj.event === 'send'){   //发送数据
 		    	//执行ajax请求
            layer.confirm('确认发送通知邮件么', function(index){
@@ -111,7 +95,7 @@ function sendmail(){
 		    		method:'GET',
 		    		dataType:'text',
 		    		success:function(data){
-		    			layer.msg("发送成功");
+		    			parent.layer.msg("发送成功");
 		    			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 						parent.layer.close(index); //再执行关闭
 		    		}
