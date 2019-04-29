@@ -19,7 +19,13 @@ public class Course {
     private String classify;  //课程类别
     private List<String> classLimitProName;  //课程限制专业名称
     private String item;   //体育项目
-    
+    private String ins;//开课学院
+	public String getIns() {
+		return ins;
+	}
+	public void setIns(String ins) {
+		this.ins = ins;
+	}
 	public String getItem() {
 		return item;
 	}

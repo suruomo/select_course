@@ -78,8 +78,7 @@
           <a href="javascript:;" style="font-size:20px;">课程管理</a>
           <dl class="layui-nav-child">
            <dd><a href="<%=basePath%>admin/courseList">管理课程信息</a></dd>  
-           <dd><a href="<%=basePath%>admin/insertCourse">添加课程</a></dd>
-           <dd><a href="<%=basePath%>admin/courseList">选课统计</a></dd>  
+           <dd><a href="<%=basePath%>admin/courseStatistic">选课统计</a></dd>  
           </dl>
         </li>
       </ul>

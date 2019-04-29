@@ -26,6 +26,9 @@
     <select id="selectNameByProId" parameterType="int" resultType="String">
         SELECT proName FROM Institution WHERE proId=#{id}
     </select>
+     <select id="selectInsNameByTeaId" parameterType="int" resultType="String">
+        SELECT insName FROM Teacher WHERE teaId=#{teaId}
+    </select>
     <insert id="insertCourse" parameterType="Course" useGeneratedKeys="true" keyProperty="classId" keyColumn="classId">
         INSERT INTO Course(className,classNum,teaId,classChooseNum,type,credit,introduction,year,term,classify,item)
         VALUES (#{className},#{classNum},#{teaId},#{classChooseNum},#{type},#{credit},#{introduction},#{year},#{term},#{classify},#{item})
@@ -61,6 +64,7 @@
     <select id="queryCourseInfoById" parameterType="int" resultType="Course">
         SELECT * FROM Course WHERE classId=#{id}
     </select>
+
     <select id="selectCourseLimit" parameterType="int" resultType="int">
         SELECT proId FROM Course_limit WHERE classId=#{classId}
     </select>

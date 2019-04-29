@@ -196,4 +196,8 @@ public class AdminController {
 	    public String editPass(){
 	        return "admin/editPass";
 	    }
+	    @RequestMapping("/courseStatistic")   //选课统计
+	    public String courseStatistic(){
+	        return "admin/courseStatistic";
+	    }
 }

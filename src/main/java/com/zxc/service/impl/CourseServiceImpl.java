@@ -377,6 +377,11 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<Course> queryAllCourse() {
 		// TODO Auto-generated method stub
-		return courseDao.queryAllCourse();
+		List<Course> course_list=courseDao.queryAllCourse();  //查询所有课程
+		for(Course cc:course_list) {
+			 cc.setTeaName(courseDao.selectTeaNameByTeaId(cc.getTeaId()));    //老师姓名
+			 cc.setIns(courseDao.selectInsNameByTeaId(cc.getTeaId()));    //开课学院名称，即老师所在学院
+		}
+		return course_list;
 	}
 }

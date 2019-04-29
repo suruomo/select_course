@@ -20,20 +20,30 @@
                 <button data-type="reload" class="layui-btn layui-btn-radius"style="float:left;" onclick="search()">搜索</button>
             </div>
         </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block"> 
+                 <select name="name" id="name" lay-filter="name" >
+        <option value="">请选择筛选类别</option>
+        <option value="高等数学">高等数学</option>
+        <option value="大学英语">大学英语</option>
+        <option value="大学物理">大学物理</option>
+        <option value="大学体育">大学体育</option>
+    </select>
+<button class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="del"><i class="layui-icon">&#x1006;</i>未选名单</button>
+            </div>
+        </div>
         </form>
      <table class="layui-hide" id="demo" lay-filter="test"></table>
    </div>
   </div>
      
 <script type="text/html" id="barDemo">
-  <a class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="modify"><i class="layui-icon">&#xe642;</i>修改</a>
-  <a class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="del"><i class="layui-icon">&#x1006;</i>删除</a>
+  <a class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="modify"><i class="layui-icon">&#xe642;</i>已选名单</a>
+  <a class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="del"><i class="layui-icon">&#x1006;</i>未选名单</a>
 </script>
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >   
-<button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除</button>
-<button class="layui-btn  layui-btn-sm" lay-event="tiyu"><i class="layui-icon">&#xe654</i> 添加体育课程</button>
-<button class="layui-btn  layui-btn-sm" lay-event="notiyu"><i class="layui-icon">&#xe608;</i> 添加文化课程</button>
+   
   </div>
 </script>
 <script>
@@ -51,17 +61,15 @@
             ,toolbar: '#toolbarDemo'  //开启表格头部工具栏区域
             ,cols: [[
                  {type: 'checkbox', fixed: 'left'}
-                ,{field:'classId', title:'课程编号', width:70, fixed: 'left', sort: true}
-                ,{field:'className', title:'课程名', width:120, edit: 'text'}
-                ,{field:'teaId', title:'授课教师id', width:100}
-                ,{field:'type', title:'类型', width:70}
-                ,{field:'credit', title:'学分', width:70}
-                ,{field:'year', title:'开课学年', width:120}
-                ,{field:'term', title:'开课学期', width:120}                      
+                ,{field:'classId', title:'课程编号', width:100, fixed: 'left', sort: true}
+                ,{field:'className', title:'课程名称', width:125, edit: 'text'}
+                ,{field:'teaName', title:'授课教师', width:110}
+                ,{field:'ins', title:'开课学院', width:110}
                 ,{field:'classify', title:'课程类别', width:100}
-                ,{field:'item', title:'项目', width:80}
-                ,{field:'introduction', title:'简介', width:120}      
-                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:180}
+                ,{field:'classNum', title:'课程容量', width:100}
+                ,{field:'classChooseNum', title:'已选数量', width:100}
+                ,{field:'item', title:'项目', width:80}   
+                ,{fixed: 'right', title:'查看名单', toolbar: '#barDemo', width:200}
             ]]
         }); 
 
