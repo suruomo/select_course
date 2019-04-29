@@ -20,4 +20,5 @@ public interface UserDao {
 	public void insertStuInfo(Student student);
 	public void insertTeaInfo(Teacher teacher);
 	public void delTea(Integer id);
+	public List<Student> queryAllByProId(Integer id);
 }

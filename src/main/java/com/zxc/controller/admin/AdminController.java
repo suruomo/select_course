@@ -88,7 +88,7 @@ public class AdminController {
 	    	//用json来传值     	
 	    	JSONArray json = JSONArray.fromObject(courseList);
 	    	System.out.println(json);
-            //*****转为layui需要的json格式，必须要这一步，博主也是没写这一步，在页面上数据就是数据接口异常    
+            //*****转为layui需要的json格式，必须要这一步，
 	    	map.put("code",0);
 	    	map.put("msg","");
 	    	map.put("data",json);
@@ -103,7 +103,7 @@ public class AdminController {
 	    	int count=proList.size();
 	    	//用json来传值     	
 	    	JSONArray json = JSONArray.fromObject(proList);
-            //*****转为layui需要的json格式，必须要这一步，博主也是没写这一步，在页面上数据就是数据接口异常    	    
+            //*****转为layui需要的json格式，必须要这一步，  
 	    	map.put("code",0);
 	    	map.put("msg","");
 	    	map.put("data",json);
@@ -140,7 +140,22 @@ public class AdminController {
 	    	int count=List.size();
 	    	//用json来传值     	
 	    	JSONArray json = JSONArray.fromObject(List);
-            //*****转为layui需要的json格式，必须要这一步，博主也是没写这一步，在页面上数据就是数据接口异常    	    
+            //*****转为layui需要的json格式，必须要这一步，	    
+	    	map.put("code",0);
+	    	map.put("msg","");
+	    	map.put("data",json);
+	    	map.put("count",count);
+	    	return map;    	
+	    }
+	    @RequestMapping(value="/queryUncheckedNameList",method = RequestMethod.GET,produces="application/json;charset=utf-8")  
+	    public @ResponseBody Map<String, Object> queryUncheckedNameList(int classId){     //未选名单查询，表格渲染
+            System.out.println(classId);
+	    	List<Student> List=courseService.queryUnStuByCourseId(classId);
+	    	Map<String, Object> map = new HashMap<>();
+	    	int count=List.size();
+	    	//用json来传值     	
+	    	JSONArray json = JSONArray.fromObject(List);
+            //*****转为layui需要的json格式，必须要这一步，    
 	    	map.put("code",0);
 	    	map.put("msg","");
 	    	map.put("data",json);

@@ -125,7 +125,34 @@ public class CourseServiceImpl implements CourseService {
         }
         return stu_list;
     }
-
+    @Override
+    public List<Student> queryUnStuByCourseId(int id) {     //根据课程id查找未选课学生
+        List<Student> stu_list=new ArrayList<>();    //未选课学生列表
+        List<Integer> limit_list=courseDao.selectCourseLimit(id);   //查找该课程的限制专业列表Id
+        List<Course_choose> checked_list=courseDao.queryStuIdByCourseId(id);   //查找已选列表（包括所有专业）
+        for(Integer i:limit_list){    //对限制专业逐个筛选
+        	List<Integer> checked=new ArrayList<>();  
+        	for(Course_choose c:checked_list) {   //将Course_choose转化成Student  的id    		
+        		 Student student=userDao.selectStuById(c.getStuId());  //学生
+        		 if(student.getProId()==i) {    //如果当前学生的专业是所筛选专业的
+        			 checked.add(student.getStuId());
+        		 }
+        		 else {
+        			 continue;
+        		 }
+        	}
+        	List<Student> all_list=userDao.queryAllByProId(i); //查找该专业的所有人
+        	for(Student stu:all_list) {   //对每一个人判断        		
+        		 if(checked.contains(stu.getStuId())) {
+        			 continue;
+        	           //若已选名单不包含该学生，则加入未选课名单
+        		 }
+        		 System.out.println(stu.getStuName());
+        		 stu_list.add(stu);		 
+        	}
+        }
+        return stu_list;
+    }
     @Override
     public void updateScore(int classId, int stuId, String score) {   //更改课程成绩
         Course_choose course_choose=new Course_choose();
