@@ -22,13 +22,32 @@
     %>
 <body>
     <!-- 内容主体区域 -->
-     <table class="layui-hide" id="demo" lay-filter="test"></table>
-
- <script type="text/html"  id="toolbarDemo">
+  <table class="layui-hide" id="demo" lay-filter="test"></table>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="send"><i class="layui-icon">&#xe655;</i>发送邮件</a>
+</script>
+<script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >
-
+    <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="sendAll"><i class="layui-icon">&#xe613;</i>批量发送邮件</button>
   </div>
-</script>    
+</script>
+<script>
+function sendmail(){
+	layer.confirm('确认您将向所有未选课学生发送选课通知？', function(index){
+	    parent.layer.msg('发送中...', {icon: 16,shade: 0.3,time:5000});
+	    	$.ajax({
+	    		url:'${pageContext.request.contextPath}/admin/sengmail?id='+ids,
+	    		method:'GET',
+	    		dataType:'text',
+	    		success:function(data){	
+	    			layer.msg("删除成功");
+	    			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					parent.layer.close(index); //再执行关闭
+	    			obj.del();   //删除对应行（tr）的DOM结构，并更新缓存
+	    		}
+	    	});
+}
+</script>  
 <script>
     layui.use(['layer','table'],  function(){
     	 var table = layui.table;
@@ -39,19 +58,68 @@
             ,url: 'queryUncheckedNameList?classId='+${course.classId} //后台springmvc接收路径
             ,page:true    //true表示分页
             ,limit: 10
-            ,width : 400
-            ,height : 400
             ,title:'未选名单'
             ,id:'courseList'
             ,toolbar: '#toolbarDemo'  //开启表格头部工具栏区域
             ,cols: [[
-                {field:'stuId', title:'学号', width:120, fixed: 'left', sort: true}
+            	 {type: 'checkbox', fixed: 'left'}
+                ,{field:'stuId', title:'学号', width:120, fixed: 'left', sort: true}
                 ,{field:'stuName', title:'姓名', width:70, edit: 'text'}
                 ,{field:'proName', title:'专业', width:100}
-                ,{field:'insName', title:'学院', width:100}     
+                ,{field:'insName', title:'学院', width:100} 
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:180}
             ]]
         }); 
-    });
+        //监听头工具栏事件
+       	table.on('toolbar(test)', function(obj){  //注：toolbar是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
+       	var checkStatus = table.checkStatus(obj.config.id);
+        switch(obj.event){
+           case 'sendAll':
+         	if(checkStatus.data.length==0){
+         		parent.layer.msg('请先选择要发送的数据行！', {icon: 2});
+         		return ;
+         	}
+         	var ids = "";
+         	for(var i=0;i<checkStatus.data.length;i++){
+         		ids += checkStatus.data[i].id+",";
+         	}
+            layer.confirm('确认您将向选中的学生发送选课通知', function(index){
+            parent.layer.msg('发送中...', {icon: 16,shade: 0.3,time:5000});
+		    	$.ajax({
+		    		url:'${pageContext.request.contextPath}/admin/sendmail?classId=<%=request.getAttribute("classId")%>&id='+ids,
+		    		method:'GET',
+		    		dataType:'text',
+		    		success:function(data){	
+		    			layer.msg("发送成功");
+		    			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+						parent.layer.close(index); //再执行关闭
+		    		}
+		    	});
+           });
+           break;
+               };
+	});
+  	  //监听行工具事件
+		table.on('tool(test)', function(obj){  //注：tool是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
+		    var data = obj.data;   //获得当前行数据  
+		    if(obj.event === 'send'){   //删除数据
+		    	//执行ajax请求
+           layer.confirm('确认发送通知邮件么', function(index){
+        	 parent.layer.msg('发送中...', {icon: 16,shade: 0.3,time:5000});
+        	   $.ajax({
+		    		url:'${pageContext.request.contextPath}/admin/sendmail?classId=<%=request.getAttribute("classId")%>&id='+data.stuId,
+		    		method:'GET',
+		    		dataType:'text',
+		    		success:function(data){
+		    			layer.msg("发送成功");
+		    			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+						parent.layer.close(index); //再执行关闭
+		    		}
+		    	});
+             });
+		    }
+		 });
+      });
 </script>
 </body>
 </html>

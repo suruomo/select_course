@@ -74,6 +74,12 @@
     </div>
   </div>
   <div class="layui-form-item">
+    <label class="layui-form-label">邮箱</label>
+    <div class="layui-input-block">
+      <input type="text" name="email"  placeholder="请输入邮箱"  lay-verify="mail" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
     <label class="layui-form-label">地址</label>
     <div class="layui-input-block">
       <input type="text" name="address"  placeholder="请输入地址" autocomplete="off" class="layui-input">
@@ -119,10 +125,13 @@
   <script>
   function check() {
       if($("input[name=name]").val()=='') {
-            alert("请输入用户姓名!");
+            layer.alert("请输入用户姓名!");
        }
+      else if( $("input[name=email]").val()==''){
+    	  layer.alert("请输入邮箱!");
+      } 
       else  if( $("input[name=tele]").val()==''){
-            alert("请输入联系方式!");
+    	  layer.alert("请输入联系方式!");
          }
 		var stuName = $("input[name=name]").val(); 
 		var sage = $("input[name=age]").val(); 
@@ -134,13 +143,14 @@
 		var grade = $("#grade option:selected").val();
 		var tele = $("input[name=tele]").val(); 
 		var address = $("input[name=address]").val(); 
+		var email = $("input[name=email]").val(); 
 		//执行ajax请求
 		$.ajax({
 			url:'${pageContext.request.contextPath}/admin/addStu.action',
 			method:'POST',
 			data:{"stuName":stuName,"sage":sage,
 					"sex":sex,"proId":proId,"proName":proName,"grade":grade,
-					"tele":tele,"address":address,"insId":insId,"insName":insName},
+					"tele":tele,"address":address,"insId":insId,"insName":insName,"email":email},
 			dataType:'text',
 			success:function(data){
 				 layer.alert("添加成功");

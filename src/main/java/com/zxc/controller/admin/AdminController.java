@@ -165,7 +165,8 @@ public class AdminController {
 	    @RequestMapping("/uncheckedList")    //查看未选课程名单
 	    public String uncheckedList(Integer id,Model model){
 	    	System.out.println(id);
-	    	model.addAttribute("course",courseService.queryInfoById(id));   
+	    	model.addAttribute("course",courseService.queryInfoById(id));  
+	    	model.addAttribute("classId",id);  
 	        return "admin/uncheckedNameList";   
 	    }
 	    @RequestMapping("/deleteStudent")   
@@ -188,6 +189,20 @@ public class AdminController {
 	    	System.out.println(id);
 	    	userService.delTea(id);   
 	        return "删除成功"; 
+	    }
+	    @RequestMapping("/sendmail")   
+	    @ResponseBody
+	    public String sendmail(int classId,String ids){     //发送邮件
+	    	System.out.println(ids);
+	    	System.out.println(classId);
+	    	String id[]=ids.split(",");
+	    	int stuId[]=new int[id.length];
+	    	for(int i=0;i<id.length;i++) {
+	    		stuId[i]=Integer.parseInt(id[i]);
+	    		System.out.println(stuId[i]);
+	    	}
+	    	 
+	        return "发送成功"; 
 	    }
 	    @RequestMapping(value="/updateStudentSuccess") 
 	    @ResponseBody

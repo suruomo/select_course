@@ -29,6 +29,7 @@
         stuName=#{stuName},
         sex=#{sex},
         grade=#{grade},
+        email=#{email},
         tele=#{tele}
         WHERE stuId=#{stuId}
     </update>
@@ -55,8 +56,8 @@
         SELECT * FROM Student  WHERE proId=#{id}
     </select>
     <insert id="insertStuInfo" parameterType="Student" useGeneratedKeys="true" keyProperty="stuId" keyColumn="stuId">
-        INSERT INTO Student(stuName,sage,tele,sex,stuPass,insId,insName,proId,proName,address,photo,grade,state)
-        VALUES (#{stuName},#{sage},#{tele},#{sex},000,#{insId},#{insName},#{proId},#{proName},#{address},#{photo},#{grade},"正常")
+        INSERT INTO Student(stuName,sage,tele,sex,stuPass,insId,insName,proId,proName,address,photo,grade,state,email)
+        VALUES (#{stuName},#{sage},#{tele},#{sex},000,#{insId},#{insName},#{proId},#{proName},#{address},#{photo},#{grade},"正常",#{email})
     </insert>
      <insert id="insertTeaInfo" parameterType="Teacher" useGeneratedKeys="true" keyProperty="teaId" keyColumn="teaId">
         INSERT INTO Teacher(teaName,teaPass,tage,tsex,tele,insId,insName,address,photo)

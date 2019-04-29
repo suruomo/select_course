@@ -16,6 +16,14 @@ public class Student {
     private String proName;    //专业名称
     private String grade;   //年级
     private String state;  //用户状态
+    private String email;  //邮箱
+    
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public int getStuId() {
 		return stuId;
 	}

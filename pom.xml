@@ -41,9 +41,7 @@
       <artifactId>logback-classic</artifactId>
       <version>1.2.3</version>
     </dependency>
-
-    <!-- JSON -->
-    
+ 
  <!-- json支持 -->
         <dependency>
             <groupId>org.json</groupId>

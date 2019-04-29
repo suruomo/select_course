@@ -51,9 +51,7 @@
                  {type: 'checkbox', fixed: 'left'}
                 ,{field:'stuId', title:'学号', width:110, fixed: 'left', sort: true}
                 ,{field:'stuName', title:'姓名', width:80, edit: 'text'}
-                ,{field:'sage', title:'年龄', width:70}
                 ,{field:'sex', title:'性别', width:70}
-                ,{field:'tele', title:'电话', width:120}
                 ,{field:'address', title:'地址', width:70}
                 ,{field:'proName', title:'专业', width:120}                      
                 ,{field:'grade', title:'年级', width:100}
@@ -118,7 +116,7 @@
 		    	layer.open({
 					  type: 2, 
 					  title:'修改数据'   //标题 
-					  ,area:['380px','480px']    //宽高
+					  ,area:['380px','520px']    //宽高
 					  ,content:['${pageContext.request.contextPath}/admin/updateStudent?id='+data.stuId,'no']
 		    	      ,end: function () {
 		    	    	 location.reload();

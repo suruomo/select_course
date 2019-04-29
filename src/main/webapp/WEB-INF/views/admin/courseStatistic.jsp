@@ -20,18 +20,6 @@
                 <button data-type="reload" class="layui-btn layui-btn-radius"style="float:left;" onclick="search()">搜索</button>
             </div>
         </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block"> 
-                 <select name="name" id="name" lay-filter="name" >
-        <option value="">请选择筛选类别</option>
-        <option value="高等数学">高等数学</option>
-        <option value="大学英语">大学英语</option>
-        <option value="大学物理">大学物理</option>
-        <option value="大学体育">大学体育</option>
-    </select>
-<button class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="del"><i class="layui-icon">&#x1006;</i>未选名单</button>
-            </div>
-        </div>
         </form>
      <table class="layui-hide" id="demo" lay-filter="test"></table>
    </div>
@@ -124,7 +112,7 @@
 		    	layer.open({
 					  type: 2, 
 					  title:'未选名单'   //标题 
-					  ,area:['380px','480px']    //宽高
+					  ,area:['650px','400px']    //宽高
 					  ,content:['${pageContext.request.contextPath}/admin/uncheckedList?id='+data.classId,'yes']
 		    	      ,end: function () {
 		    	    	 //location.reload();

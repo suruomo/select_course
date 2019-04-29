@@ -37,11 +37,12 @@
   			var proName = $("input[name=pro]").val(); 
   			var insName= $("input[name=ins]").val(); 
   			var tele = $("input[name=tele]").val(); 
+  			var email = $("input[name=email]").val(); 
   			$.ajax({
   				url:'<%=basePath%>admin/updateStudentSuccess',   //提交修改数据
   				method:'POST',
   				data:{"stuId":stuId,"stuName":stuName,"sex":sex,
-					   "grade":grade,"proName":proName,"insName":insName,"tele":tele},
+					   "grade":grade,"proName":proName,"insName":insName,"tele":tele,"email":email},
 				dataType:'text',
 				success:function(data){
 					layer.alert("已修改"); 
@@ -107,6 +108,12 @@
     <label class="layui-form-label">联系电话</label>
     <div class="layui-input-block">
       <input type="text" name="tele" value="${student.tele}" placeholder="请输入电话" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+   <div class="layui-form-item">
+    <label class="layui-form-label">邮箱</label>
+    <div class="layui-input-block">
+      <input type="text" name="email" value="${student.email}" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
     </div>
   </div>
   </form>
