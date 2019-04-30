@@ -7,7 +7,9 @@
 <head>
     <rapid:block name="head"></rapid:block>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/weadmin.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/layui/css/layui.css">
     <style type="text/css">
         .layui-nav-item.side a {
             font-size: 22px;
@@ -43,6 +45,5 @@
     <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon" style="font-size:18px;" >&#xe612;</i>&nbsp;${sessionScope.username}&nbsp;${sessionScope.stuid}</li>
 </ul>
 <rapid:block name="content"></rapid:block>
-<script src="${pageContext.request.contextPath}/static/layui.all.js"></script>
 </body>
 </html>

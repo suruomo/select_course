@@ -120,6 +120,7 @@
 		    	layer.open({
 					  type: 2, 
 					  title:'修改数据'   //标题 
+					  ,maxmin: true
 					  ,area:['380px','480px']    //宽高
 					  ,content:['${pageContext.request.contextPath}/admin/updateCourse?id='+data.classId,'no']
 		    	      ,end: function () {

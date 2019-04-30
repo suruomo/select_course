@@ -101,6 +101,7 @@
 		    	layer.open({
 					  type: 2, 
 					  title:'已选名单'   //标题 
+					  ,maxmin: true
 					  ,area:['400px','400px']    //宽高
 					  ,content:['${pageContext.request.contextPath}/admin/checkedList?id='+data.classId,'yes']
 		    	      ,end: function () {
@@ -111,6 +112,7 @@
 		    	layer.open({
 					  type: 2, 
 					  title:'未选名单'   //标题 
+					  ,maxmin: true
 					  ,area:['650px','400px']    //宽高
 					  ,content:['${pageContext.request.contextPath}/admin/uncheckedList?id='+data.classId,'yes']
 		    	      ,end: function () {

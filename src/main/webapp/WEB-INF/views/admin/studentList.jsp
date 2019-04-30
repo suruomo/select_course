@@ -32,6 +32,7 @@
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >
     <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除</button>
+   
   </div>
 </script>
 <script>
@@ -116,6 +117,7 @@
 		    	layer.open({
 					  type: 2, 
 					  title:'修改数据'   //标题 
+					   ,maxmin: true
 					  ,area:['380px','520px']    //宽高
 					  ,content:['${pageContext.request.contextPath}/admin/updateStudent?id='+data.stuId,'no']
 		    	      ,end: function () {

@@ -40,7 +40,7 @@
          <input placeholder="账号" type="text" name="userid" id="userid" >
         </fieldset>
         <fieldset  class="layui-input-inline">
-         <i class="layui-icon " style="position: absolute;top:8px;right: 8px;">&#xe64c;</i>
+         <i class="layui-icon " style="position: absolute;top:8px;right: 8px;">&#xe673;</i>
             <input placeholder="密码" type="password" name="userpass" >
         </fieldset>
         <fieldset >

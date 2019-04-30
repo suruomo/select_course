@@ -36,6 +36,7 @@ public class LoginController {
         }
         else if(userService.checkAccount(id, pass) == 3) {   //管理员账号正确
         	model.addAttribute("username",userService.getAdminNameById(id));
+        	System.out.println(id);
             model.addAttribute("adminid",id);
             return "admin/adminIndex";
         }
