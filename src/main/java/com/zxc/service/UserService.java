@@ -23,5 +23,6 @@ public interface UserService {
 	public void insertStuInfo(Student student);
 	public void insertTeaInfo(Teacher teacher);
 	public void delTea(Integer id);
+	public List<Student> queryStuByIns(int insId);
 
 }

@@ -88,6 +88,24 @@ public class AdminController {
 	    	map.put("count",count);
 	    	return map;    	
 	    }
+	    @RequestMapping(value="/selectIns",method = RequestMethod.GET,produces="application/json;charset=utf-8")   
+	    public @ResponseBody Map<String, Object> selectIns(int insId,@Param("page") int page, @Param("limit") int limit){
+	    	int before = limit * (page - 1) + 1;                    //按照学院筛选学生
+            int after = page * limit;
+            System.out.println(before+","+after);
+	    	List<Student> stuList=userService.queryStuByIns(insId);
+	    	Map<String, Object> map = new HashMap<>();
+	    	int count=stuList.size();
+	    	//用json来传值     	
+	    	JSONArray json = JSONArray.fromObject(stuList);
+	    	System.out.println(json);
+            //*****转为layui需要的json格式，必须要这一步，博主也是没写这一步，在页面上数据就是数据接口异常    
+	    	map.put("code",0);
+	    	map.put("msg","");
+	    	map.put("data",json);
+	    	map.put("count",count);
+	    	return map;    	
+	    }
 	    @RequestMapping(value="/courseList.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
 	    public @ResponseBody Map<String, Object> courseListAction(@Param("page") int page, @Param("limit") int limit){
 	    	int before = limit * (page - 1) + 1;
@@ -204,17 +222,6 @@ public class AdminController {
 	    @RequestMapping("/sendmail")   
 	    @ResponseBody
 	    public String sendmail(int classId,int id){     //发送邮件
-	    	System.out.println("发送邮件");
-	    	System.out.println(classId);
-	    	System.out.println(id);
-//	    	String id[]=ids.split(",");
-//	    	int stuId[]=new int[id.length];
-//	    	for(int i=0;i<id.length;i++) {
-//	    		stuId[i]=Integer.parseInt(id[i]);
-//	    		System.out.println(stuId[i]);
-//	    	}
-//	    	 
-//	        return "发送成功"; 
 	    	Student student=userService.getStuInfoById(id);
 	    	String mail=student.getEmail();
 	    	Course course=courseService.queryInfoById(classId);

@@ -55,6 +55,9 @@
     <select id="queryAllByProId" resultType="Student" parameterType="int">
         SELECT * FROM Student  WHERE proId=#{id}
     </select>
+    <select id="queryStuByIns" resultType="Student" parameterType="int">
+        SELECT * FROM Student  WHERE insId=#{insId}
+    </select>
     <insert id="insertStuInfo" parameterType="Student" useGeneratedKeys="true" keyProperty="stuId" keyColumn="stuId">
         INSERT INTO Student(stuName,sage,tele,sex,stuPass,insId,insName,proId,proName,address,photo,grade,state,email)
         VALUES (#{stuName},#{sage},#{tele},#{sex},000,#{insId},#{insName},#{proId},#{proName},#{address},#{photo},#{grade},"正常",#{email})

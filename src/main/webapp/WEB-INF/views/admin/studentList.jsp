@@ -15,13 +15,35 @@
         <form class="layui-form">
         <div class="layui-form-item">
             <div class="layui-input-block"> 
-                <input type="text" id="search" class="layui-input" style="float:left; width:200px;"
-                       placeholder="请输入学生编号">
-                <button data-type="reload" class="layui-btn layui-btn-radius"style="float:left;" onclick="search()">搜索</button>
+                <div class="layui-input-inline" style="float:left; width:200px;">
+                   <input type="text" id="search" class="layui-input" 
+                       placeholder="请输入学生学号">
+                </div>
+                <div class="layui-input-inline">
+                    <button type="button" id="tea" class="layui-btn layui-btn-radius " style="margin-left:0px;">查询</button>
+                </div>
+                <div class="layui-input-inline">
+                     <select class="layui-select" id="ins">
+                            <option value="1001">计算机学院</option>
+                            <option value="1002">医学院</option>
+                            <option value="1003">体育学院</option>
+                            <option value="1004">管理学院</option>
+                            <option value="1005">经济学院</option>
+                            <option value="1006">文学院</option>
+                            <option value="1007">理学院</option>
+                      </select>
+                </div>
+                <div class="selectIns">
+                    <button data-type="reload" name="select" id="select" onClick="return select()" class="layui-btn layui-btn-radius " style="margin-left:0px;">筛选</button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block"> 
+                <table class="layui-hide" id="demo" lay-filter="test"></table>
             </div>
         </div>
         </form>
-     <table class="layui-hide" id="demo" lay-filter="test"></table>
    </div>
   </div>
      
@@ -32,13 +54,14 @@
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >
     <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除</button>
-   
   </div>
 </script>
 <script>
-    layui.use(['layer','table'],  function(){
-    	 var table = layui.table;
-    	 var layer = layui.layer;
+    layui.use(['layer','table','form'],  function(){
+    	var table = layui.table;
+    	var layer = layui.layer;
+    	var form = layui.form; 
+    	form.render();  
         //方法渲染
         table.render({
             elem: '#demo'  //绑定table表格 
@@ -61,7 +84,7 @@
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:180}
             ]]
         }); 
-
+ 
         //监听表格复选框选择
        table.on('checkbox(test)', function(obj){     //待修改
        });
@@ -95,6 +118,31 @@
            break;
                };
 	});
+       	 //按照学院进行搜索 ，表格重载
+           var active =
+       	              {
+       	                  reload: function () {
+       	                     var insId = $("#ins option:selected").val();//获取下拉框的值
+       	                      //执行重载
+                             alert(insId);
+                             parent.layer.msg('查询中，请稍候...',{icon: 16,shade: 0.3,time:5000});
+                             table.reload('test', {
+                                 where: {
+                                     'insId':insId,
+                                 }
+                                 ,url:'${pageContext.request.contextPath}/admin/selectIns'
+                              });
+                             layer.close(index);
+                       
+       	              }
+       	            };
+       	            //这个是用于创建点击事件的实例
+       	            $('#select').on('click', function ()
+       	            {
+       		            alert("data");
+       	                var type = $(this).data('type');
+       	                active[type] ? active[type].call(this) : '';
+       	            });
   	  //监听行工具事件
 		table.on('tool(test)', function(obj){  //注：tool是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
 		    var data = obj.data;   //获得当前行数据  
@@ -128,6 +176,5 @@
 		 });
     });
 </script>
-
 </rapid:override>
 <%@ include file="base.jsp"%>

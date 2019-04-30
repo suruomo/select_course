@@ -12,7 +12,7 @@
     <!-- 内容主体区域 -->
 
      <div style="padding: 70px;border:30px;">
-        <form class="layui-form">
+           <form class="layui-form">
         <div class="layui-form-item">
             <div class="layui-input-block"> 
                 <input type="text" id="search" class="layui-input" style="float:left; width:200px;"
@@ -20,8 +20,12 @@
                 <button data-type="reload" class="layui-btn layui-btn-radius"style="float:left;" onclick="search()">搜索</button>
             </div>
         </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block"> 
+                <table class="layui-hide" id="demo" lay-filter="test"></table>
+            </div>
+        </div>
         </form>
-     <table class="layui-hide" id="demo" lay-filter="test"></table>
    </div>
   </div>
      

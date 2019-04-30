@@ -23,9 +23,7 @@
      <select id="queryProIdByStuId" parameterType="int" resultType="int">
         SELECT proId FROM Student WHERE stuId=#{stuId}
     </select>
-    <select id="selectNameByProId" parameterType="int" resultType="String">
-        SELECT proName FROM Institution WHERE proId=#{id}
-    </select>
+
      <select id="selectInsNameByTeaId" parameterType="int" resultType="String">
         SELECT insName FROM Teacher WHERE teaId=#{teaId}
     </select>
