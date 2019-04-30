@@ -48,8 +48,7 @@
             ,id:'courseList'
             ,toolbar: '#toolbarDemo'  //开启表格头部工具栏区域
             ,cols: [[
-                 {type: 'checkbox', fixed: 'left'}
-                ,{field:'classId', title:'课程编号', width:100, fixed: 'left', sort: true}
+                {field:'classId', title:'课程编号', width:100, fixed: 'left', sort: true}
                 ,{field:'className', title:'课程名称', width:125, edit: 'text'}
                 ,{field:'teaName', title:'授课教师', width:110}
                 ,{field:'ins', title:'开课学院', width:110}

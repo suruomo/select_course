@@ -230,7 +230,7 @@ public class AdminController {
 	            mMessageHelper.setFrom(from);//发件人邮箱
 	            mMessageHelper.setTo(mail);//收件人邮箱
 	            mMessageHelper.setSubject("提醒选课通知");//邮件的主题
-	            mMessageHelper.setText("<p>选课时间即将截止，您的"+course.getClassName()+"未选，请尽快登陆选课系统进行选课</p><br/>" ,true);//邮件的文本内容，true表示文本以html格式打开
+	            mMessageHelper.setText("<p>"+student.getStuName()+"您好，选课时间即将截止，您的"+course.getClassName()+"未选，请尽快登陆选课系统进行选课</p><br/>" ,true);//邮件的文本内容，true表示文本以html格式打开
 	            javaMailSender.send(mMessage);//发送邮件
 	        } catch (MessagingException e) {
 	            e.printStackTrace();
