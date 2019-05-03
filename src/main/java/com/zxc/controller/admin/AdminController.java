@@ -2,6 +2,7 @@ package com.zxc.controller.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.Properties;
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,11 +55,19 @@ public class AdminController {
 	    	return "admin/studentList";
 	    }
 	    @RequestMapping(value="/studentList.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
-	    public @ResponseBody Map<String, Object> studentListAction(@Param("page") int page, @Param("limit") int limit){
+	    public @ResponseBody Map<String, Object> studentListAction(@Param("page") int page, @Param("limit") int limit,HttpServletRequest request){
 	    	int before = limit * (page - 1) + 1;
             int after = page * limit;
             System.out.println(before+","+after);
-	    	List<Student> stuList=userService.queryAllStu();
+            String ins=request.getParameter("insId");
+            System.out.println(ins);
+            List<Student> stuList=new ArrayList<>();
+            if(ins==null) {
+            	stuList=userService.queryAllStu();
+            }
+            else {
+            	stuList=userService.queryAllStuByIns(Integer.parseInt(ins));
+            }
 	    	Map<String, Object> map = new HashMap<>();
 	    	int count=stuList.size();
 	    	//用json来传值     	

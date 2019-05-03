@@ -24,5 +24,6 @@ public interface UserService {
 	public void insertTeaInfo(Teacher teacher);
 	public void delTea(Integer id);
 	//public List<Student> queryStuByIns(int insId);
+	public List<Student> queryAllStuByIns(int insId);
 
 }

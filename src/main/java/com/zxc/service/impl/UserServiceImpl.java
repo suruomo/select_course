@@ -123,11 +123,12 @@ public  class UserServiceImpl implements UserService {
 		userDao.delTea(id);
 	}
 
-//	@Override
-//	public List<Student> queryStuByIns(int insId) {
-//		// TODO Auto-generated method stub
-//		return userDao.queryStuByIns(insId);
-//	}
+	@Override
+	public List<Student> queryAllStuByIns(int insId) {
+		// TODO Auto-generated method stub
+		return userDao.queryStuByIns(insId);
+	}
+
 
 
 }
