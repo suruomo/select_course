@@ -35,6 +35,7 @@
     <li class="layui-nav-item" style="float:right; "><a href="<%=basePath%>exit" style="font-size: 20px;">退出登录</a></li>
     <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon" style="font-size:18px;" >&#xe612;</i>${sessionScope.username}&nbsp;${sessionScope.teaid}</li>
 </ul>
+<script src="${pageContext.request.contextPath}/static/layui.all.js"></script>
 <rapid:block name="content"></rapid:block>
 </body>
 </html>

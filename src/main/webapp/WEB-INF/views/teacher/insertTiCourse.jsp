@@ -10,7 +10,7 @@
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
     %>
-    <form class="layui-form" id="changeform" method="post" action="<%=basePath%>teacher/changeTeaPass" style="margin:80px 400px; width:700px;height: 500px; overflow:scroll">
+    <form class="layui-form" id="changeform" method="post" action="<%=basePath%>teacher/changeTeaPass" style="margin:80px 400px">
         <div class="layui-form-item">
             <label class="layui-form-label">开课学年</label>
             <div class="layui-input-block">

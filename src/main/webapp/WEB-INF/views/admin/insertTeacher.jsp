@@ -13,7 +13,7 @@
 <div class="layui-body">
     <!-- 内容主体区域 -->
     <div style="padding: 40px;border:45px;">
-     <form class="layui-form"  style="padding:80px;border:45px; width:400px;height: 400px;">
+  <form class="layui-form"  style="padding:80px;border:45px; width:400px;height: 400px;">
         <div class="layui-form-item">
     <label class="layui-form-label">姓名</label>
     <div class="layui-input-block">
@@ -62,14 +62,15 @@
   </div>  
    <div class="layui-input-inline">
           <button name="add" id="add" class="layui-btn" style="margin:0 150px;" type="button" onClick="return check()">确定修改</button>
-         </div>
-         <div class="layui-input-inline">
+   </div>
+     <div class="layui-input-inline">
           <button class="layui-btn layui-btn-danger" style="margin:0 150px;" type="button">取消保存</button>
          </div>
+      </form>   
     </div>  
-  </form>
-   
+     
   </div>
+
   <script type="text/javascript">
     layui.use(['layer','form'], function(){
       var layer = layui.layer;

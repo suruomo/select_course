@@ -70,7 +70,6 @@
       <button type="button" class="layui-btn   layui-btn-lg"  id="save" style="margin:0 550px;">
         保存修改
     </button>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
     function changePass(){
    	 window.location.href = "<%=basePath%>student/editStuPass";
@@ -79,8 +78,8 @@
     <script>    
     $(function () {
         $("#save").click(function () { 
-        	if($("#tele").val()==""||$("#address").val()==""||$("#email").val()){
-        		alert("部分数据为空，请重新填写！");
+        	if($("#email").text()){
+        		alert("邮箱数据为空，请重新填写！");
         	}
         	else {
         		 var testnum = /^1[34578]\d{9}$/;

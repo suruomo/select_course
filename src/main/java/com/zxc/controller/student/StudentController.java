@@ -265,12 +265,15 @@ public class StudentController {
         return "student/courseList";
     }
     @RequestMapping("updateInfoById")   //修改学生个人信息
-    public String updateInfoById(@RequestParam("tele") String tele,@RequestParam("address") String address,Model model,HttpServletRequest request) {
+    public String updateInfoById(@RequestParam("email") String email,@RequestParam("tele") String tele,@RequestParam("address") String address,Model model,HttpServletRequest request) {
     	int id=(int)request.getSession().getAttribute("stuid");  //从当前会话获取stuid
     	 Student student=new Student();
+    	 student.setStuName(userService.getStuInfoById(id).getStuName());
+    	 student.setGrade(userService.getStuInfoById(id).getGrade());
          student.setStuId(id);
          student.setTele(tele);
          student.setAddress(address);
+         student.setEmail(email);;
          userService.changeStuInfo(student);
          model.addAttribute("student",userService.getStuInfoById(id));
          return "student/studentInfo";

@@ -10,7 +10,7 @@
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
     %>
-    <form class="layui-form" id="changeform" method="post" action="<%=basePath%>teacher/changeTeaPass" style="margin:80px 400px; width:700px;height: 500px; overflow:scroll">
+    <form class="layui-form" id="changeform" method="post" action="<%=basePath%>teacher/changeTeaPass" style="margin:80px 400px">
         <div class="layui-form-item">
             <label class="layui-form-label">开课学年</label>
             <div class="layui-input-block">
@@ -110,10 +110,11 @@
                 <textarea id="introduction" name="introduction"  lay-verify="required" placeholder="请输入课程简介" class="layui-textarea"></textarea>
             </div>
         </div>
-    </form>
-    <button type="button" id="success" class="layui-btn layui-btn-danger layui-btn-lg" style="margin:0 550px;">
+        <button type="button" id="success" class="layui-btn layui-btn-danger layui-btn-lg" style="margin:0 550px;">
         确认提交
     </button>
+    </form>
+    
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
       layui.use(['layer','form'],  function(){

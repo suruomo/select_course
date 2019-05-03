@@ -30,15 +30,16 @@
         <colgroup>
             <col width="80">
             <col width="80">
-            <col width="60">
+            <col width="80">
             <col width="120">
             <col width="50">
             <col width="50">
             <col width="50">
-            <col width="50">
-            <col width="50">
+            <col width="40">
+            <col width="40">
+            <col width="40">
             <col width="200">
-            <col width="120">
+            <col width="150">
         </colgroup>
         <thead>
             <tr>

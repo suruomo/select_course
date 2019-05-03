@@ -26,10 +26,9 @@
     </delete>
    <update id="updateStuInfo" parameterType="Student">
         UPDATE Student SET
-        stuName=#{stuName},
-        sex=#{sex},
         grade=#{grade},
         email=#{email},
+        address=#{address},
         tele=#{tele}
         WHERE stuId=#{stuId}
     </update>
