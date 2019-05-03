@@ -118,31 +118,6 @@
            break;
                };
 	});
-       	 //按照学院进行搜索 ，表格重载
-           var active =
-       	              {
-       	                  reload: function () {
-       	                     var insId = $("#ins option:selected").val();//获取下拉框的值
-       	                      //执行重载
-                             alert(insId);
-
-                             table.reload('studentList', {
-                                 where: {
-                                     'insId':insId
-                                 }
-                                 ,method:'get'
-                              });
-                             
-                       
-       	              }
-       	            };
-       	            //这个是用于创建点击事件的实例
-       	            $('#select').on('click', function ()
-       	            {
-       		            alert("data");
-       	                var type = $(this).data('type');
-       	                active[type] ? active[type].call(this) : '';
-       	            });
   	  //监听行工具事件
 		table.on('tool(test)', function(obj){  //注：tool是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
 		    var data = obj.data;   //获得当前行数据  

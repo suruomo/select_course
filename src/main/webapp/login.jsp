@@ -47,17 +47,12 @@
             <input name="sub" type="button" onclick="tijiao()" id="contact-submit" value="登录" />
         </fieldset>
     </form>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
     <script>
         $(function () {
-            $("#contact-submit").click(function () {
-                var testnum = /^\d{10}$/;
-                var id=$("#userid").val();    
-                if (testnum.test(id)) {         //检验是数字提交服务器
-                    $("#contact").submit();
-                }
-                else {
-                    alert("请输入正确学号");}
+            $("#contact-submit").click(function () {   
+                  $("#contact").submit();
+                
             })
         })
     </script>

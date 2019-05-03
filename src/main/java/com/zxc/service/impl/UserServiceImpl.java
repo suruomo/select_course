@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public  class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
@@ -123,11 +123,11 @@ public class UserServiceImpl implements UserService {
 		userDao.delTea(id);
 	}
 
-	@Override
-	public List<Student> queryStuByIns(int insId) {
-		// TODO Auto-generated method stub
-		return userDao.queryStuByIns(insId);
-	}
+//	@Override
+//	public List<Student> queryStuByIns(int insId) {
+//		// TODO Auto-generated method stub
+//		return userDao.queryStuByIns(insId);
+//	}
 
 
 }
