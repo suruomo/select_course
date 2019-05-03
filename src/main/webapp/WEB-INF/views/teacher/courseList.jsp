@@ -28,9 +28,9 @@
     </script>
     <table class="layui-table" style="margin-top:15px;">
         <colgroup>
-            <col width="50">
-            <col width="50">
-            <col width="100">
+            <col width="80">
+            <col width="80">
+            <col width="60">
             <col width="120">
             <col width="50">
             <col width="50">

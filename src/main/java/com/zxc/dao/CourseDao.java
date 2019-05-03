@@ -49,4 +49,5 @@ public interface CourseDao {
 	public List<Course> queryCourseByItem(String courseName);
 	public List<Course> queryCourseByTongShi(String string);
 	public String selectInsNameByTeaId(int teaId);
+	public void insertWenCourse(Course course);
 }

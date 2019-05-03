@@ -116,6 +116,13 @@
     </button>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
+      layui.use(['layer','form'],  function(){
+    	var layer = layui.layer;
+    	var form = layui.form; 
+    	form.render();  
+      });
+    </script>
+    <script>
         $(function () {
             $("#success").click(function () {
             	var year=$("#year option:selected").val();     //下拉框选学年
@@ -138,6 +145,7 @@
                     }
                 })
                 var content=name+"|"+num+"|"+ins+"|"+credit+"|"+introduction+"|"+year+"|"+term+"|"+type+"|"+classify;
+          
                 var myform=document.createElement("form");
                 myform.id = "form1";
                 myform.name = "form1";

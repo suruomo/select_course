@@ -127,6 +127,13 @@
     </button>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
+      layui.use(['layer','form'],  function(){
+    	var layer = layui.layer;
+    	var form = layui.form; 
+    	form.render();  
+      });
+    </script>
+    <script>
         $(function () {
             $("#success").click(function () {
             	var year=$("#year option:selected").val();     //下拉框选学年
@@ -160,7 +167,7 @@
                 input.value = encodeURIComponent(encodeURIComponent(content));
                 myform.appendChild(input);
                 myform.method = "POST";
-                myform.action = "<%=basePath%>teacher/insertCourseSuccess?page="+1;
+                myform.action = "<%=basePath%>teacher/insertTiCourseSuccess?page="+1;
                 myform.submit();
                 document.body.removeChild(myform);
             })

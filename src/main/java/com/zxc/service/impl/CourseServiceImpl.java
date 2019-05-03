@@ -411,4 +411,21 @@ public class CourseServiceImpl implements CourseService {
 		}
 		return course_list;
 	}
+
+	@Override
+	 public int insertWenCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,int teaid) {    //录入课程
+        Course course=new Course();
+        course.setClassName(name);
+        course.setClassify(classify);
+        course.setCredit(credit);
+        course.setIntroduction(introduction);
+        course.setYear(year);
+        course.setTerm(term);
+        course.setType(type);
+        course.setClassNum(Integer.parseInt(num));
+        course.setClassChooseNum(0);
+        course.setTeaId(teaid);
+        courseDao.insertWenCourse(course);
+        return course.getClassId();
+    }
 }

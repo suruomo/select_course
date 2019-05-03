@@ -34,6 +34,10 @@
         INSERT INTO Course(className,classNum,teaId,classChooseNum,type,credit,introduction,year,term,classify,item)
         VALUES (#{className},#{classNum},#{teaId},#{classChooseNum},#{type},#{credit},#{introduction},#{year},#{term},#{classify},#{item})
     </insert>
+    <insert id="insertWenCourse" parameterType="Course" useGeneratedKeys="true" keyProperty="classId" keyColumn="classId">
+        INSERT INTO Course(className,classNum,teaId,classChooseNum,type,credit,introduction,year,term,classify,item)
+        VALUES (#{className},#{classNum},#{teaId},#{classChooseNum},#{type},#{credit},#{introduction},#{year},#{term},#{classify},'无')
+    </insert>
     <update id="updateCourse" parameterType="Course">
         UPDATE Course SET
         className=#{className},

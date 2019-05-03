@@ -104,12 +104,29 @@ public class TeacherController {
         return "teacher/editCourse";
     }
 
-    @RequestMapping("/insertCourseSuccess")    //插入课程成功
+    @RequestMapping("/insertTiCourseSuccess")    //插入体育课程成功
+    public String insertTiCourseSuccess(@Param("content") String content,@Param("page") int page, Model model, HttpServletRequest request)throws UnsupportedEncodingException{
+    	System.out.println(content);
+    	String[] det= URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8").split("\\|");
+        //获取插入后的课程编号
+    	for(int i=0;i<det.length;i++) {
+    		System.out.println(det[i]);
+    	}
+        int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],(int)request.getSession().getAttribute("teaid"));
+        courseService.insertProLimit(det[2],courseId);
+        model.addAttribute("teacher", userService.getTeaInfoById((int)request.getSession().getAttribute("teaid")));
+        model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));
+        return "teacher/courseList";
+    }
+    @RequestMapping("/insertCourseSuccess")    //插入文化课程成功
     public String insertCourseSuccess(@Param("content") String content,@Param("page") int page, Model model, HttpServletRequest request)throws UnsupportedEncodingException{
     	System.out.println(content);
     	String[] det= URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8").split("\\|");
         //获取插入后的课程编号
-        int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],(int)request.getSession().getAttribute("teaid"));
+    	for(int i=0;i<det.length;i++) {
+    		System.out.println(det[i]);
+    	}
+        int courseId=courseService.insertWenCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],(int)request.getSession().getAttribute("teaid"));
         courseService.insertProLimit(det[2],courseId);
         model.addAttribute("teacher", userService.getTeaInfoById((int)request.getSession().getAttribute("teaid")));
         model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));
