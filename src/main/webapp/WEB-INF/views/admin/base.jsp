@@ -27,9 +27,7 @@
     <div class="layui-logo" style="font-size:18px;">网上选课系统后台管理</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
-     <li class="layui-nav-item ">
-         <a href="<%=basePath%>student/studentScore" style="font-size:15px;">课程审核</a>
-     </li>
+    
       <li class="layui-nav-item ">
          <a href="<%=basePath%>student/studentScore" style="font-size:15px;">通知管理</a>
     </li>
@@ -78,6 +76,9 @@
            <dd><a href="<%=basePath%>admin/courseStatistic">选课统计</a></dd>  
           </dl>
         </li>
+         <li class="layui-nav-item ">
+         <a href="<%=basePath%>student/studentScore" style="font-size:20px;">课程审核</a>
+     </li>
       </ul>
     </div>
   </div>
@@ -90,7 +91,7 @@
     <div class="copyright">Copyright ©2019 网上选课系统 by suruomo</div>
   </div>
 </div>
-<script src="${pageContext.request.contextPath}/static/layui.all.js"></script>
+<script src="${pageContext.request.contextPath}/lib/layui/layui.all.js"></script>
 <rapid:block name="content"></rapid:block>
 </body>
 

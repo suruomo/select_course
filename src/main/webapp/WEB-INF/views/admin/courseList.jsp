@@ -35,9 +35,9 @@
 </script>
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >   
-<button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除</button>
-<button class="layui-btn  layui-btn-sm" lay-event="tiyu"><i class="layui-icon">&#xe654</i> 添加体育课程</button>
-<button class="layui-btn  layui-btn-sm" lay-event="notiyu"><i class="layui-icon">&#xe608;</i> 添加文化课程</button>
+<button type="button"  class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除</button>
+<button type="button"  class="layui-btn  layui-btn-sm" lay-event="tiyu"><i class="layui-icon">&#xe654</i> 添加体育课程</button>
+<button type="button"  class="layui-btn  layui-btn-sm" lay-event="notiyu"><i class="layui-icon">&#xe608;</i> 添加文化课程</button>
   </div>
 </script>
 <script>

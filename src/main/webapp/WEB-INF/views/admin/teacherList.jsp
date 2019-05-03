@@ -17,7 +17,7 @@
             <div class="layui-input-block"> 
                 <input type="text" id="search" class="layui-input" style="float:left; width:200px;"
                        placeholder="请输入教师编号">
-                <button data-type="reload" class="layui-btn layui-btn-radius"style="float:left;" onclick="search()">搜索</button>
+                <button type="button" data-type="reload" class="layui-btn layui-btn-radius"style="float:left;" onclick="search()">搜索</button>
             </div>
         </div>
         <div class="layui-form-item">
@@ -35,7 +35,7 @@
 </script>
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >
-    <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除</button>
+    <button type="button"  class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除</button>
   </div>
 </script>
 <script>

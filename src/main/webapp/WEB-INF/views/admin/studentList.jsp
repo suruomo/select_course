@@ -33,9 +33,12 @@
                             <option value="1007">理学院</option>
                       </select>
                 </div>
-           <div data-type="reload" name="select" id="select" onClick="return select()" class="layui-btn layui-btn-radius " style="margin-left:0px;">
+                 <div class="layui-input-inline">
+                   <button data-type="reload" type="button" name="select" id="select" onClick="return select()" class="layui-btn layui-btn-radius " style="margin-left:0px;">
                                     筛选   
+            </button>
             </div>
+        </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block"> 
@@ -52,7 +55,7 @@
 </script>
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >
-    <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除</button>
+    <button type="button" class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除</button>
   </div>
 </script>
 <script>
@@ -83,25 +86,22 @@
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:180}
             ]]
         }); 
- 
-        //监听表格复选框选择
-       table.on('checkbox(test)', function(obj){     //待修改
-       });
+
         //监听头工具栏事件
        	table.on('toolbar(test)', function(obj){  //注：toolbar是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
        	var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
-           case 'deleteAll':
+           case 'deleteAll': 
          	if(checkStatus.data.length==0){
          		parent.layer.msg('请先选择要删除的数据行！', {icon: 2});
-         		return ;
+         		return;
          	}
          	var ids = "";
          	for(var i=0;i<checkStatus.data.length;i++){
          		ids += checkStatus.data[i].id+",";
          	}
             layer.confirm('真的删除行么', function(index){
-            parent.layer.msg('删除中...', {icon: 16,shade: 0.3,time:5000});
+            layer.msg('删除中...', {icon: 16,shade: 0.3,time:5000});
 		    	$.ajax({
 		    		url:'${pageContext.request.contextPath}/admin/deleteMultiStu?id='+ids,
 		    		method:'GET',
@@ -109,7 +109,7 @@
 		    		success:function(data){	
 		    			layer.msg("删除成功");
 		    			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-						parent.layer.close(index); //再执行关闭
+						layer.close(index); //再执行关闭
 		    			obj.del();   //删除对应行（tr）的DOM结构，并更新缓存
 		    		}
 		    	});
@@ -122,8 +122,7 @@
        	              {
        	                  reload: function () {
        	                     var insId = $("#ins option:selected").val();//获取下拉框的值
-       	                      //执行重载
-                             alert(insId);
+       	                      //执行重载 
                              table.reload('studentList', {
                                  where: {
                                      insId:$("#ins option:selected").val()
@@ -137,7 +136,6 @@
        	            //这个是用于创建点击事件的实例
        	            $('#select').on('click', function ()
        	            {
-       		            alert("data");
        	                var type = $(this).data('type');
        	                active[type] ? active[type].call(this) : '';
        	            });
