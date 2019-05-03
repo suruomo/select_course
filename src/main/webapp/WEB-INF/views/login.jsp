@@ -11,9 +11,14 @@
 <head>
     <title>登录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/weadmin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/loginCss.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/font.css">
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/weadmin.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.all.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/layui/css/modules/layer/default/layer.css">
     <style type="text/css">
         .formdiv{
             padding:120px 500px;

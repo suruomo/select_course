@@ -57,6 +57,10 @@
             <td>地址</td>
            <td><input value="${student.address}" type="text"  id="address" name="address" ></td>           
         </tr>
+        <tr>
+            <td>邮箱</td>
+           <td><input value="${student.email}" type="text"  id="email" name="email" ></td>           
+        </tr>
         </tbody>
     </table>
     </form>
@@ -75,7 +79,7 @@
     <script>    
     $(function () {
         $("#save").click(function () { 
-        	if($("#tele").val()==""||$("#address").val()==""){
+        	if($("#tele").val()==""||$("#address").val()==""||$("#email").val()){
         		alert("部分数据为空，请重新填写！");
         	}
         	else {

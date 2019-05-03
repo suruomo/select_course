@@ -154,6 +154,13 @@
         </c:if>
     </div>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+      <script>
+      layui.use(['layer','form'],  function(){
+    	var layer = layui.layer;
+    	var form = layui.form; 
+    	form.render();  
+      });
+    </script>
     <script>
   
         function goPage(page) {
@@ -165,7 +172,7 @@
         }
 
         function delete_fun(classId) {
-            var r = confirm("确认退课吗？")
+            var r = layer.confirm("确认退课吗？")
             if (r == true) {
                 window.location.href = "<%=basePath%>student/deleteCourse?flag=<%=1%>&courseid=" + classId;
             }

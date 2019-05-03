@@ -125,14 +125,14 @@
        	                     var insId = $("#ins option:selected").val();//获取下拉框的值
        	                      //执行重载
                              alert(insId);
-                             parent.layer.msg('查询中，请稍候...',{icon: 16,shade: 0.3,time:5000});
-                             table.reload('test', {
+
+                             table.reload('studentList', {
                                  where: {
-                                     'insId':insId,
+                                     'insId':insId
                                  }
-                                 ,url:'${pageContext.request.contextPath}/admin/selectIns'
+                                 ,method:'get'
                               });
-                             layer.close(index);
+                             
                        
        	              }
        	            };
