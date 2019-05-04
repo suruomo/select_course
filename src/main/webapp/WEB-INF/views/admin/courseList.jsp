@@ -101,10 +101,10 @@
            });
            break;
            case 'tiyu':
-        	   window.location.href = "<%=basePath%>teacher/insertTiCourse";
+        	   window.location.href = "<%=basePath%>admin/insertTiCourse";
         	   break;
            case 'notiyu':
-        	   window.location.href = "<%=basePath%>teacher/insertCourse";
+        	   window.location.href = "<%=basePath%>admin/insertCourse";
         	   break;
                };
 	});

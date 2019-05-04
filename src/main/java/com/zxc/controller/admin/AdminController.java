@@ -155,6 +155,52 @@ public class AdminController {
 	    	model.addAttribute("teacher",userService.getTeaInfoById(id));   //根据id查找教师信息
 	        return "admin/updateTeacher";   //根据id查找学生信息
 	    }
+	    @RequestMapping("/insertCourse")    //录入非体育课程
+	    public String insertCourse(Model model){
+	        //model.addAttribute("insList",courseService.queryAllIns());
+	        model.addAttribute("jisuanjiList",courseService.queryAllproByIns(1001));
+	        model.addAttribute("yiList",courseService.queryAllproByIns(1002));
+	        model.addAttribute("guanliList",courseService.queryAllproByIns(1004));
+	        model.addAttribute("wenList",courseService.queryAllproByIns(1006));
+	        model.addAttribute("jingjiList",courseService.queryAllproByIns(1005));
+	        model.addAttribute("liList",courseService.queryAllproByIns(1007));
+	        return "admin/insertCourse";
+	    }
+	    @RequestMapping("/insertCourseSuccess")    //插入文化课程成功
+	    public String insertCourseSuccess(@Param("content") String content, Model model, HttpServletRequest request)throws UnsupportedEncodingException{
+	    	System.out.println(content);
+	    	String[] det= URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8").split("\\|");
+	        //获取插入后的课程编号
+	    	for(int i=0;i<det.length;i++) {
+	    		System.out.println(det[i]);
+	    	}
+	        int courseId=courseService.insertWenCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],Integer.parseInt(det[9]));
+	        courseService.insertProLimit(det[2],courseId);
+	        return "admin/courseList";
+	    }
+	    @RequestMapping("/insertTiCourse")    //录入体育课程
+	    public String insertTiCourse(Model model){
+	        //model.addAttribute("insList",courseService.queryAllIns());
+	        model.addAttribute("jisuanjiList",courseService.queryAllproByIns(1001));
+	        model.addAttribute("yiList",courseService.queryAllproByIns(1002));
+	        model.addAttribute("guanliList",courseService.queryAllproByIns(1004));
+	        model.addAttribute("wenList",courseService.queryAllproByIns(1006));
+	        model.addAttribute("jingjiList",courseService.queryAllproByIns(1005));
+	        model.addAttribute("liList",courseService.queryAllproByIns(1007));
+	        return "admin/insertTiCourse";
+	    }
+	    @RequestMapping("/insertTiCourseSuccess")    //插入体育课程成功
+	    public String insertTiCourseSuccess(@Param("content") String content, Model model, HttpServletRequest request)throws UnsupportedEncodingException{
+	    	System.out.println(content);
+	    	String[] det= URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8").split("\\|");
+	        //获取插入后的课程编号
+	    	for(int i=0;i<det.length;i++) {
+	    		System.out.println(det[i]);
+	    	}
+	        int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],Integer.parseInt(det[10]));
+	        courseService.insertProLimit(det[2],courseId);
+	        return "admin/courseList";
+	    }
 	    @RequestMapping("/updateCourse")   
 	    public String updateCourse(Integer id,Integer teaid,Model model){
 	    	System.out.println(id);

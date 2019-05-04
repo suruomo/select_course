@@ -1,17 +1,20 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c"
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
+ <%@ taglib prefix="c"
            uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>
 <rapid:override name="head">
-    <title>添加新课程</title>
+	<title>添加</title>
 </rapid:override>
 <rapid:override name="content">
-    <%
+	<%
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
     %>
-    <form class="layui-form" id="changeform" method="post" action="<%=basePath%>teacher/changeTeaPass" style="margin:80px 400px">
-        <div class="layui-form-item">
+<div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div style="padding: 50px;border:20px;">
+     <form class="layui-form"  style="padding:50px;border:20px; width:550px;height: 750px;">
+       <div class="layui-form-item">
             <label class="layui-form-label">开课学年</label>
             <div class="layui-input-block">
             <select id="year" lay-verify="">
@@ -37,6 +40,12 @@
             </div>
         </div>
          <div class="layui-form-item">
+            <label class="layui-form-label">授课教师id</label>
+            <div class="layui-input-block" >
+                <input type="text" name="teaid" id="teaid" placeholder="请输入授课教师id" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+         <div class="layui-form-item">
             <label class="layui-form-label">课程性质</label>
             <div class="layui-input-block" id="ty">
                  <input type="radio" name="type" id="type" value="必修" title="必修" checked>
@@ -51,17 +60,6 @@
                  <input type="radio" name="classify" id="classify" value="通识课" title="通识课" >
             </div>
         </div>
-          <div class="layui-form-item">
-            <label class="layui-form-label">课程项目</label>
-            <div class="layui-input-block" >
-               <select id="item" lay-verify="">
-                 <option value="乒乓球" selected="selected">乒乓球</option>
-                 <option value="羽毛球">羽毛球</option>
-                 <option value="田径">田径</option>
-                 <option value="篮球">篮球</option>
-                </select>   
-                </div> 
-        </div>
         <div class="layui-form-item">
             <label class="layui-form-label">课程学分</label>
             <div class="layui-input-block">
@@ -73,6 +71,17 @@
             <div class="layui-input-block">
                 <input type="text" name="coursenum" id="num" placeholder="请输入人数" autocomplete="off" class="layui-input">
             </div>
+        </div>
+         <div class="layui-form-item">
+            <label class="layui-form-label">课程项目</label>
+            <div class="layui-input-block" >
+               <select id="item" lay-verify="">
+                 <option value="乒乓球" selected="selected">乒乓球</option>
+                 <option value="羽毛球">羽毛球</option>
+                 <option value="田径">田径</option>
+                 <option value="篮球">篮球</option>
+                </select>   
+                </div> 
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">学院限制</label>
@@ -121,19 +130,24 @@
                 <textarea id="introduction" name="introduction"  lay-verify="required" placeholder="请输入课程简介" class="layui-textarea"></textarea>
             </div>
         </div>
-    </form>
-    <button type="button" id="success" class="layui-btn layui-btn-danger layui-btn-lg" style="margin:0 550px;">
-        确认提交
-    </button>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-      layui.use(['layer','form'],  function(){
-    	var layer = layui.layer;
-    	var form = layui.form; 
-    	form.render();  
-      });
-    </script>
-    <script>
+        <div class="layui-input-inline">
+          <button name="success" id="success" class="layui-btn" style="margin:0 250px;" type="button" >确定修改</button>
+  </div>
+  <div class="layui-input-inline">
+       <button class="layui-btn layui-btn-danger" style="margin:0 250px;" type="button">取消保存</button>
+   </div>
+  </form>
+  </div>
+  </div>
+  <script type="text/javascript">
+    layui.use(['layer','form'], function(){
+      var layer = layui.layer;
+      var form = layui.form; 
+      form.render();  
+
+     });  
+  </script>
+   <script>
         $(function () {
             $("#success").click(function () {
             	var year=$("#year option:selected").val();     //下拉框选学年
@@ -143,7 +157,7 @@
                 var name = $("#name").val();     //课程名称
                 var introduction = $("#introduction").val();    //简介
                 var num = $("#num").val();         //课程容量
-                var item=$("#item option:selected").val();   //体育课项目
+                ar teaId = $("#teaid").val();        
                 var classify = $('#le input[name="classify"]:checked ').val();      //课程类别
                 var ins = "";             //学院
                 var count=0;
@@ -156,7 +170,8 @@
                         ins = ins + "," + $(this).attr("value");
                     }
                 })
-                var content=name+"|"+num+"|"+ins+"|"+credit+"|"+introduction+"|"+year+"|"+term+"|"+type+"|"+classify+"|"+item;
+                var content=name+"|"+num+"|"+ins+"|"+credit+"|"+introduction+"|"+year+"|"+term+"|"+type+"|"+classify+"|"+teaId;
+          
                 var myform=document.createElement("form");
                 myform.id = "form1";
                 myform.name = "form1";
@@ -167,11 +182,11 @@
                 input.value = encodeURIComponent(encodeURIComponent(content));
                 myform.appendChild(input);
                 myform.method = "POST";
-                myform.action = "<%=basePath%>teacher/insertTiCourseSuccess?page="+1;
+                myform.action = "<%=basePath%>admin/insertTiCourseSuccess";
                 myform.submit();
                 document.body.removeChild(myform);
             })
         })
     </script>
 </rapid:override>
-<%@ include file="base.jsp" %>
+<%@ include file="base.jsp"%>
