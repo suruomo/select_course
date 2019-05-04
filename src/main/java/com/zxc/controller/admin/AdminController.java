@@ -62,14 +62,16 @@ public class AdminController {
             String ins=request.getParameter("insId");
             System.out.println(ins);
             List<Student> stuList=new ArrayList<>();
+            int count=0;
             if(ins==null) {
             	stuList=userService.queryAllStu();
+            	count=stuList.size();
             }
             else {
             	stuList=userService.queryAllStuByIns(Integer.parseInt(ins));
+            	 count=stuList.size();
             }
 	    	Map<String, Object> map = new HashMap<>();
-	    	int count=stuList.size();
 	    	//用json来传值     	
 	    	JSONArray json = JSONArray.fromObject(stuList);
 	    	System.out.println(json);
