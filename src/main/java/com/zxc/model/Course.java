@@ -20,6 +20,14 @@ public class Course {
     private List<String> classLimitProName;  //课程限制专业名称
     private String item;   //体育项目
     private String ins;//开课学院
+    private String check;//审核情况
+    
+	public String getCheck() {
+		return check;
+	}
+	public void setCheck(String check) {
+		this.check = check;
+	}
 	public String getIns() {
 		return ins;
 	}

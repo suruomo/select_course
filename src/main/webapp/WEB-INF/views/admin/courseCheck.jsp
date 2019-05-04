@@ -17,28 +17,12 @@
             <div class="layui-input-block"> 
                 <div class="layui-input-inline" style="float:left; width:200px;">
                    <input type="text" id="search" class="layui-input" 
-                       placeholder="请输入学生学号">
+                       placeholder="请输入课程编号">
                 </div>
                 <div class="layui-input-inline">
                     <button type="button" id="tea" class="layui-btn layui-btn-radius " style="margin-left:0px;">查询</button>
                 </div>
-                <div class="layui-input-inline">
-                     <select class="layui-select" id="ins">
-                            <option value="1001">计算机学院</option>
-                            <option value="1002">医学院</option>
-                            <option value="1003">体育学院</option>
-                            <option value="1004">管理学院</option>
-                            <option value="1005">经济学院</option>
-                            <option value="1006">文学院</option>
-                            <option value="1007">理学院</option>
-                      </select>
-                </div>
-                 <div class="layui-input-inline">
-                   <button data-type="reload" type="button" name="select" id="select" onClick="return select()" class="layui-btn layui-btn-radius " style="margin-left:0px;">
-                                    筛选   
-            </button>
             </div>
-        </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block"> 
@@ -46,15 +30,18 @@
             </div>
         </div>
         </form>
-   </div>
-  </div>
+     </div>
+</div>
+
      
 <script type="text/html" id="barDemo">
-  <a class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="modify"><i class="layui-icon">&#xe642;</i>修改</a>
-  <a class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="del"><i class="layui-icon">&#x1006;</i>删除</a>
+  <a class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="modify"><i class="layui-icon">&#xe642;</i>编辑</a>
+  <a class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 </script>
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >
+    <button type="button" class="layui-btn layui-btn-radius layui-btn-sm" lay-event="checked"><i class="layui-icon">&#xe605;</i> 审核通过</button>
+    <button type="button" class="layui-btn layui-btn-radius layui-btn-warm layui-btn-sm" lay-event="unchecked"><i class="layui-icon">&#x1006;</i> 审核不通过</button>
     <button type="button" class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除</button>
   </div>
 </script>
@@ -67,22 +54,23 @@
         //方法渲染
         table.render({
             elem: '#demo'  //绑定table表格 
-            ,url: 'studentList.Action' //后台springmvc接收路径
+            ,url: 'courseList.Action' //后台springmvc接收路径
             ,page:true    //true表示分页
             ,limit: 10
-            ,title:'学生信息表'
-            ,id:'studentList'
+            ,title:'课程审核表'
+            ,id:'checkList'
             ,toolbar: '#toolbarDemo'  //开启表格头部工具栏区域
             ,cols: [[
-                 {type: 'checkbox', fixed: 'left'}
-                ,{field:'stuId', title:'学号', width:110, fixed: 'left', sort: true}
-                ,{field:'stuName', title:'姓名', width:80, edit: 'text'}
-                ,{field:'sex', title:'性别', width:70}
-                ,{field:'address', title:'地址', width:70}
-                ,{field:'proName', title:'专业', width:120}                      
-                ,{field:'grade', title:'年级', width:100}
-                ,{field:'state', title:'状态', width:80}
-                ,{field:'insName', title:'学院名称', width:120}      
+            	{type: 'checkbox', fixed: 'left'}
+                ,{field:'classId', title:'课程编号', width:100, fixed: 'left', sort: true}
+                ,{field:'className', title:'课程名', width:140}
+                ,{field:'type', title:'类型', width:70}
+                ,{field:'credit', title:'学分', width:70}
+                ,{field:'year', title:'开课学年', width:120}
+                ,{field:'term', title:'开课学期', width:120}                      
+                ,{field:'classify', title:'课程类别', width:100}
+                ,{field:'item', title:'项目', width:80}    
+                ,{field:'check', title:'审核情况', width:100} 
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:180}
             ]]
         }); 
@@ -115,7 +103,13 @@
 		    	});
            });
            break;
-               };
+           case 'checked':
+        	   layer.alert("没写");
+        	   break;
+           case 'unchecked':
+        	   layer.alert("没写");
+        	   break;
+       };
 	});
        	 //按照学院进行搜索 ，表格重载
           var active =

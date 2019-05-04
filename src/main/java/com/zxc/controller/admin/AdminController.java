@@ -98,25 +98,6 @@ public class AdminController {
 	    	map.put("count",count);
 	    	return map;    	
 	    }
-//	    @RequestMapping(value="/selectIns",method = RequestMethod.GET,produces="application/json;charset=utf-8")   
-//	    public @ResponseBody Map<String, Object> selectIns(@Param("page") int page, @Param("limit") int limit){
-//	    	int before = limit * (page - 1) + 1;                    //按照学院筛选学生
-//            int after = page * limit;
-//            System.out.println(before+","+after);
-//            //System.out.println("查询的学院是"+insId);
-//	    	//List<Student> stuList=userService.queryStuByIns(insId);
-//	    	Map<String, Object> map = new HashMap<>();
-//	    	int count=stuList.size();
-//	    	//用json来传值     	
-//	    	JSONArray json = JSONArray.fromObject(stuList);
-//	    	System.out.println(json);
-//            //*****转为layui需要的json格式，必须要这一步，博主也是没写这一步，在页面上数据就是数据接口异常    
-//	    	map.put("code",0);
-//	    	map.put("msg","");
-//	    	map.put("data",json);
-//	    	map.put("count",count);
-//	    	return map;    	
-//	    }
 	    @RequestMapping(value="/courseList.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
 	    public @ResponseBody Map<String, Object> courseListAction(@Param("page") int page, @Param("limit") int limit){
 	    	int before = limit * (page - 1) + 1;
@@ -153,6 +134,10 @@ public class AdminController {
 	    @RequestMapping("/teacherList")   //教师管理界面
 	    public String teacherList(){
 	        return "admin/teacherList";
+	    }
+	    @RequestMapping("/courseCheck")   //课程审核界面
+	    public String courseCheck(){
+	        return "admin/courseCheck";
 	    }
 	    @RequestMapping("/updateStudent")   
 	    public String updateStudent(Integer id,Model model){

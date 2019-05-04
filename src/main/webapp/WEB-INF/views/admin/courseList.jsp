@@ -86,7 +86,7 @@
          		ids += checkStatus.data[i].id+",";
          	}
             layer.confirm('真的删除行么', function(index){
-            parent.layer.msg('删除中...', {icon: 16,shade: 0.3,time:5000});
+            parent.layer.msg('删除中...', {icon: 16,shade: 0.3,time:3000});
 		    	$.ajax({
 		    		url:'${pageContext.request.contextPath}/admin/deleteMultiStu?id='+ids,
 		    		method:'GET',

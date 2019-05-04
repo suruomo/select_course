@@ -20,13 +20,13 @@
     </div>
     <table class="layui-table" style="margin-top:15px;">
         <colgroup>
-            <col width="30">
-            <col width="30">
-            <col width="30">
-            <col width="30">
-            <col width="30">
-            <col width="30">
-            <col width="100">
+            <col width="60">
+            <col width="60">
+            <col width="60">
+            <col width="60">
+            <col width="60">
+            <col width="60">
+            <col width="150">
         </colgroup>
         <thead>
             <tr>

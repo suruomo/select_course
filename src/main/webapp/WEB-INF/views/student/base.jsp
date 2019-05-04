@@ -50,7 +50,7 @@
     </ul>
   </div>
   </div>
-<script src="${pageContext.request.contextPath}/static/layui.all.js"></script>
+<script src="${pageContext.request.contextPath}/lib/layui/layui.all.js"></script>
 <rapid:block name="content"></rapid:block>
 </body>
 

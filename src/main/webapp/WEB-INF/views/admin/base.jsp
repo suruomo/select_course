@@ -77,7 +77,7 @@
           </dl>
         </li>
          <li class="layui-nav-item ">
-         <a href="<%=basePath%>student/studentScore" style="font-size:20px;">课程审核</a>
+         <a href="<%=basePath%>admin/courseCheck" style="font-size:20px;">课程审核</a>
      </li>
       </ul>
     </div>
