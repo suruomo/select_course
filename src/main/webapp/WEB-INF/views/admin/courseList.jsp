@@ -100,6 +100,12 @@
 		    	});
            });
            break;
+           case 'tiyu':
+        	   window.location.href = "<%=basePath%>teacher/insertTiCourse";
+        	   break;
+           case 'notiyu':
+        	   window.location.href = "<%=basePath%>teacher/insertCourse";
+        	   break;
                };
 	});
   	  //监听行工具事件
@@ -126,7 +132,7 @@
 					  title:'修改数据'   //标题 
 					  ,maxmin: true
 					  ,area:['380px','480px']    //宽高
-					  ,content:['${pageContext.request.contextPath}/admin/updateCourse?id='+data.classId,'no']
+					  ,content:['${pageContext.request.contextPath}/admin/updateCourse?id='+data.classId+'&'+'teaid='+data.teaId,'yes']
 		    	      ,end: function () {
 		    	    	 location.reload();
 		               }

@@ -87,13 +87,13 @@
   </div>   
    <div class="layui-input-inline">
           <button name="add" id="add" class="layui-btn" style="margin:0 250px;" type="button" onClick="return check()">确定修改</button>
-         </div>
-         <div class="layui-input-inline">
-          <button class="layui-btn layui-btn-danger" style="margin:0 250px;" type="button">取消保存</button>
-         </div>
-    </div> 
+  </div>
+  <div class="layui-input-inline">
+       <button class="layui-btn layui-btn-danger" style="margin:0 250px;" type="button">取消保存</button>
+   </div>
+
   </form>
-   
+  </div>
   </div>
   <script type="text/javascript">
     layui.use(['layer','form'], function(){

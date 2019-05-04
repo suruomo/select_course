@@ -2,6 +2,8 @@ package com.zxc.controller.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -152,6 +154,42 @@ public class AdminController {
 	    	System.out.println(id);
 	    	model.addAttribute("teacher",userService.getTeaInfoById(id));   //根据id查找教师信息
 	        return "admin/updateTeacher";   //根据id查找学生信息
+	    }
+	    @RequestMapping("/updateCourse")   
+	    public String updateCourse(Integer id,Integer teaid,Model model){
+	    	System.out.println(id);
+	    	 model.addAttribute("courseInfo",courseService.queryCourse(id));   //根据id查找课程信息
+	    	 model.addAttribute("teaId",teaid);   
+	    	 model.addAttribute("checkpro",courseService.selectCourseLimit(id));
+	         model.addAttribute("jisuanjiList",courseService.queryAllproByIns(1001));
+	         model.addAttribute("yiList",courseService.queryAllproByIns(1002));
+	         model.addAttribute("guanliList",courseService.queryAllproByIns(1004));
+	         model.addAttribute("wenList",courseService.queryAllproByIns(1006));
+	         model.addAttribute("jingjiList",courseService.queryAllproByIns(1005));
+	         model.addAttribute("liList",courseService.queryAllproByIns(1007));
+	        return "admin/updateCourse";   //根据id查找学生信息
+	    }
+	    @RequestMapping("/updateCourseSuccess")   //修改课程成功
+	   
+	    public String updateCourseSuccess(@Param("content") String content, Model model, HttpServletRequest request)throws UnsupportedEncodingException{
+	        String[] det= URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8").split("\\|");
+	        for(int i=0;i<det.length;i++) {
+	        	System.out.println(det[i]);
+	        }
+	        System.out.println("老师"+det[11]);
+	        int courseId=courseService.updateCourse(Integer.parseInt(det[0]),det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],det[10],Integer.parseInt(det[11]));
+	        System.out.println(det[2]);
+	         courseService.updateProLimit(det[2],courseId);   //修改数据
+	         model.addAttribute("courseInfo",courseService.queryCourse(Integer.parseInt(det[0])));   //根据id查找课程信息
+	    	 model.addAttribute("teaId",Integer.parseInt(det[11]));   
+	    	 model.addAttribute("checkpro",courseService.selectCourseLimit(Integer.parseInt(det[0])));
+	         model.addAttribute("jisuanjiList",courseService.queryAllproByIns(1001));
+	         model.addAttribute("yiList",courseService.queryAllproByIns(1002));
+	         model.addAttribute("guanliList",courseService.queryAllproByIns(1004));
+	         model.addAttribute("wenList",courseService.queryAllproByIns(1006));
+	         model.addAttribute("jingjiList",courseService.queryAllproByIns(1005));
+	         model.addAttribute("liList",courseService.queryAllproByIns(1007));
+	        return "admin/updateCourse";
 	    }
 	    @RequestMapping("/checkedList")    //查看已选课程名单
 	    public String checkedList(Integer id,Model model){
