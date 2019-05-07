@@ -30,10 +30,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zxc.controller.common.LoginController;
 import com.zxc.model.Course;
 import com.zxc.model.Institution;
+import com.zxc.model.Logging_event;
 import com.zxc.model.Page;
 import com.zxc.model.Student;
 import com.zxc.model.Teacher;
 import com.zxc.service.CourseService;
+import com.zxc.service.LogService;
 import com.zxc.service.PageService;
 import com.zxc.service.UserService;
 
@@ -48,6 +50,8 @@ public class AdminController {
 	    private PageService pageService;
 	    @Resource
 	    private CourseService courseService;
+	    @Resource
+	    private LogService logService;
 	    @Autowired
 	    private JavaMailSender javaMailSender;//在spring中配置的邮件发送的bean
 	    Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -58,6 +62,30 @@ public class AdminController {
 	    @RequestMapping("/studentList")   //学生管理界面
 	    public  String studentList(){    	
 	    	return "admin/studentList";
+	    }
+	    @RequestMapping("/log")  
+	    public  String log(){    	
+	    	return "admin/log";
+	    }
+	    @RequestMapping(value="/log.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8")  
+	    public @ResponseBody Map<String, Object> logListAction(@Param("page") int page, @Param("limit") int limit,HttpServletRequest request){
+	    	int before = limit * (page - 1) + 1;
+            int after = page * limit;
+            System.out.println(before+","+after);
+            List<Logging_event> stuList=new ArrayList<>();
+            int count=0;
+            stuList=logService.queryAll();
+            count=stuList.size();
+	    	Map<String, Object> map = new HashMap<>();
+	    	//用json来传值     	
+	    	JSONArray json = JSONArray.fromObject(stuList);
+	    	System.out.println(json);
+            //*****转为layui需要的json格式，必须要这一步，博主也是没写这一步，在页面上数据就是数据接口异常    
+	    	map.put("code",0);
+	    	map.put("msg","");
+	    	map.put("data",json);
+	    	map.put("count",count);
+	    	return map;    	
 	    }
 	    @RequestMapping(value="/studentList.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
 	    public @ResponseBody Map<String, Object> studentListAction(@Param("page") int page, @Param("limit") int limit,HttpServletRequest request){

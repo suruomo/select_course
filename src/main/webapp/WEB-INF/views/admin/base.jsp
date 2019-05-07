@@ -79,6 +79,9 @@
          <li class="layui-nav-item ">
          <a href="<%=basePath%>admin/courseCheck" style="font-size:20px;">课程审核</a>
      </li>
+     <li class="layui-nav-item ">
+         <a href="<%=basePath%>admin/log" style="font-size:20px;">日志管理</a>
+     </li>
       </ul>
     </div>
   </div>
