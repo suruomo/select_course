@@ -16,8 +16,9 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.annotations.Param;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zxc.controller.common.LoginController;
 import com.zxc.model.Course;
 import com.zxc.model.Institution;
 import com.zxc.model.Page;
@@ -48,6 +50,7 @@ public class AdminController {
 	    private CourseService courseService;
 	    @Autowired
 	    private JavaMailSender javaMailSender;//在spring中配置的邮件发送的bean
+	    Logger logger = LoggerFactory.getLogger(AdminController.class);
 	    @RequestMapping("/adminIndex")   //导航栏
 	    public String adminIndex(){
 	        return "admin/adminIndex";

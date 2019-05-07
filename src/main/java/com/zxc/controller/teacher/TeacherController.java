@@ -1,5 +1,6 @@
 package com.zxc.controller.teacher;
 
+import com.zxc.controller.common.LoginController;
 import com.zxc.model.Student;
 import com.zxc.model.Teacher;
 import com.zxc.service.CourseService;
@@ -7,6 +8,8 @@ import com.zxc.service.PageService;
 import com.zxc.service.UserService;
 import com.zxc.service.impl.CourseServiceImpl;
 import org.apache.ibatis.annotations.Param;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +29,7 @@ public class TeacherController {
     private CourseService courseService;
     @Resource
     private PageService pageService;
-
+    Logger logger = LoggerFactory.getLogger(TeacherController.class);
     @RequestMapping("/teacherIndex")  //教师index页面
     public String studentIndex(){
         return "teacher/teacherIndex";

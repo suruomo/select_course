@@ -1,11 +1,14 @@
 package com.zxc.controller.student;
 
+import com.zxc.controller.common.LoginController;
 import com.zxc.model.Course;
 import com.zxc.model.Student;
 import com.zxc.service.CourseService;
 import com.zxc.service.PageService;
 import com.zxc.service.UserService;
 import org.apache.ibatis.annotations.Param;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 //import org.apache.xpath.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +31,7 @@ public class StudentController {
     private PageService pageService;
     @Resource
     private CourseService courseService;
-
+    Logger logger = LoggerFactory.getLogger(StudentController.class);
     @RequestMapping("/studentIndex")   //头部导航栏
     public String studentIndex(){
         return "student/studentIndex";

@@ -37,11 +37,21 @@
 
     <!-- 实现slf4j接口并整合 -->
     <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.5</version>
+     </dependency>
+    <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>1.2.3</version>
+    </dependency> 
+     <dependency>
+	<groupId>ch.qos.logback</groupId>
+	<artifactId>logback-core</artifactId>
+	<version>1.2.3</version>
     </dependency>
- 
+
 <!--spring支持-->
 <dependency>
       <groupId>org.springframework</groupId>
@@ -87,9 +97,6 @@
              <version>2.4</version>
        <classifier>jdk15</classifier>
      </dependency>
-
- 
-
     <!-- 数据库 -->
     <dependency>
       <groupId>mysql</groupId>
