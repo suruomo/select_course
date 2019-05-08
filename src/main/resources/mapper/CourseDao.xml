@@ -9,10 +9,10 @@
         SELECT teaID FROM Course WHERE classId=#{classId}
     </select>
     <select id="queryCourseByName" parameterType="String" resultType="Course">
-        SELECT * FROM Course WHERE className=#{courseName}
+        SELECT * FROM Course WHERE className=#{courseName} AND classCheck="审核通过"
     </select>
       <select id="queryCourseByItem" parameterType="String" resultType="Course">
-        SELECT * FROM Course WHERE item=#{courseName}
+        SELECT * FROM Course WHERE item=#{courseName} AND classCheck="审核通过"
     </select>
     <select id="queryClassByProId" parameterType="int" resultType="Integer">
         SELECT classId FROM Course_limit WHERE proId=#{proId}

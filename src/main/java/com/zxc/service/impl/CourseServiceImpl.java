@@ -253,7 +253,7 @@ public class CourseServiceImpl implements CourseService {
         List<Integer> limitId=courseDao.queryClassByProId(userDao.selectStuById(stuId).getProId()); //查找该专业可选的课程id列表
         for(int i:limitId) {
         	Course course=courseDao.queryCourseInfoById(i);//查找课程信息
-        	if(course.getClassify().equals("专业课")&&course.getType().equals("必修")) {  //符合选课条件
+        	if(course.getClassify().equals("专业课")&&course.getType().equals("必修")&&course.getClassCheck().equals("审核通过")) {  //符合选课条件
         		if(!classid_list.contains(course.getClassId())) {    //且当前课程未选
         			System.out.println(course.getClassName()+"符合条件");
         			chooseSuccess(course.getClassId(),stuId);
