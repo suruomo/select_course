@@ -11,6 +11,9 @@
       <select id="queryCourseByItem" parameterType="String" resultType="Course">
         SELECT * FROM Course WHERE item=#{courseName}
     </select>
+    <select id="queryClassByProId" parameterType="int" resultType="Integer">
+        SELECT classId FROM Course_limit WHERE proId=#{proId}
+    </select>
     <select id="queryAllIns" resultType="Institution">
         SELECT * FROM Institution
     </select>

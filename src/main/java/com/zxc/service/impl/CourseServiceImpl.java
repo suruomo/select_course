@@ -245,9 +245,24 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Course> queryStuCourse(int stuId) {           //查找学生所选课程列表
-        List<Integer> classid_list=courseDao.queryCourseIdByStuId(stuId);    //所选课程id列表
-        List<Course> course_list=new ArrayList<>();   //所选课程列表
-        for(int i:classid_list){
+        List<Integer> classid_list=courseDao.queryCourseIdByStuId(stuId);    //已选课程id列表
+        List<Course> course_list=new ArrayList<>();   //所选总课程列表
+        List<Course> cList=new ArrayList<>(); //该选但未选的专业必修课
+        List<Integer> limitId=courseDao.queryClassByProId(userDao.selectStuById(stuId).getProId()); //查找该专业可选的课程id列表
+        for(int i:limitId) {
+        	System.out.println(i);
+        	Course course=courseDao.queryCourseInfoById(i);//查找课程信息
+        	System.out.println(course.getClassName());
+        	if(course.getClassify().equals("专业课")&&course.getType().equals("必修")) {  //符合选课条件
+        		if(!classid_list.contains(course.getClassId())) {    //且当前课程未选
+        			System.out.println(course.getClassName()+"符合条件");
+        			chooseSuccess(course.getClassId(),stuId);
+        			System.out.println(course.getClassName()+"选课成功");
+        		}
+        	}
+        }
+        List<Integer> class_list=courseDao.queryCourseIdByStuId(stuId);    //已选课程id列表
+        for(int i:class_list){
             Course course=courseDao.queryCourseInfoById(i);  //找到课程对象
             course.setTeaName(courseDao.selectTeaNameByTeaId(course.getTeaId()));    //老师姓名
             Course_choose course_choose=new Course_choose();
