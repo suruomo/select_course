@@ -454,6 +454,14 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public void updateCourseCheck(int classId, String classCheck){
 		// TODO Auto-generated method stub
-		 courseDao.updateCourseCheck(classId,classCheck);
+		 System.out.println(classCheck);
+		 if(classCheck.equals("审核通过")) {
+			 Course course=new Course();
+			 course.setClassId(classId);
+			 course.setClassCheck(classCheck);
+			 courseDao.updateCourseCheck(course);
+		 }
+		
+		 System.out.println("修改成功");
 	}
 }

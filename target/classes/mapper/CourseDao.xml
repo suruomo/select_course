@@ -72,7 +72,7 @@
         insId=#{insId}
         WHERE classId=#{classId}
     </update>
-    <update id="updateCourseCheck" >
+    <update id="updateCourseCheck" parameterType="Course">
         UPDATE Course SET
         classCheck=#{classCheck}
         WHERE classId=#{classId}

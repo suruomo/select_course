@@ -107,7 +107,6 @@
             	for(var i=0;i<checkStatus.data.length;i++){
             		ids += checkStatus.data[i].classId+",";
             	}
-            	layer.alert(ids);
             	layer.confirm('真的审核通过所选课程吗？', function(index){
         	    $.ajax({
 		    		url:'${pageContext.request.contextPath}/admin/checkedCourse?id='+ids,

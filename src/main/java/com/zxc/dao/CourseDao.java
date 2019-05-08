@@ -52,5 +52,5 @@ public interface CourseDao {
 	public void insertWenCourse(Course course);
 	public List<Integer> queryClassByProId(int proId);
 	public int queryTeaByCourse(int classId);
-	public void updateCourseCheck(int classId, String classCheck);
+	public void updateCourseCheck(Course course);
 }
