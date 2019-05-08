@@ -42,4 +42,5 @@ public interface CourseService {
 	public int queryTeaByCourse(int classId);
 	public void updateCourseCheck(int classId, String classCheck);
 	public List<Course> queryAllCourseByAdmin();
+	public List<Course> queryCourseByCheck(String classCheck);
 }

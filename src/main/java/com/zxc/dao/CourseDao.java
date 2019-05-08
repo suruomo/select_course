@@ -54,4 +54,5 @@ public interface CourseDao {
 	public int queryTeaByCourse(int classId);
 	public void updateCourseCheck(Course course);
 	public List<Course> queryAllCourseByAdmin();
+	public List<Course> queryCourseByCheck(String classCheck);
 }

@@ -22,8 +22,20 @@
                 <div class="layui-input-inline">
                     <button type="button" id="tea" class="layui-btn layui-btn-radius " style="margin-left:0px;">查询</button>
                 </div>
+                <div class="layui-input-inline">
+                     <select class="layui-select" id="classCheck">
+                            <option value="审核通过">审核通过</option>
+                            <option value="审核不通过">审核不通过</option>
+                            <option value="待审核">待审核</option>
+                      </select>
+                </div>
+                 <div class="layui-input-inline">
+                   <button data-type="reload" type="button" name="select" id="select" onClick="return select()" class="layui-btn layui-btn-radius " style="margin-left:0px;">
+                                    筛选   
+            </button>
             </div>
-        </div>
+            </div>
+        </div>   
         <div class="layui-form-item">
             <div class="layui-input-block"> 
                 <table class="layui-hide" id="demo" lay-filter="test"></table>
@@ -154,15 +166,15 @@
         	   break;
        };
 	});
-       	 //按照学院进行搜索 ，表格重载
+       	 //按照审核程度进行搜索 ，表格重载
           var active =
        	              {
        	                  reload: function () {
-       	                     var insId = $("#ins option:selected").val();//获取下拉框的值
+       	                     var insId = $("#classCheck option:selected").val();//获取下拉框的值
        	                      //执行重载 
-                             table.reload('studentList', {
+                             table.reload('checkList', {
                                  where: {
-                                     insId:$("#ins option:selected").val()
+                                     classCheck:$("#classCheck option:selected").val()
                                 }
                                  , page: {
                                  curr: 1

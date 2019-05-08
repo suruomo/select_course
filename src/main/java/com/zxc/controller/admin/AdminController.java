@@ -122,6 +122,7 @@ public class AdminController {
             System.out.println(before+","+after);
 	    	List<Teacher> teaList=userService.queryAllTeacher();
 	    	Map<String, Object> map = new HashMap<>();
+	    	
 	    	int count=teaList.size();
 	    	//用json来传值     	
 	    	JSONArray json = JSONArray.fromObject(teaList);
@@ -134,11 +135,20 @@ public class AdminController {
 	    	return map;    	
 	    }
 	    @RequestMapping(value="/courseList.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
-	    public @ResponseBody Map<String, Object> courseListAction(@Param("page") int page, @Param("limit") int limit){
+	    public @ResponseBody Map<String, Object> courseListAction(@Param("page") int page, @Param("limit") int limit,HttpServletRequest request){
 	    	int before = limit * (page - 1) + 1;
             int after = page * limit;
             System.out.println(before+","+after);
-	    	List<Course> courseList=courseService.queryAllCourseByAdmin();
+            String classCheck=request.getParameter("classCheck");
+            List<Course> courseList=new ArrayList<>();
+            System.out.println(classCheck);
+            if(classCheck==null) {
+            	courseList=courseService.queryAllCourseByAdmin();
+            }
+            else {
+            	courseList=courseService.queryCourseByCheck(classCheck);
+            }
+	    	//List<Course> courseList=courseService.queryAllCourseByAdmin();
 	    	Map<String, Object> map = new HashMap<>();
 	    	int count=courseList.size();
 	    	//用json来传值     	

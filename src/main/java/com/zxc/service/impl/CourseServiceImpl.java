@@ -482,4 +482,15 @@ public class CourseServiceImpl implements CourseService {
 		}
 		return course_list;
 	}
+
+	@Override
+	public List<Course> queryCourseByCheck(String classCheck) {
+		// TODO Auto-generated method stub
+		List<Course> course_list=courseDao.queryCourseByCheck(classCheck);  //查询课程
+		for(Course cc:course_list) {
+			 cc.setTeaName(courseDao.selectTeaNameByTeaId(cc.getTeaId()));    //老师姓名
+			 cc.setIns(courseDao.selectInsNameByTeaId(cc.getTeaId()));    //开课学院名称，即老师所在学院
+		}
+		return course_list;
+	}
 }

@@ -111,6 +111,9 @@
      <select id="queryAllCourseByAdmin" resultType="Course">
         SELECT * FROM Course
     </select>
+     <select id="queryCourseByCheck" resultType="Course">
+        SELECT * FROM Course WHERE classCheck=#{classCheck}
+    </select>
     <select id="selectTeaNameByTeaId" parameterType="int" resultType="String">
         SELECT teaName FROM Teacher where teaId=#{id}
     </select>
