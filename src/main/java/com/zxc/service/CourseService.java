@@ -10,11 +10,11 @@ public interface CourseService {
     public List<Course> queryAllById(int id);
    // public List<String> queryInsNameByCourse(int id);
     public List<Institution> queryAllIns();
-    public int insertCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,String item,int teaid);   //添加课程
+    public int insertCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,String item,String classCheck,int teaid);   //添加课程
     //public void insertInsLimit(String det,int classId);     //no  
     public Course queryInfoById(int id);
     public List<Integer> selectCourseLimit(int classId);
-    public int updateCourse(int id,String num,String credit,String introduction,String year,String term,String type,String classify,String name,String item,int teaid);
+    public int updateCourse(int id,String num,String credit,String introduction,String year,String term,String type,String classify,String name,String item,String classCheck,int teaid);
    //    public void updateInsLimit(String det,int classId);   //no
     public void deleteCourse(int id);
     public List<Student> queryStuByCourseId(int id);
@@ -41,4 +41,5 @@ public interface CourseService {
 	public int insertWenCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,String check,int teaid);
 	public int queryTeaByCourse(int classId);
 	public void updateCourseCheck(int classId, String classCheck);
+	public List<Course> queryAllCourseByAdmin();
 }

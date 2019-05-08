@@ -37,8 +37,8 @@
         SELECT insName FROM Teacher WHERE teaId=#{teaId}
     </select>
     <insert id="insertCourse" parameterType="Course" useGeneratedKeys="true" keyProperty="classId" keyColumn="classId">
-        INSERT INTO Course(className,classNum,teaId,classChooseNum,type,credit,introduction,year,term,classify,item)
-        VALUES (#{className},#{classNum},#{teaId},#{classChooseNum},#{type},#{credit},#{introduction},#{year},#{term},#{classify},#{item})
+        INSERT INTO Course(className,classNum,teaId,classChooseNum,type,credit,introduction,year,term,classify,item,classCheck)
+        VALUES (#{className},#{classNum},#{teaId},#{classChooseNum},#{type},#{credit},#{introduction},#{year},#{term},#{classify},#{item},#{classCheck})
     </insert>
     <insert id="insertWenCourse" parameterType="Course" useGeneratedKeys="true" keyProperty="classId" keyColumn="classId">
         INSERT INTO Course(className,classNum,teaId,classChooseNum,type,credit,introduction,year,term,classify,item,classCheck)
@@ -56,7 +56,8 @@
         year=#{year},
         term=#{term},
         classify=#{classify},
-        item=#{item}
+        item=#{item},
+        classCheck=#{classCheck}
         WHERE classId=#{classId}
     </update>
     <insert id="insertInsLimit" parameterType="Course_limit">
@@ -105,7 +106,10 @@
         WHERE stuId=#{stuId} AND classId=#{classId}
     </update>
     <select id="queryAllCourse" resultType="Course">
-        SELECT * FROM Course;
+        SELECT * FROM Course WHERE classCheck="审核通过"
+    </select>
+     <select id="queryAllCourseByAdmin" resultType="Course">
+        SELECT * FROM Course
     </select>
     <select id="selectTeaNameByTeaId" parameterType="int" resultType="String">
         SELECT teaName FROM Teacher where teaId=#{id}
@@ -133,13 +137,13 @@
         SELECT score FROM Course_score WHERE classId=#{classId} AND stuId=#{stuId}
     </select>
     <select id="queryCourseBybixiu" parameterType="String" resultType="Course">
-        SELECT * FROM Course WHERE type="必修"
+        SELECT * FROM Course WHERE type="必修"  AND classCheck="审核通过"
     </select>
      <select id="queryCourseByxuanxiu" parameterType="String" resultType="Course">
-        SELECT * FROM Course WHERE type="选修"
+        SELECT * FROM Course WHERE type="选修" AND classCheck="审核通过"
     </select>
      <select id="queryCourseByTongShi" parameterType="String" resultType="Course">
-        SELECT * FROM Course WHERE classify="通识课"
+        SELECT * FROM Course WHERE classify="通识课" AND classCheck="审核通过"
     </select>
      <select id="selectAllCourseById" parameterType="int" resultType="int">
         SELECT classId FROM Course_score WHERE stuId=#{stuId}

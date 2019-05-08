@@ -36,7 +36,7 @@ public class CourseServiceImpl implements CourseService {
     }
  
     @Override
-    public int insertCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,String item,int teaid) {    //录入课程
+    public int insertCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,String item,String classCheck,int teaid) {    //录入课程
         Course course=new Course();
         course.setClassName(name);
         course.setClassify(classify);
@@ -46,6 +46,7 @@ public class CourseServiceImpl implements CourseService {
         course.setTerm(term);
         course.setType(type);
         course.setItem(item);
+        course.setClassCheck(classCheck);
         course.setClassNum(Integer.parseInt(num));
         course.setClassChooseNum(0);
         course.setTeaId(teaid);
@@ -75,7 +76,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public int updateCourse(int id,String num,String credit,String introduction,String year,String term,String type,String classify,String name,String item,int teaid) {   //修改课程
+    public int updateCourse(int id,String num,String credit,String introduction,String year,String term,String type,String classify,String name,String item,String classCheck,int teaid) {   //修改课程
         Course course=new Course();
         course.setClassName(name);
         course.setClassify(classify);
@@ -86,6 +87,7 @@ public class CourseServiceImpl implements CourseService {
         course.setType(type);
         course.setTeaId(teaid);
         course.setItem(item);
+        course.setClassCheck(classCheck);;
         course.setClassChooseNum(course.getClassChooseNum());
         course.setClassNum(Integer.parseInt(num));
         course.setClassId(id);
@@ -468,5 +470,16 @@ public class CourseServiceImpl implements CourseService {
 			 courseDao.updateCourseCheck(course);
 		 }
 		 System.out.println("修改成功");
+	}
+
+	@Override
+	public List<Course> queryAllCourseByAdmin() {
+		// TODO Auto-generated method stub
+		List<Course> course_list=courseDao.queryAllCourseByAdmin();  //查询所有课程
+		for(Course cc:course_list) {
+			 cc.setTeaName(courseDao.selectTeaNameByTeaId(cc.getTeaId()));    //老师姓名
+			 cc.setIns(courseDao.selectInsNameByTeaId(cc.getTeaId()));    //开课学院名称，即老师所在学院
+		}
+		return course_list;
 	}
 }

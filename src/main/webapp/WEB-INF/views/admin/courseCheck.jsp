@@ -107,6 +107,10 @@
            });
            break;
            case 'checked':
+        	   if(checkStatus.data.length==0){
+            		parent.layer.msg('请先选择要审核的数据行！', {icon: 2});
+            		return;
+            	}
         	    var ids = "";
             	for(var i=0;i<checkStatus.data.length;i++){
             		ids += checkStatus.data[i].classId+",";
@@ -126,6 +130,10 @@
             	 });
         	   break;
            case 'unchecked':
+        	   if(checkStatus.data.length==0){
+           		parent.layer.msg('请先选择要审核的数据行！', {icon: 2});
+           		return;
+           	}
         	   var ids = "";
            	for(var i=0;i<checkStatus.data.length;i++){
            		ids += checkStatus.data[i].classId+",";

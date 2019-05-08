@@ -138,7 +138,7 @@ public class AdminController {
 	    	int before = limit * (page - 1) + 1;
             int after = page * limit;
             System.out.println(before+","+after);
-	    	List<Course> courseList=courseService.queryAllCourse();
+	    	List<Course> courseList=courseService.queryAllCourseByAdmin();
 	    	Map<String, Object> map = new HashMap<>();
 	    	int count=courseList.size();
 	    	//用json来传值     	
@@ -228,7 +228,7 @@ public class AdminController {
 	    	for(int i=0;i<det.length;i++) {
 	    		System.out.println(det[i]);
 	    	}
-	        int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],Integer.parseInt(det[10]));
+	        int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],"待审核",Integer.parseInt(det[10]));
 	        courseService.insertProLimit(det[2],courseId);
 	        return "admin/courseList";
 	    }
@@ -254,7 +254,7 @@ public class AdminController {
 	        	System.out.println(det[i]);
 	        }
 	         System.out.println("老师"+det[11]);
-	         int courseId=courseService.updateCourse(Integer.parseInt(det[0]),det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],det[10],Integer.parseInt(det[11]));
+	         int courseId=courseService.updateCourse(Integer.parseInt(det[0]),det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],det[10],"待审核",Integer.parseInt(det[11]));
 	         System.out.println(det[2]);
 	         courseService.updateProLimit(det[2],courseId);   //修改数据
 	         model.addAttribute("tea",det[11]);  

@@ -115,7 +115,7 @@ public class TeacherController {
     	for(int i=0;i<det.length;i++) {
     		System.out.println(det[i]);
     	}
-        int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],(int)request.getSession().getAttribute("teaid"));
+        int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],"待审核",(int)request.getSession().getAttribute("teaid"));
         courseService.insertProLimit(det[2],courseId);
         model.addAttribute("teacher", userService.getTeaInfoById((int)request.getSession().getAttribute("teaid")));
         model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));
@@ -142,7 +142,7 @@ public class TeacherController {
         for(int i=0;i<det.length;i++) {
         	System.out.println(det[i]);
         }
-        int courseId=courseService.updateCourse(Integer.parseInt(det[0]),det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],det[10],(int)request.getSession().getAttribute("teaid"));
+        int courseId=courseService.updateCourse(Integer.parseInt(det[0]),det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],det[10],"待审核",(int)request.getSession().getAttribute("teaid"));
         System.out.println(det[2]);
         courseService.updateProLimit(det[2],courseId);
         model.addAttribute("teacher", userService.getTeaInfoById((int)request.getSession().getAttribute("teaid")));
