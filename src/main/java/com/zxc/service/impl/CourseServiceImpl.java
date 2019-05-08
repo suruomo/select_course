@@ -34,7 +34,7 @@ public class CourseServiceImpl implements CourseService {
     public List<Institution> queryAllIns() {     //查找所有学院
         return courseDao.queryAllIns();
     }
-
+ 
     @Override
     public int insertCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,String item,int teaid) {    //录入课程
         Course course=new Course();
@@ -250,9 +250,7 @@ public class CourseServiceImpl implements CourseService {
         List<Course> cList=new ArrayList<>(); //该选但未选的专业必修课
         List<Integer> limitId=courseDao.queryClassByProId(userDao.selectStuById(stuId).getProId()); //查找该专业可选的课程id列表
         for(int i:limitId) {
-        	System.out.println(i);
         	Course course=courseDao.queryCourseInfoById(i);//查找课程信息
-        	System.out.println(course.getClassName());
         	if(course.getClassify().equals("专业课")&&course.getType().equals("必修")) {  //符合选课条件
         		if(!classid_list.contains(course.getClassId())) {    //且当前课程未选
         			System.out.println(course.getClassName()+"符合条件");
@@ -428,7 +426,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	 public int insertWenCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,int teaid) {    //录入课程
+	 public int insertWenCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,String check,int teaid) {    //录入课程
         Course course=new Course();
         course.setClassName(name);
         course.setClassify(classify);
@@ -440,7 +438,22 @@ public class CourseServiceImpl implements CourseService {
         course.setClassNum(Integer.parseInt(num));
         course.setClassChooseNum(0);
         course.setTeaId(teaid);
+        System.out.println(check);
+        course.setClassCheck(check);;
+        System.out.println(course.getClassCheck());
         courseDao.insertWenCourse(course);
+        System.out.println("添加成功");
         return course.getClassId();
     }
+
+	@Override
+	public int queryTeaByCourse(int classId) {
+		// TODO Auto-generated method stub
+		return courseDao.queryTeaByCourse(classId);
+	}
+	@Override
+	public void updateCourseCheck(int classId, String classCheck){
+		// TODO Auto-generated method stub
+		 courseDao.updateCourseCheck(classId,classCheck);
+	}
 }

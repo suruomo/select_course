@@ -68,9 +68,8 @@
                 ,{field:'credit', title:'学分', width:70}
                 ,{field:'year', title:'开课学年', width:120}
                 ,{field:'term', title:'开课学期', width:120}                      
-                ,{field:'classify', title:'课程类别', width:100}
-                ,{field:'item', title:'项目', width:80}    
-                ,{field:'check', title:'审核情况', width:100} 
+                ,{field:'classify', title:'课程类别', width:100}   
+                ,{field:'classCheck', title:'审核情况', width:100} 
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:180}
             ]]
         }); 
@@ -104,7 +103,24 @@
            });
            break;
            case 'checked':
-        	   layer.alert("没写");
+        	    var ids = "";
+            	for(var i=0;i<checkStatus.data.length;i++){
+            		ids += checkStatus.data[i].classId+",";
+            	}
+            	layer.alert(ids);
+            	layer.confirm('真的审核通过所选课程吗？', function(index){
+        	    $.ajax({
+		    		url:'${pageContext.request.contextPath}/admin/checkedCourse?id='+ids,
+		    		method:'GET',
+		    		dataType:'text',
+		    		success:function(data){	
+		    			layer.msg("审核已通过");
+		    			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+						layer.close(index); //再执行关闭
+		    			obj.del();   //删除对应行（tr）的DOM结构，并更新缓存
+		    		}
+		    	   });
+            	 });
         	   break;
            case 'unchecked':
         	   layer.alert("没写");
@@ -140,7 +156,7 @@
 		    	//执行ajax请求
            layer.confirm('真的删除行么', function(index){
 		    	$.ajax({
-		    		url:'${pageContext.request.contextPath}/admin/deleteStudent?id='+data.stuId,
+		    		url:'${pageContext.request.contextPath}/admin/deleteStudent?id='+data.classId,
 		    		method:'GET',
 		    		dataType:'text',
 		    		success:function(data){
@@ -154,10 +170,10 @@
 		     }else if(obj.event === 'modify'){   //修改数据
 		    	layer.open({
 					  type: 2, 
-					  title:'修改数据'   //标题 
+					  title:'修改数据'   //标题 s
 					   ,maxmin: true
 					  ,area:['380px','520px']    //宽高
-					  ,content:['${pageContext.request.contextPath}/admin/updateStudent?id='+data.stuId,'no']
+					  ,content:['${pageContext.request.contextPath}/admin/updateCourse?id='+data.classId,'yes']
 		    	      ,end: function () {
 		    	    	 location.reload();
 		               }

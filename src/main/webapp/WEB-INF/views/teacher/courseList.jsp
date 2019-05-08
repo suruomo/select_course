@@ -28,17 +28,16 @@
     </script>
     <table class="layui-table" style="margin-top:15px;">
         <colgroup>
-            <col width="80">
-            <col width="80">
-            <col width="80">
-            <col width="120">
-            <col width="50">
-            <col width="50">
-            <col width="50">
-            <col width="40">
-            <col width="40">
-            <col width="40">
-            <col width="200">
+            <col width="100">
+            <col width="100">
+            <col width="100">
+            <col width="150">
+            <col width="100">
+            <col width="100">
+            <col width="100">
+            <col width="100">
+            <col width="100">
+            <col width="60">
             <col width="150">
         </colgroup>
         <thead>
@@ -53,7 +52,7 @@
                 <th>课程学分</th>
                 <th>人数限制</th>
                 <th>已选人数</th>
-                <th>专业限制</th>
+                <th>审核情况</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -70,15 +69,16 @@
                     <td>${course.credit}</td>
                     <td>${course.classNum}</td>
                     <td>${course.classChooseNum}</td>
+                    <td>${course.classCheck}</td>
                     <td>
-                        <c:forEach items="${course.classLimitProName}" var="proname">
-                            ${proname}&nbsp;
-                        </c:forEach>
-                    </td>
-                    <td>
+                      <c:if test="${course.classCheck=='审核通过' ||course.classCheck=='审核不通过'}">
                         <button class="layui-btn layui-btn-radius" onclick="edit(${course.classId})">修改</button>
                         <button class="layui-btn layui-btn-radius layui-btn-danger" onclick="delete_fun(${course.classId})">删除</button>
                         <button class="layui-btn layui-btn-radius layui-btn-primary" onclick="detail_fun(${course.classId})">录入成绩</button>
+                      </c:if>
+                      <c:if test="${course.classCheck=='待审核'}">
+                        <label class="layui-form-label">无法操作</label>
+                      </c:if>
                     </td>
                 </tr>
             </c:forEach>

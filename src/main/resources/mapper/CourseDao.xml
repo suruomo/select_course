@@ -5,6 +5,9 @@
     <select id="queryCourseById" parameterType="int" resultType="Course">
         SELECT * FROM Course WHERE teaId=#{id}
     </select>
+    <select id="queryTeaByCourse" parameterType="int" resultType="int">
+        SELECT teaID FROM Course WHERE classId=#{classId}
+    </select>
     <select id="queryCourseByName" parameterType="String" resultType="Course">
         SELECT * FROM Course WHERE className=#{courseName}
     </select>
@@ -38,8 +41,8 @@
         VALUES (#{className},#{classNum},#{teaId},#{classChooseNum},#{type},#{credit},#{introduction},#{year},#{term},#{classify},#{item})
     </insert>
     <insert id="insertWenCourse" parameterType="Course" useGeneratedKeys="true" keyProperty="classId" keyColumn="classId">
-        INSERT INTO Course(className,classNum,teaId,classChooseNum,type,credit,introduction,year,term,classify,item)
-        VALUES (#{className},#{classNum},#{teaId},#{classChooseNum},#{type},#{credit},#{introduction},#{year},#{term},#{classify},'无')
+        INSERT INTO Course(className,classNum,teaId,classChooseNum,type,credit,introduction,year,term,classify,item,classCheck)
+        VALUES (#{className},#{classNum},#{teaId},#{classChooseNum},#{type},#{credit},#{introduction},#{year},#{term},#{classify},'无',#{classCheck})
     </insert>
     <update id="updateCourse" parameterType="Course">
         UPDATE Course SET
@@ -64,11 +67,16 @@
         INSERT INTO Course_limit (classId,proId)
         VALUES (#{classId},#{proId})
     </insert>
-    <insert id="updateInsLimit" parameterType="Course_limit">
+    <update id="updateInsLimit" parameterType="Course_limit">
         UPDATE Course_limit SET
         insId=#{insId}
         WHERE classId=#{classId}
-    </insert>
+    </update>
+    <update id="updateCourseCheck" >
+        UPDATE Course SET
+        classCheck=#{classCheck}
+        WHERE classId=#{classId}
+    </update>
     <select id="queryCourseInfoById" parameterType="int" resultType="Course">
         SELECT * FROM Course WHERE classId=#{id}
     </select>

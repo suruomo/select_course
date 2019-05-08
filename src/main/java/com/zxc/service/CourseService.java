@@ -38,5 +38,7 @@ public interface CourseService {
 	public List queryTongShi();   //查找全校通识课
 	public List<Course> queryAllCourse();
 	public List<Student> queryUnStuByCourseId(int classId); //查找该必修课程未选的学生名单
-	public int insertWenCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,int teaid);
+	public int insertWenCourse(String name,String num,String credit,String introduction,String year,String term,String type,String classify,String check,int teaid);
+	public int queryTeaByCourse(int classId);
+	public void updateCourseCheck(int classId, String classCheck);
 }

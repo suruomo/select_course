@@ -26,11 +26,13 @@
   <div class="layui-header">
     <div class="layui-logo" style="font-size:18px;">网上选课系统后台管理</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
+    <div class="left_open">
+		<i title="展开左侧栏" class="iconfont">&#xe699;</i>
+	</div>
     <ul class="layui-nav layui-layout-left">
-    
       <li class="layui-nav-item ">
          <a href="<%=basePath%>student/studentScore" style="font-size:15px;">通知管理</a>
-    </li>
+     </li>
       <li class="layui-nav-item">
         <a href="javascript:;">其它</a>
         <dl class="layui-nav-child">
@@ -50,7 +52,6 @@
       </li>
     </ul>
   </div>
-  
   <div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->

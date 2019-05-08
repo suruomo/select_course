@@ -205,7 +205,7 @@ public class AdminController {
 	    	for(int i=0;i<det.length;i++) {
 	    		System.out.println(det[i]);
 	    	}
-	        int courseId=courseService.insertWenCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],Integer.parseInt(det[9]));
+	        int courseId=courseService.insertWenCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],"已审核",Integer.parseInt(det[9]));
 	        courseService.insertProLimit(det[2],courseId);
 	        return "admin/courseList";
 	    }
@@ -236,7 +236,7 @@ public class AdminController {
 	    public String updateCourse(Integer id,Integer teaid,Model model){
 	    	System.out.println(id);
 	    	 model.addAttribute("courseInfo",courseService.queryCourse(id));   //根据id查找课程信息
-	    	 model.addAttribute("teaId",teaid);   
+	    	 model.addAttribute("tea",courseService.queryTeaByCourse(id));  
 	    	 model.addAttribute("checkpro",courseService.selectCourseLimit(id));
 	         model.addAttribute("jisuanjiList",courseService.queryAllproByIns(1001));
 	         model.addAttribute("yiList",courseService.queryAllproByIns(1002));
@@ -324,6 +324,19 @@ public class AdminController {
 	    	System.out.println(id);
 	    	courseService.deleteCourse(id);   
 	        return "删除成功";   
+	    }
+	    @RequestMapping("/checkedCourse")   
+	    @ResponseBody
+	    public String checkedCourse(String id){     //审核通过课程
+	    	 System.out.println(id);
+	    	 String ids[]=id.split(",");
+	    	 int classId[]=new int[ids.length];
+		     for(int i=0;i<ids.length;i++) {
+		    	    System.out.println(ids[i]);
+		    	    classId[i]=Integer.parseInt(ids[i]);
+		    	    courseService.updateCourseCheck(classId[i],"审核通过");
+		    	}   
+	        return "成功";   
 	    }
 	    @RequestMapping("/deleteteacher")   
 	    @ResponseBody

@@ -129,7 +129,7 @@ public class TeacherController {
     	for(int i=0;i<det.length;i++) {
     		System.out.println(det[i]);
     	}
-        int courseId=courseService.insertWenCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],(int)request.getSession().getAttribute("teaid"));
+        int courseId=courseService.insertWenCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],"待审核",(int)request.getSession().getAttribute("teaid"));
         courseService.insertProLimit(det[2],courseId);
         model.addAttribute("teacher", userService.getTeaInfoById((int)request.getSession().getAttribute("teaid")));
         model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("teaid"))));

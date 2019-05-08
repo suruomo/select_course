@@ -39,7 +39,7 @@
            <div class="layui-form-item">
             <label class="layui-form-label">开课老师id</label>
             <div class="layui-input-block">
-                <input value="${teaId}" type="text" name="teaId" id="teaId" autocomplete="off" class="layui-input">
+                <input value="${tea}" disabled="disabled"type="text" name="teaId" id="teaId" autocomplete="off" class="layui-input">
             </div>
         </div>
             <label class="layui-form-label">开课学年</label>
