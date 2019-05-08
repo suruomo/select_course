@@ -36,12 +36,12 @@
         <h4>欢迎使用</h4>
         <h4 style="color:red;">${msg}</h4>
         <fieldset class="layui-input-inline">
-         <i class="layui-icon" style="position: absolute;top:8px;right: 8px;">&#xe612;</i>
-         <input placeholder="账号" type="text" name="userid" id="userid" >
+         <i class="layui-icon" style="position: absolute;top:8px;right: 8px;">&#xe66f;</i>
+         <input type="text" name="userid" id="userid" placeholder="用户名" >
         </fieldset>
         <fieldset  class="layui-input-inline">
          <i class="layui-icon " style="position: absolute;top:8px;right: 8px;">&#xe673;</i>
-            <input placeholder="密码" type="password" name="userpass" >
+            <input type="password" name="userpass" placeholder="密码"  >
         </fieldset>
         <fieldset>   
             <input name="sub" type="button" onclick="tijiao()" id="contact-submit" value="登录" />
@@ -51,7 +51,13 @@
     <script>
         $(function () {
             $("#contact-submit").click(function () {   
-                  $("#contact").submit();
+            	if($("#userid").val()==""||$("#password").val()==""){
+            		layer.msg('必填项为空！', {icon: 2});
+            	}
+            	else{
+            		  $("#contact").submit();
+            	}
+              
                 
             })
         })

@@ -30,8 +30,12 @@
   </div>
      
 <script type="text/html" id="barDemo">
-  <a class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="modify"><i class="layui-icon">&#xe642;</i>修改</a>
-  <a class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="del"><i class="layui-icon">&#x1006;</i>删除</a>
+  <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" lay-event="modify">
+    <i class="layui-icon">&#xe642;</i>
+  </button>
+ <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" lay-event="del">
+    <i class="layui-icon">&#xe640;</i>
+  </button>
 </script>
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >   

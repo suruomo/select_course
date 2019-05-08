@@ -57,29 +57,24 @@
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
        <li class="layui-nav-item layui-nav-itemd" >
-        <a href="javascript:;" style="font-size:20px;">学生管理</a>
-        <dl class="layui-nav-child">
-          <dd><a href="<%=basePath%>admin/studentList">管理学生信息</a></dd>
-          <dd><a href="<%=basePath%>admin/insertStudent">添加学生</a></dd>
-        </dl>
+        <a href="<%=basePath%>admin/studentList" style="font-size:20px;">学生管理</a>
        </li>
         <li class="layui-nav-item layui-nav-itemd">
-          <a href="javascript:;" style="font-size:20px;">教师管理</a>
-          <dl class="layui-nav-child">
-           <dd><a href="<%=basePath%>admin/teacherList">管理教师信息</a></dd>
-           <dd><a href="<%=basePath%>admin/insertTeacher">添加教师</a></dd>
-          </dl>
+          <a href="<%=basePath%>admin/teacherList" style="font-size:20px;">教师管理</a>
         </li>
         <li class="layui-nav-item layui-nav-itemd">
-          <a href="javascript:;" style="font-size:20px;">课程管理</a>
+          <a href="<%=basePath%>admin/courseList" style="font-size:20px;">课程管理</a>
+        </li>
+        <li class="layui-nav-item layui-nav-itemd">
+          <a href="javascript:;" style="font-size:20px;">课程统计</a>
           <dl class="layui-nav-child">
-           <dd><a href="<%=basePath%>admin/courseList">管理课程信息</a></dd>  
-           <dd><a href="<%=basePath%>admin/courseStatistic">选课统计</a></dd>  
+           <dd><a href="<%=basePath%>admin/courseStatistic">选课统计</a></dd> 
+           <dd><a href="<%=basePath%>admin/courseStatistic">可视化图表</a></dd> 
           </dl>
         </li>
          <li class="layui-nav-item ">
          <a href="<%=basePath%>admin/courseCheck" style="font-size:20px;">课程审核</a>
-     </li>
+        </li>
      <li class="layui-nav-item ">
          <a href="<%=basePath%>admin/log" style="font-size:20px;">日志管理</a>
      </li>

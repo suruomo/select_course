@@ -229,8 +229,9 @@
                 <textarea name="introduction" id="introduction" required lay-verify="required" placeholder="${courseInfo.introduction}" class="layui-textarea"></textarea>
             </div>
         </div>
+          <button type="button"  id="success" class="layui-btn">确定修改</button>
   </form>
-    <button type="button"  id="success" class="layui-btn">确定修改</button>
+  
 <script src="${pageContext.request.contextPath}/lib/layui/layui.all.js"></script>
 </body>
  <script>
@@ -272,7 +273,7 @@
                 myform.action = "<%=basePath%>admin/updateCourseSuccess";
                 myform.submit();
                 alert("修改已保存");
-                document.body.removeChild(myform);
+               document.body.removeChild(myform);
             })
         })
     </script>

@@ -461,7 +461,12 @@ public class CourseServiceImpl implements CourseService {
 			 course.setClassCheck(classCheck);
 			 courseDao.updateCourseCheck(course);
 		 }
-		
+		 else {
+			 Course course=new Course();
+			 course.setClassId(classId);
+			 course.setClassCheck(classCheck);
+			 courseDao.updateCourseCheck(course);
+		 }
 		 System.out.println("修改成功");
 	}
 }

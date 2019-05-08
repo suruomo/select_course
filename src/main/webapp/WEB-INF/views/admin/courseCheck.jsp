@@ -35,8 +35,12 @@
 
      
 <script type="text/html" id="barDemo">
-  <a class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="modify"><i class="layui-icon">&#xe642;</i>编辑</a>
-  <a class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+ <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" lay-event="modify">
+    <i class="layui-icon">&#xe642;</i>
+  </button>
+ <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" lay-event="del">
+    <i class="layui-icon">&#xe640;</i>
+  </button>
 </script>
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >
@@ -116,13 +120,29 @@
 		    			layer.msg("审核已通过");
 		    			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 						layer.close(index); //再执行关闭
-		    			obj.del();   //删除对应行（tr）的DOM结构，并更新缓存
+						location.reload();
 		    		}
 		    	   });
             	 });
         	   break;
            case 'unchecked':
-        	   layer.alert("没写");
+        	   var ids = "";
+           	for(var i=0;i<checkStatus.data.length;i++){
+           		ids += checkStatus.data[i].classId+",";
+           	}
+           	layer.confirm('真的审核不通过所选课程吗？', function(index){
+       	    $.ajax({
+		    		url:'${pageContext.request.contextPath}/admin/uncheckedCourse?id='+ids,
+		    		method:'GET',
+		    		dataType:'text',
+		    		success:function(data){	
+		    			layer.msg("审核不通过");
+		    			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+						layer.close(index); //再执行关闭
+						location.reload();
+		    		}
+		    	   });
+           	 });
         	   break;
        };
 	});
