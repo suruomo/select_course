@@ -1,5 +1,6 @@
 package com.zxc.service;
 
+import com.zxc.model.Admin;
 import com.zxc.model.Student;
 import com.zxc.model.Teacher;
 
@@ -23,7 +24,9 @@ public interface UserService {
 	public void insertStuInfo(Student student);
 	public void insertTeaInfo(Teacher teacher);
 	public void delTea(Integer id);
-	//public List<Student> queryStuByIns(int insId);
 	public List<Student> queryAllStuByIns(int insId);
+	public Admin queryAdminById(int id);
+	public void changeAdminInfo(Admin admin);
+	public void changePass(Admin admin);
 
 }

@@ -1,6 +1,7 @@
 package com.zxc.service.impl;
 
 import com.zxc.dao.UserDao;
+import com.zxc.model.Admin;
 import com.zxc.model.Student;
 import com.zxc.model.Teacher;
 import com.zxc.service.UserService;
@@ -127,6 +128,25 @@ public  class UserServiceImpl implements UserService {
 	public List<Student> queryAllStuByIns(int insId) {
 		// TODO Auto-generated method stub
 		return userDao.queryStuByIns(insId);
+	}
+
+	@Override
+	public Admin queryAdminById(int id) {
+		// TODO Auto-generated method stub
+		Admin admin=userDao.selectAdminById(id);
+		return admin;
+	}
+
+	@Override
+	public void changeAdminInfo(Admin admin) {
+		// TODO Auto-generated method stub
+		userDao.updateAdminInfo(admin);
+	}
+
+	@Override
+	public void changePass(Admin admin) {
+		// TODO Auto-generated method stub
+		userDao.changePass(admin);
 	}
 
 

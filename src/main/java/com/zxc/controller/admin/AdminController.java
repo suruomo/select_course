@@ -23,9 +23,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zxc.controller.log.SystemLog;
+import com.zxc.model.Admin;
 import com.zxc.model.Course;
 import com.zxc.model.Institution;
 import com.zxc.model.LogEntity;
@@ -57,6 +59,7 @@ public class AdminController {
 	        return "admin/adminIndex";
 	    }
 	    @RequestMapping("/studentList")   //学生管理界面
+	    @SystemLog(module="学生模块",methods="学生管理页面")
 	    public  String studentList(){    	
 	    	return "admin/studentList";
 	    }
@@ -162,8 +165,8 @@ public class AdminController {
 	    	map.put("count",count);
 	    	return map;    	
 	    }
-	    @RequestMapping(value="/queryPro",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
 	    
+	    @RequestMapping(value="/queryPro",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
 	    public @ResponseBody Map<String, Object> queryPro(int ins){
             System.out.println(ins);
 	    	List<Institution> proList=courseService.queryAllproByIns(ins);
@@ -179,10 +182,12 @@ public class AdminController {
 	    	return map;    	
 	    }
 	    @RequestMapping("/teacherList")   //教师管理界面
+	    @SystemLog(module="教师模块",methods="查看教师列表")
 	    public String teacherList(){
 	        return "admin/teacherList";
 	    }
 	    @RequestMapping("/courseCheck")   //课程审核界面
+	    @SystemLog(module="审核模块",methods="查看课程审核列表")
 	    public String courseCheck(){
 	        return "admin/courseCheck";
 	    }
@@ -221,7 +226,7 @@ public class AdminController {
 	    	for(int i=0;i<det.length;i++) {
 	    		System.out.println(det[i]);
 	    	}
-	        int courseId=courseService.insertWenCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],"已审核",Integer.parseInt(det[9]));
+	        int courseId=courseService.insertWenCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],"审核通过",Integer.parseInt(det[9]));
 	        courseService.insertProLimit(det[2],courseId);
 	        return "admin/courseList";
 	    }
@@ -246,7 +251,7 @@ public class AdminController {
 	    	for(int i=0;i<det.length;i++) {
 	    		System.out.println(det[i]);
 	    	}
-	        int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],"待审核",Integer.parseInt(det[10]));
+	        int courseId=courseService.insertCourse(det[0],det[1],det[3],det[4],det[5],det[6],det[7],det[8],det[9],"审核通过",Integer.parseInt(det[10]));
 	        courseService.insertProLimit(det[2],courseId);
 	        return "admin/courseList";
 	    }
@@ -486,27 +491,61 @@ public class AdminController {
 	        return "添加成功";   
 	    }
 	    @RequestMapping("/courseList")   //课程管理界面
+	    @SystemLog(module="课程模块",methods="管理课程页面")
 	    public String courseList(){
 	        return "admin/courseList";
 	    }
 	    @RequestMapping("/adminInfo")   //个人资料界面
-	    public String adminInfo(){
+	    @SystemLog(module="管理员模块",methods="个人信息页面")
+	    public String adminInfo(Model model,HttpServletRequest request){
+	    	int id=(int)request.getSession().getAttribute("id");
+	    	model.addAttribute("admin",userService.queryAdminById(id));  
 	        return "admin/adminInfo";
 	    }
+	    @RequestMapping("updateInfoById")   //修改个人信息
+	    @SystemLog(module="管理员模块",methods="修改个人信息-数据库")
+	    public String updateInfoById(@RequestParam("name") String name,Model model,HttpServletRequest request) {
+	    	 int id=(int)request.getSession().getAttribute("id");  //从当前会话获取stuid
+	    	 Admin admin=new Admin();
+	    	 admin.setAdminName(userService.queryAdminById(id).getAdminName());
+	         admin.setAdminId(id);
+	         userService.changeAdminInfo(admin);
+	         model.addAttribute("admin",userService.queryAdminById(id));
+	         return "student/studentInfo";
+	    }
 	    @RequestMapping("/insertStudent")  
+	    @SystemLog(module="学生模块",methods="添加学生页面")
 	    public String insertStudent(Model model){	
 	        return "admin/insertStudent";
 	    }
 	    @RequestMapping("/insertTeacher")  
+	    @SystemLog(module="教师模块",methods="添加教师页面")
 	    public String insertTeacher(Model model){	
 	        return "admin/insertTeacher";
 	    }
 	    @RequestMapping("/editPass")   //修改界面
+	    @SystemLog(module="管理员模块",methods="修改密码页面")
 	    public String editPass(){
 	        return "admin/editPass";
 	    }
 	    @RequestMapping("/courseStatistic")   //选课统计
+	    @SystemLog(module="选课模块",methods="查看选课统计")
 	    public String courseStatistic(){
 	        return "admin/courseStatistic";
+	    }
+	    @RequestMapping("/changePass")   //修改密码
+	    @SystemLog(module="管理员模块",methods="修改密码-数据库")
+	    public String changPass(@RequestParam("prepass") String prepass, @RequestParam("nowpass") String nowpass, Model model, HttpServletRequest request){
+	        int id=(int)request.getSession().getAttribute("id");  //从当前会话获取stuid
+	        if(userService.checkAccount(id,prepass)==0){
+	            model.addAttribute("msg","原始密码输入错误!");
+	            return "admin/editPass";
+	        }
+	        else{
+	            Admin admin=new Admin();
+	            admin.setAdminId(id);
+	            admin.setAdminPass(nowpass);
+	            return "admin/adminIndex";
+	        }
 	    }
 }

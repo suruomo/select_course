@@ -22,4 +22,6 @@ public interface UserDao {
 	public void delTea(Integer id);
 	public List<Student> queryAllByProId(Integer id);
 	public List<Student> queryStuByIns(int insId);
+	public void updateAdminInfo(Admin admin);
+	public void changePass(Admin admin);
 }
