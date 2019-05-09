@@ -31,7 +31,7 @@ public class StudentController {
     private PageService pageService;
     @Resource
     private CourseService courseService;
-    Logger logger = LoggerFactory.getLogger(StudentController.class);
+ 
     @RequestMapping("/studentIndex")   //头部导航栏
     public String studentIndex(){
         return "student/studentIndex";

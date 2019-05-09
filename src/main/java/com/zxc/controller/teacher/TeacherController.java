@@ -29,7 +29,7 @@ public class TeacherController {
     private CourseService courseService;
     @Resource
     private PageService pageService;
-    Logger logger = LoggerFactory.getLogger(TeacherController.class);
+
     @RequestMapping("/teacherIndex")  //教师index页面
     public String studentIndex(){
         return "teacher/teacherIndex";

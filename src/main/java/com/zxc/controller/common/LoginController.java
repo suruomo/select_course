@@ -1,5 +1,6 @@
 package com.zxc.controller.common;
 
+import com.zxc.controller.log.SystemLog;
 import com.zxc.service.UserService;
 
 import org.slf4j.Logger;
@@ -22,8 +23,9 @@ public class LoginController {
     public String login(){
         return "login";
     }
-    Logger logger = LoggerFactory.getLogger(LoginController.class);
+
     @RequestMapping(value = "check",method = RequestMethod.POST)    //检查登录名和密码是否正确
+    @SystemLog(module="登陆",methods="检查账号密码")
     public String checkAccount(@RequestParam("userid") int id,@RequestParam("userpass") String pass,Model model) {
        
     	if (userService.checkAccount(id, pass) == 2) {      //老师账号正确
@@ -43,7 +45,7 @@ public class LoginController {
             return "admin/adminIndex";
         }
         else{                                 //账号与密码不匹配,重新登陆
-        	logger.error("用户名或密码错误，请重新登录");
+        	
             model.addAttribute("msg","密码错误");
             //这里不加redirect，否则前端取不到userid值
             return "login";

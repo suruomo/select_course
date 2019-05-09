@@ -1,6 +1,5 @@
 package com.zxc.controller.admin;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -27,11 +26,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.zxc.controller.common.LoginController;
+
 import com.zxc.model.Course;
 import com.zxc.model.Institution;
 import com.zxc.model.Logging_event;
-import com.zxc.model.Page;
 import com.zxc.model.Student;
 import com.zxc.model.Teacher;
 import com.zxc.service.CourseService;
@@ -40,7 +38,7 @@ import com.zxc.service.PageService;
 import com.zxc.service.UserService;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+
 @Controller
 @RequestMapping("admin")
 public class AdminController {
@@ -54,7 +52,6 @@ public class AdminController {
 	    private LogService logService;
 	    @Autowired
 	    private JavaMailSender javaMailSender;//在spring中配置的邮件发送的bean
-	    Logger logger = LoggerFactory.getLogger(AdminController.class);
 	    @RequestMapping("/adminIndex")   //导航栏
 	    public String adminIndex(){
 	        return "admin/adminIndex";
