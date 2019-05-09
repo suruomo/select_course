@@ -15,8 +15,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.annotations.Param;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -26,10 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.zxc.controller.log.SystemLog;
 import com.zxc.model.Course;
 import com.zxc.model.Institution;
-import com.zxc.model.Logging_event;
+import com.zxc.model.LogEntity;
+
 import com.zxc.model.Student;
 import com.zxc.model.Teacher;
 import com.zxc.service.CourseService;
@@ -64,12 +64,13 @@ public class AdminController {
 	    public  String log(){    	
 	    	return "admin/log";
 	    }
-	    @RequestMapping(value="/log.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8")  
+	    @RequestMapping(value="/log.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8") 
+	    @SystemLog(module="日志模块",methods="查看日志")
 	    public @ResponseBody Map<String, Object> logListAction(@Param("page") int page, @Param("limit") int limit,HttpServletRequest request){
 	    	int before = limit * (page - 1) + 1;
             int after = page * limit;
             System.out.println(before+","+after);
-            List<Logging_event> stuList=new ArrayList<>();
+            List<LogEntity> stuList=new ArrayList<>();
             int count=0;
             stuList=logService.queryAll();
             count=stuList.size();
@@ -85,6 +86,7 @@ public class AdminController {
 	    	return map;    	
 	    }
 	    @RequestMapping(value="/studentList.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
+	    @SystemLog(module="学生模块",methods="查看学生列表")
 	    public @ResponseBody Map<String, Object> studentListAction(@Param("page") int page, @Param("limit") int limit,HttpServletRequest request){
 	    	int before = limit * (page - 1) + 1;
             int after = page * limit;
@@ -113,6 +115,7 @@ public class AdminController {
 	    	return map;    	
 	    }
 	    @RequestMapping(value="/teacherList.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
+	    @SystemLog(module="教师模块",methods="查看教师列表")
 	    public @ResponseBody Map<String, Object> teacherListAction(@Param("page") int page, @Param("limit") int limit){
 	    	int before = limit * (page - 1) + 1;
             int after = page * limit;
@@ -132,6 +135,7 @@ public class AdminController {
 	    	return map;    	
 	    }
 	    @RequestMapping(value="/courseList.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
+	    @SystemLog(module="课程模块",methods="查看课程列表")
 	    public @ResponseBody Map<String, Object> courseListAction(@Param("page") int page, @Param("limit") int limit,HttpServletRequest request){
 	    	int before = limit * (page - 1) + 1;
             int after = page * limit;
@@ -159,6 +163,7 @@ public class AdminController {
 	    	return map;    	
 	    }
 	    @RequestMapping(value="/queryPro",method = RequestMethod.GET,produces="application/json;charset=utf-8")   //学生管理界面
+	    
 	    public @ResponseBody Map<String, Object> queryPro(int ins){
             System.out.println(ins);
 	    	List<Institution> proList=courseService.queryAllproByIns(ins);
@@ -182,18 +187,21 @@ public class AdminController {
 	        return "admin/courseCheck";
 	    }
 	    @RequestMapping("/updateStudent")   
+	    @SystemLog(module="学生模块",methods="修改学生信息页面")
 	    public String updateStudent(Integer id,Model model){
 	    	System.out.println(id);
 	    	model.addAttribute("student",userService.getStuInfoById(id));   //根据id查找学生信息
 	        return "admin/updateStudent";   //根据id查找学生信息
 	    }
-	    @RequestMapping("/updateTeacher")   
+	    @RequestMapping("/updateTeacher")  
+	    @SystemLog(module="教师模块",methods="修改教师信息页面")
 	    public String updateTeacher(Integer id,Model model){
 	    	System.out.println(id);
 	    	model.addAttribute("teacher",userService.getTeaInfoById(id));   //根据id查找教师信息
 	        return "admin/updateTeacher";   //根据id查找学生信息
 	    }
 	    @RequestMapping("/insertCourse")    //录入非体育课程
+	    @SystemLog(module="课程模块",methods="增加课程页面")
 	    public String insertCourse(Model model){
 	        //model.addAttribute("insList",courseService.queryAllIns());
 	        model.addAttribute("jisuanjiList",courseService.queryAllproByIns(1001));
@@ -205,6 +213,7 @@ public class AdminController {
 	        return "admin/insertCourse";
 	    }
 	    @RequestMapping("/insertCourseSuccess")    //插入文化课程成功
+	    @SystemLog(module="课程模块",methods="增加课程-数据库")
 	    public String insertCourseSuccess(@Param("content") String content, Model model, HttpServletRequest request)throws UnsupportedEncodingException{
 	    	System.out.println(content);
 	    	String[] det= URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8").split("\\|");
@@ -217,6 +226,7 @@ public class AdminController {
 	        return "admin/courseList";
 	    }
 	    @RequestMapping("/insertTiCourse")    //录入体育课程
+	    @SystemLog(module="课程模块",methods="增加课程页面")
 	    public String insertTiCourse(Model model){
 	        //model.addAttribute("insList",courseService.queryAllIns());
 	        model.addAttribute("jisuanjiList",courseService.queryAllproByIns(1001));
@@ -228,6 +238,7 @@ public class AdminController {
 	        return "admin/insertTiCourse";
 	    }
 	    @RequestMapping("/insertTiCourseSuccess")    //插入体育课程成功
+	    @SystemLog(module="课程模块",methods="增加课程-数据库")
 	    public String insertTiCourseSuccess(@Param("content") String content, Model model, HttpServletRequest request)throws UnsupportedEncodingException{
 	    	System.out.println(content);
 	    	String[] det= URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8").split("\\|");
@@ -239,7 +250,8 @@ public class AdminController {
 	        courseService.insertProLimit(det[2],courseId);
 	        return "admin/courseList";
 	    }
-	    @RequestMapping("/updateCourse")   
+	    @RequestMapping("/updateCourse")  
+	    @SystemLog(module="课程模块",methods="修改课程信息页面")
 	    public String updateCourse(Integer id,Integer teaid,Model model){
 	    	System.out.println(id);
 	    	 model.addAttribute("courseInfo",courseService.queryCourse(id));   //根据id查找课程信息
@@ -254,7 +266,7 @@ public class AdminController {
 	        return "admin/updateCourse";   //根据id查找学生信息
 	    }
 	    @RequestMapping("/updateCourseSuccess")   //修改课程成功
-	   
+	    @SystemLog(module="课程模块",methods="修改课程-数据库")
 	    public String updateCourseSuccess(@Param("content") String content, Model model, HttpServletRequest request)throws UnsupportedEncodingException{
 	        String[] det= URLDecoder.decode(URLDecoder.decode(content,"utf-8"),"utf-8").split("\\|");
 	        for(int i=0;i<det.length;i++) {
@@ -277,12 +289,14 @@ public class AdminController {
 	        return "admin/updateCourse";
 	    }
 	    @RequestMapping("/checkedList")    //查看已选课程名单
+	    @SystemLog(module="选课模块",methods="查看已选名单页面")
 	    public String checkedList(Integer id,Model model){
 	    	System.out.println(id);
 	    	model.addAttribute("course",courseService.queryInfoById(id));   
 	        return "admin/checkedNameList";   
 	    }
 	    @RequestMapping(value="/queryCheckedNameList",method = RequestMethod.GET,produces="application/json;charset=utf-8")  
+	    @SystemLog(module="选课模块",methods="查看已选名单请求")
 	    public @ResponseBody Map<String, Object> queryCheckedNameList(int classId){     //已选名单查询，表格渲染
             System.out.println(classId);
 	    	List<Student> List=courseService.queryStuByCourseId(classId);
@@ -298,6 +312,7 @@ public class AdminController {
 	    	return map;    	
 	    }
 	    @RequestMapping(value="/queryUncheckedNameList",method = RequestMethod.GET,produces="application/json;charset=utf-8")  
+	    @SystemLog(module="选课模块",methods="查看未选名单请求")
 	    public @ResponseBody Map<String, Object> queryUncheckedNameList(int classId){     //未选名单查询，表格渲染
             System.out.println(classId);
 	    	List<Student> List=courseService.queryUnStuByCourseId(classId);
@@ -313,6 +328,7 @@ public class AdminController {
 	    	return map;    	
 	    }
 	    @RequestMapping("/uncheckedList")    //查看未选课程名单
+	    @SystemLog(module="选课模块",methods="查看未选名单页面")
 	    public String uncheckedList(Integer id,Model model){
 	    	System.out.println(id);
 	    	model.addAttribute("course",courseService.queryInfoById(id));  
@@ -320,13 +336,15 @@ public class AdminController {
 	        return "admin/uncheckedNameList";   
 	    }
 	    @RequestMapping("/deleteStudent")   
+	    @SystemLog(module="学生模块",methods="删除学生-数据库")
 	    @ResponseBody
 	    public String deleteStudent(Integer id){     //删除学生
 	    	System.out.println(id);
 	    	userService.delStu(id);   
 	        return "删除成功";   //根据id查找学生信息
 	    }
-	    @RequestMapping("/deleteCourse")   
+	    @RequestMapping("/deleteCourse")  
+	    @SystemLog(module="课程模块",methods="删除课程-数据库")
 	    @ResponseBody
 	    public String deleteCourse(Integer id){     //删除课程
 	    	System.out.println(id);
@@ -334,6 +352,7 @@ public class AdminController {
 	        return "删除成功";   
 	    }
 	    @RequestMapping("/checkedCourse")   
+	    @SystemLog(module="审核模块",methods="审核通过课程")
 	    @ResponseBody
 	    public String checkedCourse(String id){     //审核通过课程
 	    	 System.out.println(id);
@@ -347,6 +366,7 @@ public class AdminController {
 	        return "成功";   
 	    }
 	    @RequestMapping("/uncheckedCourse")   
+	    @SystemLog(module="审核模块",methods="审核不通过课程")
 	    @ResponseBody
 	    public String uncheckedCourse(String id){     //审核不通过课程
 	    	 System.out.println(id);
@@ -359,14 +379,16 @@ public class AdminController {
 		    	}   
 	        return "成功";   
 	    }
-	    @RequestMapping("/deleteteacher")   
+	    @RequestMapping("/deleteteacher")  
+	    @SystemLog(module="教师模块",methods="删除教师")
 	    @ResponseBody
 	    public String deleteteacher(Integer id){     //删除教师
 	    	System.out.println(id);
 	    	userService.delTea(id);   
 	        return "删除成功"; 
 	    }
-	    @RequestMapping("/sendmail")   
+	    @RequestMapping("/sendmail")  
+	    @SystemLog(module="通知模块",methods="向未选课学生发送邮件通知")
 	    @ResponseBody
 	    public String sendmail(int classId,int id){     //发送邮件
 	    	Student student=userService.getStuInfoById(id);
@@ -394,6 +416,7 @@ public class AdminController {
 	        return "发送成功";
 	    }
 	    @RequestMapping("/sendAllMail")   
+	    @SystemLog(module="通知模块",methods="向未选课学生发送邮件通知")
 	    @ResponseBody
 	    public String sendAllMail(int classId,String id){     //批量发送邮件
 	    	System.out.println("发送邮件");
@@ -430,6 +453,7 @@ public class AdminController {
 	        return "发送成功";
 	    }
 	    @RequestMapping(value="/updateStudentSuccess") 
+	    @SystemLog(module="学生模块",methods="修改学生-数据库")
 	    @ResponseBody
 	    public String updateStudentSuccess(Student student){     //学生修改信息
 	    	System.out.println(student.getStuName());
@@ -437,6 +461,7 @@ public class AdminController {
 	        return "修改成功";   
 	    }
 	    @RequestMapping(value="/updateTeacherSuccess") 
+	    @SystemLog(module="教师模块",methods="修改教师-数据库")
 	    @ResponseBody
 	    public String updateTeacherSuccess(Teacher teacher){     //教师修改信息
 	    	System.out.println(teacher.getTeaName());
@@ -445,6 +470,7 @@ public class AdminController {
 	        return "修改成功";   
 	    }
 	    @RequestMapping(value="/addStu.action") 
+	    @SystemLog(module="学生模块",methods="增加学生-数据库")
 	    @ResponseBody
 	    public String addStu(Student student){         //添加学生信息
 	    	System.out.println(student.getStuName());
@@ -452,6 +478,7 @@ public class AdminController {
 	        return "添加成功";   
 	    }
 	    @RequestMapping(value="/addTea.action") 
+	    @SystemLog(module="教师模块",methods="增加教师-数据库")
 	    @ResponseBody
 	    public String addTea(Teacher teacher){         //添加学生信息
 	    	System.out.println(teacher.getTeaName());

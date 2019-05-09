@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zxc.dao.LogDao">
-    <select id="queryAll" resultType="Logging_event">
-        SELECT * FROM Logging_event
+    <select id="queryAll" resultType="LogEntity">
+        SELECT * FROM LogEntity
     </select>
      <insert id="addLog" parameterType="LogEntity" >
-        INSERT INTO LogEntity(userId,module,method,response_date,ip,data,commit)
-        VALUES (#{userId},#{module},#{method},#{response_date},#{ip},#{data},#{commit})
+        INSERT INTO LogEntity(userId,username,module,method,response_date,data,commit)
+        VALUES (#{userId},#{username},#{module},#{method},#{response_date},#{data},#{commit})
     </insert>
 </mapper>

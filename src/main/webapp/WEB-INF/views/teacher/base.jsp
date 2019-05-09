@@ -30,10 +30,10 @@
 <ul class="layui-nav layui-bg-grey">
     <li class="layui-nav-item"><a href="<%=basePath%>teacher/teacherIndex" style="font-size:20px;">首页</a></li>
     <!--这里${requestScope}取不到值，需要改为${param}-->
-    <li class="layui-nav-item"><a href="<%=basePath%>teacher/teacherInfo?teaid=${sessionScope.teaid}" style="font-size:20px;">个人资料</a></li>
+    <li class="layui-nav-item"><a href="<%=basePath%>teacher/teacherInfo?teaid=${sessionScope.id}" style="font-size:20px;">个人资料</a></li>
     <li class="layui-nav-item "><a href="<%=basePath%>teacher/courseList?page=1" style="font-size:20px;">我的课程信息</a></li>
     <li class="layui-nav-item" style="float:right; "><a href="<%=basePath%>exit" style="font-size: 20px;">退出登录</a></li>
-    <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon" style="font-size:18px;" >&#xe612;</i>${sessionScope.username}&nbsp;${sessionScope.teaid}</li>
+    <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon" style="font-size:18px;" >&#xe612;</i>${sessionScope.username}&nbsp;${sessionScope.id}</li>
 </ul>
 <script src="${pageContext.request.contextPath}/static/layui.all.js"></script>
 <rapid:block name="content"></rapid:block>

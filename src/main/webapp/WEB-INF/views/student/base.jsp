@@ -28,7 +28,7 @@
     <ul class="layui-nav layui-layout-left">
       <li class="layui-nav-item" ><a href="<%=basePath%>student/studentIndex" style="font-size: 20px;">首页</a></li>
      <li class="layui-nav-item ">
-         <a href="<%=basePath%>student/studentInfo?stuid=${sessionScope.stuid}" style="font-size: 20px;">个人资料管理</a>
+         <a href="<%=basePath%>student/studentInfo?stuid=${sessionScope.id}" style="font-size: 20px;">个人资料管理</a>
      </li>
       <li class="layui-nav-item">
         <a href="javascript:;" style="font-size: 20px;">选课</a>
@@ -45,7 +45,7 @@
     </ul>
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item" style="float:right; "><a href="<%=basePath%>exit" style="font-size: 20px;">退出登录</a></li>
-      <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon " style="font-size:18px;" >&#xe612;</i>&nbsp;${sessionScope.username}&nbsp;${sessionScope.stuid}
+      <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon " style="font-size:18px;" >&#xe612;</i>&nbsp;${sessionScope.username}&nbsp;${sessionScope.id}
       </li>
     </ul>
   </div>

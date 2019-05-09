@@ -1,6 +1,7 @@
 package com.zxc.controller.student;
 
 import com.zxc.controller.common.LoginController;
+import com.zxc.controller.log.SystemLog;
 import com.zxc.model.Course;
 import com.zxc.model.Student;
 import com.zxc.service.CourseService;
@@ -37,8 +38,9 @@ public class StudentController {
         return "student/studentIndex";
     }
     @RequestMapping("/studentScore")   //查看个人成绩
+    @SystemLog(module="学生模块",methods="查看个人成绩")
     public String studentScore(Model model,HttpServletRequest request){
-    	 List<Course> cor_list=courseService.queryStuCourse((int)request.getSession().getAttribute("stuid"));
+    	 List<Course> cor_list=courseService.queryStuCourse((int)request.getSession().getAttribute("id"));
          model.addAttribute("paging",pageService.subList(1,cor_list));
          model.addAttribute("teaList",userService.queryAllTeacher());
          model.addAttribute("insList",courseService.queryAllIns());
@@ -46,11 +48,14 @@ public class StudentController {
     }
     
     @RequestMapping("/studentInfo")    //查找学生个人信息
-    public String studentInfo(@RequestParam("stuid") int id, Model model){
-        model.addAttribute("student",userService.getStuInfoById(id));
+    @SystemLog(module="学生模块",methods="查看个人信息")
+    public String studentInfo(@RequestParam("stuid") String id, Model model){
+    	System.out.println(id);
+        model.addAttribute("student",userService.getStuInfoById(Integer.parseInt(id)));
         return "student/studentInfo";
     }
     @RequestMapping("/editStuPass")    //个人资料页点击修改个人密码
+    @SystemLog(module="学生模块",methods="修改个人密码界面")
     public String editTeaPass(){
         return "student/editStuPass";
     }
@@ -59,19 +64,22 @@ public class StudentController {
         return "student/selectCourse";
     }
     @RequestMapping("/publicCourse")    //公共课页面
+    @SystemLog(module="学生模块",methods="公共课选课")
     public String publicCourse(){
         return "student/publicCourse";
     }
     @RequestMapping("/professionCourse")    //专业课页面
+    @SystemLog(module="学生模块",methods="专业课选课")
     public String professionCourse(Model model,HttpServletRequest request){
        // model.addAttribute("courseList",courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("stuid")));
-        List<Course> cor_list=courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("stuid"));
+        List<Course> cor_list=courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("id"));
         model.addAttribute("paging",pageService.subList(1,cor_list));
         model.addAttribute("teaList",userService.queryAllTeacher());
         model.addAttribute("insList",courseService.queryAllIns());
         return "student/professionCourse";
     }
     @RequestMapping("/tongShiCourse")    //通识课页面
+    @SystemLog(module="学生模块",methods="通识课选课")
     public String tongShiCourse(@Param("page") int page, Model model,HttpServletRequest request){
         model.addAttribute("paging",pageService.subList(page,courseService.queryTongShi()));
         model.addAttribute("teaList",userService.queryAllTeacher());
@@ -81,8 +89,9 @@ public class StudentController {
 
 
     @RequestMapping("/changeStuPass")   //修改密码
+    @SystemLog(module="学生模块",methods="修改密码-数据库")
     public String changPass(@RequestParam("prepass") String prepass, @RequestParam("nowpass") String nowpass, Model model, HttpServletRequest request){
-        int id=(int)request.getSession().getAttribute("stuid");  //从当前会话获取stuid
+        int id=(int)request.getSession().getAttribute("id");  //从当前会话获取stuid
         if(userService.checkAccount(id,prepass)==0){
             model.addAttribute("msg","原始密码输入错误!");
             return "student/editStuPass";
@@ -98,16 +107,18 @@ public class StudentController {
     }
 
     @RequestMapping("/courseList")      //选课列表
+    @SystemLog(module="学生模块",methods="所有选课列表")
     public String courseList(@Param("page") int page, Model model,HttpServletRequest request){
-        model.addAttribute("paging",pageService.subList(page,courseService.queryAllCourse((int)request.getSession().getAttribute("stuid"))));
+        model.addAttribute("paging",pageService.subList(page,courseService.queryAllCourse((int)request.getSession().getAttribute("id"))));
         model.addAttribute("teaList",userService.queryAllTeacher());
         model.addAttribute("insList",courseService.queryAllIns());
         return "student/courseList";
     }
 
     @RequestMapping("/courseDetail")    //通过classid查找课程详情并显示
+    @SystemLog(module="学生模块",methods="查看课程详情")
     public String courseDetail(@Param("flag") int flag,@Param("classId") int classId,Model model,HttpServletRequest request){
-        if(courseService.checkStuPro(classId,(int)request.getSession().getAttribute("stuid"))){   //检查学生所在专业是否可选当前课程
+        if(courseService.checkStuPro(classId,(int)request.getSession().getAttribute("id"))){   //检查学生所在专业是否可选当前课程
             model.addAttribute("course",courseService.queryCourse(classId));
             System.out.println("详情的"+flag);
             model.addAttribute("flag",flag);
@@ -116,7 +127,7 @@ public class StudentController {
         } 
         else {
             model.addAttribute("msg","请注意课程的专业限制");
-            model.addAttribute("paging",pageService.subList(1,courseService.queryAllCourse((int)request.getSession().getAttribute("stuid"))));
+            model.addAttribute("paging",pageService.subList(1,courseService.queryAllCourse((int)request.getSession().getAttribute("id"))));
             model.addAttribute("teaList",userService.queryAllTeacher());
             model.addAttribute("insList",courseService.queryAllIns());
             return "student/courseList";
@@ -139,7 +150,7 @@ public class StudentController {
         	url="student/publicCourse";
         	break;
         case 2:    //专业选课页面
-        	 List<Course> cor_list=courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("stuid"));
+        	 List<Course> cor_list=courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("id"));
              model.addAttribute("paging",pageService.subList(1,cor_list));
              model.addAttribute("teaList",userService.queryAllTeacher());
              model.addAttribute("insList",courseService.queryAllIns());
@@ -150,13 +161,14 @@ public class StudentController {
     }
 
     @RequestMapping("/deleteCourse")   //删除选课，继续选课界面
+    @SystemLog(module="学生模块",methods="删除选课")
     public String deleteCourse(@Param("flag") int flag,@Param("courseid") int courseid,Model model,HttpServletRequest request){
-        courseService.deleteCourseChoose((int)request.getSession().getAttribute("stuid"),courseid);
+        courseService.deleteCourseChoose((int)request.getSession().getAttribute("id"),courseid);
         System.out.println("删除的"+flag);
         String url="";
         switch(flag) {
         case 0:   //全部课程页面
-        	 model.addAttribute("paging",pageService.subList(1,courseService.queryAllCourse((int)request.getSession().getAttribute("stuid"))));
+        	 model.addAttribute("paging",pageService.subList(1,courseService.queryAllCourse((int)request.getSession().getAttribute("id"))));
              model.addAttribute("teaList",userService.queryAllTeacher());
              model.addAttribute("insList",courseService.queryAllIns());
              url="student/courseList";
@@ -165,14 +177,14 @@ public class StudentController {
         	url="student/publicCourse";
         	break;
         case 2:    //专业选课页面
-        	 List<Course> cor_list=courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("stuid"));
+        	 List<Course> cor_list=courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("id"));
              model.addAttribute("paging",pageService.subList(1,cor_list));
              model.addAttribute("teaList",userService.queryAllTeacher());
              model.addAttribute("insList",courseService.queryAllIns());
              url="student/professionCourse";
              break;
         case 3:    //已选课程页面
-        	List<Course> list=courseService.queryStuCourse((int)request.getSession().getAttribute("stuid"));
+        	List<Course> list=courseService.queryStuCourse((int)request.getSession().getAttribute("id"));
             model.addAttribute("paging",pageService.subList(1,list));
             model.addAttribute("teaList",userService.queryAllTeacher());
             model.addAttribute("insList",courseService.queryAllIns());
@@ -184,8 +196,9 @@ public class StudentController {
     }
 
     @RequestMapping("/checkedCourseList")      //通过stuid查找已选课程列表
+    @SystemLog(module="学生模块",methods="查看已选课程")
     public String checkedCourseList(Model model,HttpServletRequest request){
-    	List<Course> cor_list=courseService.queryStuCourse((int)request.getSession().getAttribute("stuid"));
+    	List<Course> cor_list=courseService.queryStuCourse((int)request.getSession().getAttribute("id"));
         model.addAttribute("paging",pageService.subList(1,cor_list));
         model.addAttribute("teaList",userService.queryAllTeacher());
         model.addAttribute("insList",courseService.queryAllIns());
@@ -268,8 +281,9 @@ public class StudentController {
         return "student/courseList";
     }
     @RequestMapping("updateInfoById")   //修改学生个人信息
+    @SystemLog(module="学生模块",methods="修改个人信息-数据库")
     public String updateInfoById(@RequestParam("email") String email,@RequestParam("tele") String tele,@RequestParam("address") String address,Model model,HttpServletRequest request) {
-    	int id=(int)request.getSession().getAttribute("stuid");  //从当前会话获取stuid
+    	int id=(int)request.getSession().getAttribute("id");  //从当前会话获取stuid
     	 Student student=new Student();
     	 student.setStuName(userService.getStuInfoById(id).getStuName());
     	 student.setGrade(userService.getStuInfoById(id).getGrade());

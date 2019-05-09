@@ -179,7 +179,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> queryAllCourse(int stuid){    //根据学生id查找选择的所有课程
+    public List<Course> queryAllCourse(int stuid){    //根据学生id查所有课程
         List<Course> course_list= courseDao.queryAllCourse();    //所有课程
         List<Integer> stu_courselist=courseDao.queryCourseIdByStuId(stuid);   //查找该学生选择的课程
         for(Course c:course_list){

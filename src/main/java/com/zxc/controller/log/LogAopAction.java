@@ -34,18 +34,19 @@ public class LogAopAction {
      public Object around(ProceedingJoinPoint pjp) throws Throwable {
          //常见日志实体对象
          LogEntity log = new LogEntity(); 
-         System.out.println("进来了aop");
          //获取登录用户账户
          HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-         String name =(String) request.getSession().getAttribute("username");
-         log.setUserId(name);;
+         System.out.println("会话id"+request.getSession().getAttribute("id"));
+         String id =request.getSession().getAttribute("id").toString();
+         log.setUserId(id);;
          //获取系统时间
          String time = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date());
          log.setData(time);;
          
          //获取系统ip,这里用的是我自己的工具类,可自行网上查询获取ip方法
-         String ip = (String) request.getSession().getAttribute("username");
-         log.setIp(ip);
+         
+         String username = (String) request.getSession().getAttribute("username");
+         log.setUsername(username);
          
         //方法通知前获取时间,为什么要记录这个时间呢？当然是用来计算模块执行时间的
          long start = System.currentTimeMillis();

@@ -5,7 +5,7 @@ public class LogEntity {
         private String module;
         private String method;
         private String response_date;
-        private String ip;
+        private String username;
         private String data;
         private String commit;
 		
@@ -34,11 +34,12 @@ public class LogEntity {
 		public void setResponse_date(String response_date) {
 			this.response_date = response_date;
 		}
-		public String getIp() {
-			return ip;
+		
+		public String getUsername() {
+			return username;
 		}
-		public void setIp(String ip) {
-			this.ip = ip;
+		public void setUsername(String username) {
+			this.username = username;
 		}
 		public String getData() {
 			return data;

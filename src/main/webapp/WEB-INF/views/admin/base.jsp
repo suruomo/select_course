@@ -44,7 +44,7 @@
     </ul>
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item" style="float:right; "><a href="<%=basePath%>exit" style="font-size: 20px;">退出登录</a></li>
-      <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon " style="font-size:18px;" >&#xe612;</i>&nbsp;${sessionScope.username}&nbsp;${sessionScope.adminid}
+      <li class="layui-nav-item" style="float:right; font-size:20px;"><i class="layui-icon " style="font-size:18px;" >&#xe612;</i>&nbsp;${sessionScope.username}&nbsp;${sessionScope.id}
         <dl class="layui-nav-child">
           <dd><a href="<%=basePath%>admin/adminInfo">基本资料</a></dd>
           <dd><a href="<%=basePath%>admin/editPass">修改密码</a></dd>

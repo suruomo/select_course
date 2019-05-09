@@ -46,14 +46,14 @@
             ,id:'logList'
             ,toolbar: '#toolbarDemo'  //开启表格头部工具栏区域
             ,cols: [[
-            	{field:'event_id', title:'编号', width:70, fixed: 'left', sort: true}  
-                ,{field:'formatted_message', title:'信息', width:270}
-                ,{field:'logger_name', title:'日志名称', width:220, edit: 'text'}
-                ,{field:'level_string', title:'事件类别', width:90}
-                ,{field:'thread_name', title:'线程名', width:150}
-                ,{field:'caller_filename', title:'调用文件', width:120}                      
-                ,{field:'caller_class', title:'调用类', width:120}
-                ,{field:'caller_method', title:'方法', width:70}
+            	
+                {field:'userId', title:'用户账号', width:150}
+                ,{field:'username', title:'用户姓名', width:120, edit: 'text'}
+                ,{field:'module', title:'访问模块', width:100}
+                ,{field:'method', title:'访问方法', width:150}
+                ,{field:'response_date', title:'响应时间(ms)', width:150}                      
+                ,{field:'data', title:'时间', width:200}
+                ,{field:'commit', title:'执行结果', width:100}
                    
 
             ]]
