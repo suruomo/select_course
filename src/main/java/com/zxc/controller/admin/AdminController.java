@@ -520,11 +520,9 @@ public class AdminController {
 	    public String addMes(Message message, HttpServletRequest request){         //添加公告信息
 	    	System.out.println("公告标题是"+message.getTitle());
 	    	message.setUser(request.getSession().getAttribute("username").toString());
-	    	System.out.println(request.getSession().getAttribute("username").toString());
 	    	  //获取系统时间
 	        String time = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date());
 	        message.setDate(time);
-	        System.out.println("开始添加");
 	    	messageService.insertMessage(message);   
 	        return "添加成功";   
 	    }

@@ -5,6 +5,7 @@ import com.zxc.controller.log.SystemLog;
 import com.zxc.model.Course;
 import com.zxc.model.Student;
 import com.zxc.service.CourseService;
+import com.zxc.service.MessageService;
 import com.zxc.service.PageService;
 import com.zxc.service.UserService;
 import org.apache.ibatis.annotations.Param;
@@ -32,9 +33,12 @@ public class StudentController {
     private PageService pageService;
     @Resource
     private CourseService courseService;
- 
+    @Resource
+    private MessageService messageService;
     @RequestMapping("/studentIndex")   //头部导航栏
-    public String studentIndex(){
+    @SystemLog(module="学生模块",methods="首页")
+    public String studentIndex(Model model){
+    	model.addAttribute("message",messageService.queryNewMessage());
         return "student/studentIndex";
     }
     @RequestMapping("/studentScore")   //查看个人成绩

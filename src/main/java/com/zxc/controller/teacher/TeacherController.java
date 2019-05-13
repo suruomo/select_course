@@ -5,6 +5,7 @@ import com.zxc.controller.log.SystemLog;
 import com.zxc.model.Student;
 import com.zxc.model.Teacher;
 import com.zxc.service.CourseService;
+import com.zxc.service.MessageService;
 import com.zxc.service.PageService;
 import com.zxc.service.UserService;
 import com.zxc.service.impl.CourseServiceImpl;
@@ -30,7 +31,8 @@ public class TeacherController {
     private CourseService courseService;
     @Resource
     private PageService pageService;
-
+    @Resource
+    private MessageService messageService;
     @RequestMapping("/teacherIndex")  //教师index页面
     public String studentIndex(){
         return "teacher/teacherIndex";

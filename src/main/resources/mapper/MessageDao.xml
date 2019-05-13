@@ -9,4 +9,10 @@
         INSERT INTO Message(title,content,user,date,receiver)
         VALUES (#{title},#{content},#{user},#{date},#{receiver})
     </insert>
+    <select id="queryStuMessage"  resultType="Message">
+        SELECT * FROM Message where receiver="student"
+    </select>
+    <select id="queryMessageInfo"  resultType="Message">
+        SELECT * FROM Message where id=#{id} 
+    </select>
 </mapper>

@@ -10,5 +10,7 @@ public interface MessageService {
 
 	public void insertMessage(Message message);
 
+	public Message queryNewMessage();
+
 
 }

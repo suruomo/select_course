@@ -10,4 +10,8 @@ public interface MessageDao {
 
 	public void insertMessage(Message message);
 
+	public List<Message> queryStuMessage();
+
+	public Message queryMessageInfo(int id);
+
 }

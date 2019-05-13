@@ -50,12 +50,12 @@
             ,cols: [[
                  {type: 'checkbox', fixed: 'left'}
                 ,{field:'id', title:'编号', width:110, fixed: 'left', sort: true}
-                ,{field:'title', title:'标题', width:80, edit: 'text'}
-                ,{field:'content', title:'内容', width:70}
+                ,{field:'title', title:'标题', width:120, edit: 'text'}
+                ,{field:'content', title:'内容', width:500}
                 ,{field:'user', title:'发布人', width:100}
                 ,{field:'receiver', title:'接受对象', width:100}
-                ,{field:'date', title:'发布日期', width:120}                         
-                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:180}
+                ,{field:'date', title:'发布日期', width:200}                         
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:100}
             ]]
         }); 
 
