@@ -1,6 +1,7 @@
 package com.zxc.model;
 
 public class LogEntity {
+	    private int id; 
         private String userId;
         private String module;
         private String method;
@@ -8,8 +9,13 @@ public class LogEntity {
         private String username;
         private String data;
         private String commit;
-		
-		
+        
+		public int getId() {
+			return id;
+		}
+		public void setId(int id) {
+			this.id = id;
+		}
 		public String getUserId() {
 			return userId;
 		}

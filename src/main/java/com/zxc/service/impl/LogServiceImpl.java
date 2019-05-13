@@ -25,4 +25,9 @@ public class LogServiceImpl implements  LogService{
 		// TODO Auto-generated method stub
 		 logDao.addLog(log);
 	}
+	@Override
+	public int getCurrentId() {
+		// TODO Auto-generated method stub
+		return logDao.queryMaxId();
+	}
 }

@@ -5,6 +5,9 @@
     <select id="queryAll" resultType="LogEntity">
         SELECT * FROM LogEntity
     </select>
+     <select id="queryMaxId" resultType="int">
+        SELECT MAX(id) FROM LogEntity
+    </select>
      <insert id="addLog" parameterType="LogEntity" >
         INSERT INTO LogEntity(userId,username,module,method,response_date,data,commit)
         VALUES (#{userId},#{username},#{module},#{method},#{response_date},#{data},#{commit})

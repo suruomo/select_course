@@ -37,8 +37,15 @@ public class LogAopAction {
          //获取登录用户账户
          HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
          System.out.println("会话id"+request.getSession().getAttribute("id"));
-         String id =request.getSession().getAttribute("id").toString();
-         log.setUserId(id);;
+         Object id =request.getSession().getAttribute("id");
+         if(id==null) {    //第一次登陆为null
+             log.setId(logservice.getCurrentId());
+             log.setUserId("第一个登陆者");
+         }
+         else {
+             log.setId(logservice.getCurrentId());
+             log.setUserId(id.toString());
+         }
          //获取系统时间
          String time = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date());
          log.setData(time);;

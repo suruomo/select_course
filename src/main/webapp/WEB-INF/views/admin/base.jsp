@@ -31,7 +31,7 @@
 	</div>
     <ul class="layui-nav layui-layout-left">
       <li class="layui-nav-item ">
-         <a href="<%=basePath%>student/studentScore" style="font-size:15px;">通知管理</a>
+         <a href="<%=basePath%>admin/message" style="font-size:15px;">公告管理</a>
      </li>
       <li class="layui-nav-item">
         <a href="javascript:;">其它</a>

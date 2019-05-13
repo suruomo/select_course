@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @SessionAttributes({"username","id"})
@@ -24,8 +25,9 @@ public class LoginController {
     }
 
     @RequestMapping(value = "check",method = RequestMethod.POST)    //检查登录名和密码是否正确
-    public String checkAccount(@RequestParam("userid") int id,@RequestParam("userpass") String pass,Model model) {
+    public String checkAccount(@RequestParam("userid") int id,@RequestParam("userpass") String pass,Model model,HttpServletRequest request) {
         //int id=Integer.parseInt(ids);
+    	HttpSession session = request.getSession();
     	if (userService.checkAccount(id, pass) == 2) {      //老师账号正确
             model.addAttribute("username",userService.getTeaNameById(id));   //返回姓名和id
             model.addAttribute("id",id);

@@ -3,19 +3,18 @@ package com.zxc.controller.admin;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ibatis.annotations.Param;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -25,17 +24,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.zxc.controller.log.SystemLog;
 import com.zxc.model.Admin;
 import com.zxc.model.Course;
 import com.zxc.model.Institution;
 import com.zxc.model.LogEntity;
-
+import com.zxc.model.Message;
 import com.zxc.model.Student;
 import com.zxc.model.Teacher;
 import com.zxc.service.CourseService;
 import com.zxc.service.LogService;
+import com.zxc.service.MessageService;
 import com.zxc.service.PageService;
 import com.zxc.service.UserService;
 
@@ -52,9 +51,13 @@ public class AdminController {
 	    private CourseService courseService;
 	    @Resource
 	    private LogService logService;
+	    @Resource
+	    private MessageService messageService;
 	    @Autowired
 	    private JavaMailSender javaMailSender;//在spring中配置的邮件发送的bean
+	    
 	    @RequestMapping("/adminIndex")   //导航栏
+	    @SystemLog(module="登陆模块",methods="管理员管理页面")
 	    public String adminIndex(){
 	        return "admin/adminIndex";
 	    }
@@ -80,6 +83,27 @@ public class AdminController {
 	    	Map<String, Object> map = new HashMap<>();
 	    	//用json来传值     	
 	    	JSONArray json = JSONArray.fromObject(stuList);
+	    	System.out.println(json);
+            //*****转为layui需要的json格式，必须要这一步，博主也是没写这一步，在页面上数据就是数据接口异常    
+	    	map.put("code",0);
+	    	map.put("msg","");
+	    	map.put("data",json);
+	    	map.put("count",count);
+	    	return map;    	
+	    }
+	    @RequestMapping(value="/MessageList.Action",method = RequestMethod.GET,produces="application/json;charset=utf-8") 
+	    @SystemLog(module="公告模块",methods="查看公告")
+	    public @ResponseBody Map<String, Object> MessageListAction(@Param("page") int page, @Param("limit") int limit,HttpServletRequest request){
+	    	int before = limit * (page - 1) + 1;
+            int after = page * limit;
+            System.out.println(before+","+after);
+            List<Message> List=new ArrayList<>();
+            int count=0;
+            List=messageService.queryAll();
+            count=List.size();
+	    	Map<String, Object> map = new HashMap<>();
+	    	//用json来传值     	
+	    	JSONArray json = JSONArray.fromObject(List);
 	    	System.out.println(json);
             //*****转为layui需要的json格式，必须要这一步，博主也是没写这一步，在页面上数据就是数据接口异常    
 	    	map.put("code",0);
@@ -490,6 +514,20 @@ public class AdminController {
 	    	userService.insertTeaInfo(teacher);   
 	        return "添加成功";   
 	    }
+	    @RequestMapping(value="/addMes.action") 
+	    @SystemLog(module="公告模块",methods="发布公告-数据库")
+	    @ResponseBody
+	    public String addMes(Message message, HttpServletRequest request){         //添加公告信息
+	    	System.out.println("公告标题是"+message.getTitle());
+	    	message.setUser(request.getSession().getAttribute("username").toString());
+	    	System.out.println(request.getSession().getAttribute("username").toString());
+	    	  //获取系统时间
+	        String time = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date());
+	        message.setDate(time);
+	        System.out.println("开始添加");
+	    	messageService.insertMessage(message);   
+	        return "添加成功";   
+	    }
 	    @RequestMapping("/courseList")   //课程管理界面
 	    @SystemLog(module="课程模块",methods="管理课程页面")
 	    public String courseList(){
@@ -532,6 +570,16 @@ public class AdminController {
 	    @SystemLog(module="选课模块",methods="查看选课统计")
 	    public String courseStatistic(){
 	        return "admin/courseStatistic";
+	    }
+	    @RequestMapping("/message")   //公告管理
+	    @SystemLog(module="公告模块",methods="查看公告")
+	    public String message(){
+	        return "admin/message";
+	    }
+	    @RequestMapping("/insertMessage")   //增加公告
+	    @SystemLog(module="公告模块",methods="增加公告")
+	    public String insertMessage(){
+	        return "admin/insertMessage";
 	    }
 	    @RequestMapping("/changePass")   //修改密码
 	    @SystemLog(module="管理员模块",methods="修改密码-数据库")

@@ -11,4 +11,6 @@ public interface LogService {
 
 	public void addLog(LogEntity log);
 
+	public int getCurrentId();
+
 }

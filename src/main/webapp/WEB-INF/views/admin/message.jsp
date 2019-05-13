@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <rapid:override name="head">
-	<title>学生列表</title>
+	<title>公告列表</title>
 </rapid:override>
 <rapid:override name="content">
 	<%
@@ -10,69 +10,52 @@
     %>
 <div class="layui-body">
     <!-- 内容主体区域 -->
-
-     <div style="padding: 70px;border:30px;">
+ <div style="padding: 70px;border:30px;">
         <form class="layui-form">
-          <div class="layui-form-item">
-           <div class="layui-input-block"> 
-                 <div class="layui-input-inline">
-                    <label class="layui-form-label" style="float:left; font-size:15px;">日期筛选：</label>
-                 </div>
-                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input" id="test1" placeholder="年--月--日">
-                    </div>
-                   <div class="layui-input-inline"> 
-                     <button data-type="reload" class="layui-btn layui-btn-radius"style="float:left;" onclick="search()">确定</button>
-                 </div>
-           </div>
-         </div>
-         <div class="layui-form-item">
-           <div class="layui-input-block"> 
+        <div class="layui-form-item">
+            <div class="layui-input-block"> 
                 <table class="layui-hide" id="demo" lay-filter="test"></table>
-           </div>
-         </div>
-      </form>
-    </div>
+            </div>
+        </div>
+        </form>
    </div>
+  </div>
      
 <script type="text/html" id="barDemo">
+ <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" lay-event="del">
+    <i class="layui-icon">&#xe640;</i>
+  </button>
 </script>
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >
-   
+    <button type="button" class="layui-btn  layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe608;</i> 发布公告</button>
+    <button type="button" class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteAll"><i class="layui-icon">&#xe640;</i> 批量删除历史</button>
   </div>
 </script>
 <script>
-    layui.use(['layer','table','form','laydate'],  function(){
+    layui.use(['layer','table','form'],  function(){
     	var table = layui.table;
     	var layer = layui.layer;
     	var form = layui.form; 
-        var laydate = layui.laydate;
-    	//日期选择
-        laydate.render({
-    	    elem: '#test1' 
-    	  });
     	form.render();  
         //方法渲染
         table.render({
             elem: '#demo'  //绑定table表格 
-            ,url: 'log.Action' //后台springmvc接收路径
+            ,url: 'MessageList.Action' //后台springmvc接收路径
             ,page:true    //true表示分页
             ,limit: 10
-            ,title:'日志信息表'
-            ,id:'logList'
+            ,title:'公告信息表'
+            ,id:'MessageList'
             ,toolbar: '#toolbarDemo'  //开启表格头部工具栏区域
             ,cols: [[
-            	
-                {field:'userId', title:'用户账号', width:150}
-                ,{field:'username', title:'用户姓名', width:120, edit: 'text'}
-                ,{field:'module', title:'访问模块', width:100}
-                ,{field:'method', title:'访问方法', width:150}
-                ,{field:'response_date', title:'响应时间(ms)', width:150}                      
-                ,{field:'data', title:'时间', width:200}
-                ,{field:'commit', title:'执行结果', width:100}
-                   
-
+                 {type: 'checkbox', fixed: 'left'}
+                ,{field:'id', title:'编号', width:110, fixed: 'left', sort: true}
+                ,{field:'title', title:'标题', width:80, edit: 'text'}
+                ,{field:'content', title:'内容', width:70}
+                ,{field:'user', title:'发布人', width:100}
+                ,{field:'receiver', title:'接受对象', width:100}
+                ,{field:'date', title:'发布日期', width:120}                         
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:180}
             ]]
         }); 
 
@@ -104,30 +87,11 @@
 		    	});
            });
            break;
+           case 'add':
+        	   window.location.href = "<%=basePath%>admin/insertMessage";
+        	   break;
                };
 	});
-       	 //按照学院进行搜索 ，表格重载
-          var active =
-       	              {
-       	                  reload: function () {
-       	                     var insId = $("#ins option:selected").val();//获取下拉框的值
-       	                      //执行重载 
-                             table.reload('studentList', {
-                                 where: {
-                                     insId:$("#ins option:selected").val()
-                                }
-                                 , page: {
-                                 curr: 1
-                             }
-                              });                      
-       	            }
-       	          };
-       	            //这个是用于创建点击事件的实例
-       	            $('#select').on('click', function ()
-       	            {
-       	                var type = $(this).data('type');
-       	                active[type] ? active[type].call(this) : '';
-       	            });
   	  //监听行工具事件
 		table.on('tool(test)', function(obj){  //注：tool是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
 		    var data = obj.data;   //获得当前行数据  

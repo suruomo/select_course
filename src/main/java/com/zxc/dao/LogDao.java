@@ -7,9 +7,12 @@ import com.zxc.model.LogEntity;
 
 public interface LogDao {
 
+
 	public List<LogEntity> queryAll();
 
 	public void addLog(LogEntity log);
+
+	public  int queryMaxId();
 
 
 }
