@@ -12,5 +12,7 @@ public interface MessageService {
 
 	public Message queryNewMessage();
 
+	public Message queryTeaMessage();
+
 
 }

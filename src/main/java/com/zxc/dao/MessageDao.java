@@ -14,4 +14,6 @@ public interface MessageDao {
 
 	public Message queryMessageInfo(int id);
 
+	public List<Message> queryTeaMessage();
+
 }

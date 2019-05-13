@@ -12,6 +12,9 @@
     <select id="queryStuMessage"  resultType="Message">
         SELECT * FROM Message where receiver="student"
     </select>
+     <select id="queryTeaMessage"  resultType="Message">
+        SELECT * FROM Message where receiver="teacher"
+    </select>
     <select id="queryMessageInfo"  resultType="Message">
         SELECT * FROM Message where id=#{id} 
     </select>

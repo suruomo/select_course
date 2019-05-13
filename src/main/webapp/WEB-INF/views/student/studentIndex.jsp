@@ -10,9 +10,9 @@
     %>
 	<div style="width: 600px; height: 450px; margin: 100px 350px; border: 3px solid gray; background-size: cover; background: #D3D3D3">
 		<h2 style="text-align: center; margin-top: 25px; margin-bottom: 25px;">${message.title}</h2>
-		<h3  style="text-align: center; margin-top: 25px; margin-bottom: 25px;">
+		<h3  style="margin-left:50px; margin-bottom: 10px;">
 		${message.content}</h3>
-		<h4  style="text-align: center; margin-top: 25px; margin-bottom: 25px;">&nbsp;${message.user}&nbsp;${message.date}</h4>
+		<h4 style="margin-left:50px; margin-bottom: 10px;">&nbsp;${message.user}&nbsp;${message.date}</h4>
 	</div>
 </rapid:override>
 <%@ include file="base.jsp"%>

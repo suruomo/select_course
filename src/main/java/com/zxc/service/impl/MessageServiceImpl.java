@@ -36,5 +36,16 @@ public class MessageServiceImpl implements MessageService{
 		int max=Collections.max(msgId);   //找最新公告
 		return messageDao.queryMessageInfo(max);   //查询最新公告信息
 	}
+	@Override
+	public Message queryTeaMessage() {
+		// TODO Auto-generated method stub
+		List<Message> msgList=messageDao.queryTeaMessage();
+		List<Integer> msgId=new ArrayList<>();  
+		for(Message msg:msgList) {    //编号列表
+			msgId.add(msg.getId());
+		}
+		int max=Collections.max(msgId);   //找最新公告
+		return messageDao.queryMessageInfo(max);   //查询最新公告信息
+	}
 
 }

@@ -34,17 +34,21 @@ public class TeacherController {
     @Resource
     private MessageService messageService;
     @RequestMapping("/teacherIndex")  //教师index页面
-    public String studentIndex(){
+    @SystemLog(module="教师模块",methods="首页")
+    public String studentIndex(Model model){
+    	model.addAttribute("message",messageService.queryTeaMessage());
         return "teacher/teacherIndex";
     }
 
     @RequestMapping("/teacherInfo")   //教师个人信息
+    @SystemLog(module="教师模块",methods="个人信息页面")
     public String studentInfo(@RequestParam("teaid") int id, Model model){
         model.addAttribute("teacher",userService.getTeaInfoById(id));
         return "teacher/teacherInfo";
     }
 
     @RequestMapping("/editTeaPass")   //教师点击进入修改密码界面
+    @SystemLog(module="教师模块",methods="修改密码页面")
     public String editTeaPass(){
         return "teacher/editTeaPass";
     }
