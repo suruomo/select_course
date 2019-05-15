@@ -30,8 +30,8 @@
   </div>
      
 <script type="text/html" id="barDemo">
-  <a class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="table"><i class="layui-icon">&#xe605;</i>成绩统计</a>
-  <a class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="chart"><i class="layui-icon">&#x1006;</i>图表统计</a>
+  <a class="layui-btn yutons layui-btn-sm yutons-color-detail" lay-event="table"><i class="layui-icon">&#xe62d;</i>成绩统计</a>
+  <a class="layui-btn layui-btn-danger yutons layui-btn-sm" lay-event="chart"><i class="layui-icon">&#xe629;</i>图表统计</a>
 </script>
 <script type="text/html"  id="toolbarDemo">
   <div class="layui-btn-container" >   
@@ -109,10 +109,7 @@
 		    	});
 		     }else if(obj.event === 'chart'){   //图表统计
 		    	
-		    	 
-		    	 
-		    	 
-		    	 
+		    window.location.href = "<%=basePath%>admin/chart";	 	 
 		    } 
 		 });
     });

@@ -595,6 +595,11 @@ public class AdminController {
 	    public String message(){
 	        return "admin/message";
 	    }
+	    @RequestMapping("/chart")   
+	    @SystemLog(module="成绩模块",methods="成绩图表统计")
+	    public String chart(){
+	        return "admin/chart";
+	    }
 	    @RequestMapping("/insertMessage")   //增加公告
 	    @SystemLog(module="公告模块",methods="增加公告")
 	    public String insertMessage(){

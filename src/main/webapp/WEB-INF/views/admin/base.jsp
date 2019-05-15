@@ -12,7 +12,8 @@
 	<meta http-equiv="Cache-Control" content="no-siteapp" />
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/weadmin.css">
-	
+	  <!-- 引入 ECharts 文件 -->
+    <script src="${pageContext.request.contextPath}/echarts/echarts.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/layui/css/layui.css">
 </head>
 
@@ -33,14 +34,7 @@
       <li class="layui-nav-item ">
          <a href="<%=basePath%>admin/message" style="font-size:15px;">公告管理</a>
      </li>
-      <li class="layui-nav-item">
-        <a href="javascript:;">其它</a>
-        <dl class="layui-nav-child">
-          <dd><a href="">邮件管理</a></dd>
-          <dd><a href="">消息管理</a></dd>
-          <dd><a href="">授权管理</a></dd>
-        </dl>
-      </li>
+     
     </ul>
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item" style="float:right; "><a href="<%=basePath%>exit" style="font-size: 20px;">退出登录</a></li>

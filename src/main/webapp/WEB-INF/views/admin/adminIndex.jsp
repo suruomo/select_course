@@ -21,5 +21,6 @@
 	
     </div>
   </div>
+  </div>
 </rapid:override>
 <%@ include file="base.jsp"%>
