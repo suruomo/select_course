@@ -49,9 +49,9 @@
             ,toolbar: '#toolbarDemo'  //开启表格头部工具栏区域
             ,cols: [[
                  {type: 'checkbox', fixed: 'left'}
-                ,{field:'id', title:'编号', width:110, fixed: 'left', sort: true}
+                ,{field:'id', title:'编号', width:80, fixed: 'left', sort: true}
                 ,{field:'title', title:'标题', width:120, edit: 'text'}
-                ,{field:'content', title:'内容', width:500}
+                ,{field:'content', title:'内容', width:400}
                 ,{field:'user', title:'发布人', width:100}
                 ,{field:'receiver', title:'接受对象', width:100}
                 ,{field:'date', title:'发布日期', width:200}                         

@@ -69,7 +69,7 @@
           <a href="javascript:;" style="font-size:20px;">课程统计</a>
           <dl class="layui-nav-child">
            <dd><a href="<%=basePath%>admin/courseStatistic">选课统计</a></dd> 
-           <dd><a href="<%=basePath%>admin/courseStatistic">可视化图表</a></dd> 
+           <dd><a href="<%=basePath%>admin/scoreStatistic">成绩统计</a></dd> 
           </dl>
         </li>
          <li class="layui-nav-item ">

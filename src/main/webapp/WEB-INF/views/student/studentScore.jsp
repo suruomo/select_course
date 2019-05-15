@@ -10,13 +10,6 @@
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
     %>
-        <form class="layui-form" style="margin:10px 15px 10px;">
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button id="out" type="button" class="layui-btn layui-btn-radius"style="float:right;">导出成绩</button>
-            </div>
-        </div>
-    </form>
     <p style="color:red; margin-top:10px; font-size:15px;">${msg}</p>
     <table class="layui-table" style="margin-top:15px;">
         <colgroup>

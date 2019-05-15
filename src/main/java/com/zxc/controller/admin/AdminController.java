@@ -279,6 +279,27 @@ public class AdminController {
 	        courseService.insertProLimit(det[2],courseId);
 	        return "admin/courseList";
 	    }
+	    @RequestMapping("/scoreList")   
+	    @SystemLog(module="成绩模块",methods="成绩页面")
+	    public String scoreList(Integer id,Model model){     
+	    	model.addAttribute("course",courseService.queryCourse(id));  
+	        return "admin/scoreList";   
+	    }
+	    @RequestMapping("/scoreList.Action")  
+	    @SystemLog(module="成绩模块",methods="成绩表格统计")
+	    public @ResponseBody Map<String, Object> scoreListAction(Integer classId,Model model){
+	    	List<Student> proList=courseService.queryStuByCourseId(classId);
+	    	Map<String, Object> map = new HashMap<>();
+	    	int count=proList.size();
+	    	//用json来传值     	
+	    	JSONArray json = JSONArray.fromObject(proList);
+            //*****转为layui需要的json格式，必须要这一步，  
+	    	map.put("code",0);
+	    	map.put("msg","");
+	    	map.put("data",json);
+	    	map.put("count",count);   	
+	        return map;   //根据id查找学生信息
+	    }
 	    @RequestMapping("/updateCourse")  
 	    @SystemLog(module="课程模块",methods="修改课程信息页面")
 	    public String updateCourse(Integer id,Integer teaid,Model model){
@@ -578,6 +599,11 @@ public class AdminController {
 	    @SystemLog(module="公告模块",methods="增加公告")
 	    public String insertMessage(){
 	        return "admin/insertMessage";
+	    }
+	    @RequestMapping("/scoreStatistic")   //成绩统计
+	    @SystemLog(module="成绩模块",methods="成绩统计")
+	    public String scoreStatistic(){
+	        return "admin/scoreStatistic";
 	    }
 	    @RequestMapping("/changePass")   //修改密码
 	    @SystemLog(module="管理员模块",methods="修改密码-数据库")
