@@ -48,9 +48,9 @@ public class LogAopAction {
          }
          //获取系统时间
          String time = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date());
-         log.setData(time);;
+         log.setData(time);
          
-         //获取系统ip,这里用的是我自己的工具类,可自行网上查询获取ip方法
+         //获取用户名
          
          String username = (String) request.getSession().getAttribute("username");
          log.setUsername(username);

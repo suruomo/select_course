@@ -51,26 +51,26 @@
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
        <li class="layui-nav-item layui-nav-itemd" >
-        <a href="<%=basePath%>admin/studentList" style="font-size:20px;">学生管理</a>
+        <a href="<%=basePath%>admin/studentList" style="font-size:20px;"><i class="layui-icon " style="font-size:18px;" >&#xe66f;</i>&nbsp;学生管理</a>
        </li>
         <li class="layui-nav-item layui-nav-itemd">
-          <a href="<%=basePath%>admin/teacherList" style="font-size:20px;">教师管理</a>
+          <a href="<%=basePath%>admin/teacherList" style="font-size:20px;"><i class="layui-icon " style="font-size:18px;" >&#xe770;</i>&nbsp;教师管理</a>
         </li>
         <li class="layui-nav-item layui-nav-itemd">
-          <a href="<%=basePath%>admin/courseList" style="font-size:20px;">课程管理</a>
+          <a href="<%=basePath%>admin/courseList" style="font-size:20px;"><i class="layui-icon " style="font-size:18px;" >&#xe6b2;</i>&nbsp;课程管理</a>
         </li>
         <li class="layui-nav-item layui-nav-itemd">
-          <a href="javascript:;" style="font-size:20px;">课程统计</a>
+          <a href="javascript:;" style="font-size:20px;"><i class="layui-icon " style="font-size:18px;" >&#xe62a;</i>&nbsp;课程统计</a>
           <dl class="layui-nav-child">
-           <dd><a href="<%=basePath%>admin/courseStatistic">选课统计</a></dd> 
-           <dd><a href="<%=basePath%>admin/scoreStatistic">成绩统计</a></dd> 
+           <dd><a href="<%=basePath%>admin/courseStatistic"><i class="layui-icon " style="font-size:18px;" >&#xe621;</i>&nbsp;选课统计</a></dd> 
+           <dd><a href="<%=basePath%>admin/scoreStatistic"><i class="layui-icon " style="font-size:18px;" >&#xe60a;</i>&nbsp;成绩统计</a></dd> 
           </dl>
         </li>
          <li class="layui-nav-item ">
-         <a href="<%=basePath%>admin/courseCheck" style="font-size:20px;">课程审核</a>
+         <a href="<%=basePath%>admin/courseCheck" style="font-size:20px;"><i class="layui-icon " style="font-size:18px;" >&#xe615;</i>&nbsp;课程审核</a>
         </li>
      <li class="layui-nav-item ">
-         <a href="<%=basePath%>admin/log" style="font-size:20px;">日志管理</a>
+         <a href="<%=basePath%>admin/log" style="font-size:20px;"><i class="layui-icon " style="font-size:18px;" >&#xe637;</i>&nbsp;日志管理</a>
      </li>
       </ul>
     </div>

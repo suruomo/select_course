@@ -107,8 +107,7 @@
 		    	    	// location.reload();
 		               }
 		    	});
-		     }else if(obj.event === 'chart'){   //图表统计
-		    	
+		     }else if(obj.event === 'chart'){   //图表统计 	
 		    window.location.href = "<%=basePath%>admin/chart";	 	 
 		    } 
 		 });
