@@ -13,8 +13,8 @@ public class PageServiceImpl implements PageService {
         Page paging=new Page();
         paging.setCurrentPage(page);
         int count = list.size();
-        paging.setTotalPage(count % 6 == 0 ? count / 6 : count / 6 + 1);
-        paging.setPageSize(6);
+        paging.setTotalPage(count % 10 == 0 ? count / 10 : count / 10 + 1);
+        paging.setPageSize(10);
         paging.setStar((paging.getCurrentPage() - 1) * paging.getPageSize());
         paging.setDataList(list.subList(paging.getStar(), count - paging.getStar() > paging.getPageSize() ? paging.getStar() + paging.getPageSize() : count));
         return paging;

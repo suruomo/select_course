@@ -35,11 +35,11 @@
         <dl class="layui-nav-child">
           <dd><a href="<%=basePath%>student/courseList?page=1">所有选课</a></dd>
           <dd><a href="<%=basePath%>student/selectCourse">分类选课</a></dd>
-          <dd><a href="<%=basePath%>student/checkedCourseList">查看选课信息</a></dd>
+          <dd><a href="<%=basePath%>student/checkedCourseList?page=1">查看选课信息</a></dd>
         </dl>
       </li>
       <li class="layui-nav-item ">
-         <a href="<%=basePath%>student/studentScore" style="font-size: 20px;">查看成绩</a>
+         <a href="<%=basePath%>student/studentScore?page=1" style="font-size: 20px;">查看成绩</a>
       </li>
      
     </ul>

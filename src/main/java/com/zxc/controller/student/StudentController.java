@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +44,7 @@ public class StudentController {
     }
     @RequestMapping("/studentScore")   //查看个人成绩
     @SystemLog(module="学生模块",methods="查看个人成绩")
-    public String studentScore(Model model,HttpServletRequest request){
+    public String studentScore(@Param("page") int page,Model model,HttpServletRequest request){
     	 List<Course> cor_list=courseService.queryStuCourse((int)request.getSession().getAttribute("id"));
          model.addAttribute("paging",pageService.subList(1,cor_list));
          model.addAttribute("teaList",userService.queryAllTeacher());
@@ -125,6 +126,7 @@ public class StudentController {
         if(courseService.checkStuPro(classId,(int)request.getSession().getAttribute("id"))){   //检查学生所在专业是否可选当前课程
             model.addAttribute("course",courseService.queryCourse(classId));
             System.out.println("详情的"+flag);
+            System.out.println("进入选课");
             model.addAttribute("flag",flag);
             return "student/courseDetail";   //进入课程详情页
    
@@ -201,7 +203,7 @@ public class StudentController {
 
     @RequestMapping("/checkedCourseList")      //通过stuid查找已选课程列表
     @SystemLog(module="学生模块",methods="查看已选课程")
-    public String checkedCourseList(Model model,HttpServletRequest request){
+    public String checkedCourseList(@Param("page") int page,Model model,HttpServletRequest request){
     	List<Course> cor_list=courseService.queryStuCourse((int)request.getSession().getAttribute("id"));
         model.addAttribute("paging",pageService.subList(1,cor_list));
         model.addAttribute("teaList",userService.queryAllTeacher());

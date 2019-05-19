@@ -10,7 +10,7 @@
     
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-        int stuId=(int)request.getSession().getAttribute("stuid");
+        int stuId=(int)request.getSession().getAttribute("id");
     %>
     <div>
     <input type="hidden" id="flag" value='${flag}'>

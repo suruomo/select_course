@@ -99,10 +99,14 @@
     	var form = layui.form; 
     	form.render();  
       });
+      function goPage(page) {
+    	    window.location.href = "<%=basePath%>student/studentScore?page=" + page;
+    	      }
     </script>
 </rapid:override>
-
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 <script>
+     
         $(function () {
             $("#out").click(function () { 
                 window.location.href="outputScore";  

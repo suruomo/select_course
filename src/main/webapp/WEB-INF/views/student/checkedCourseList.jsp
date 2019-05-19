@@ -110,6 +110,9 @@
                 return;
             }
         }
+        function goPage(page) {
+    	    window.location.href = "<%=basePath%>student/checkedCourseList?page=" + page;
+    	      }
     </script>
 </rapid:override>
 <%@ include file="base.jsp" %>
