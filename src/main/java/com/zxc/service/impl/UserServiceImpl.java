@@ -8,6 +8,9 @@ import com.zxc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -18,7 +21,18 @@ public  class UserServiceImpl implements UserService {
 
     @Override
     public int checkAccount(int id, String pass) {     //检查账户和密码是否正确
-    	
+    	 String str="";
+    	//MD5加密验证
+    	 try {
+             MessageDigest md = MessageDigest.getInstance("md5");
+             //生成随机玩意，除非暴力破解否则不可逆
+             byte[] bytes = md.digest(pass.getBytes());
+             str = Base64.getEncoder().encodeToString(bytes);
+             System.out.println("加密后"+str);
+         } catch (NoSuchAlgorithmException e) {
+             e.printStackTrace();
+             System.out.println("错误");
+         }
         if(Integer.toString(id).charAt(4)=='1'){   //若账号第四位是1则是老师账号
             if(userDao.selectTeaById(id).getTeaPass().equals(pass))  //验证正确
                 return 2;
@@ -32,7 +46,7 @@ public  class UserServiceImpl implements UserService {
                  return 0;
         }
         else {
-            if(userDao.selectStuById(id).getStuPass().equals(pass))   //否则是学生账号
+            if(userDao.selectStuById(id).getStuPass().equals(str))   //否则是学生账号
                 return 1;
             else
                 return 0;
@@ -61,6 +75,20 @@ public  class UserServiceImpl implements UserService {
 
     @Override
     public void changeStuPass(Student student) {
+    	System.out.println("进入修改密码S");
+    	System.out.println("新密码"+student.getStuPass());
+    	//MD5加密
+    	 try {
+             MessageDigest md = MessageDigest.getInstance("md5");
+             //生成随机玩意，除非暴力破解否则不可逆
+             byte[] bytes = md.digest(student.getStuPass().getBytes());
+             String str = Base64.getEncoder().encodeToString(bytes);
+             System.out.println("加密后"+str);
+             student.setStuPass(str);
+         } catch (NoSuchAlgorithmException e) {
+             e.printStackTrace();
+             System.out.println("错误");
+         }
         userDao.updateStuPass(student);
     }
 
