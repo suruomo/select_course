@@ -46,9 +46,8 @@ public class StudentController {
     @SystemLog(module="学生模块",methods="查看个人成绩")
     public String studentScore(@Param("page") int page,Model model,HttpServletRequest request){
     	 List<Course> cor_list=courseService.queryStuCourse((int)request.getSession().getAttribute("id"));
-         model.addAttribute("paging",pageService.subList(1,cor_list));
-         model.addAttribute("teaList",userService.queryAllTeacher());
-         model.addAttribute("insList",courseService.queryAllIns());
+        model.addAttribute("paging",pageService.subList(page,cor_list));
+         System.out.println("成功");
         return "student/studentScore";
     }
     
@@ -125,7 +124,6 @@ public class StudentController {
     public String courseDetail(@Param("flag") int flag,@Param("classId") int classId,Model model,HttpServletRequest request){
         if(courseService.checkStuPro(classId,(int)request.getSession().getAttribute("id"))){   //检查学生所在专业是否可选当前课程
             model.addAttribute("course",courseService.queryCourse(classId));
-            System.out.println("详情的"+flag);
             System.out.println("进入选课");
             model.addAttribute("flag",flag);
             return "student/courseDetail";   //进入课程详情页

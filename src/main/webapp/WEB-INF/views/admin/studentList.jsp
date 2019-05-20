@@ -15,13 +15,7 @@
         <form class="layui-form">
         <div class="layui-form-item">
             <div class="layui-input-block"> 
-                <div class="layui-input-inline" style="float:left; width:200px;">
-                   <input type="text" id="search" class="layui-input" 
-                       placeholder="请输入学生学号">
-                </div>
-                <div class="layui-input-inline">
-                    <button type="button" id="tea" class="layui-btn layui-btn-radius " style="margin-left:0px;">查询</button>
-                </div>
+               
                 <div class="layui-input-inline">
                      <select class="layui-select" id="ins">
                             <option value="1001">计算机学院</option>
@@ -133,7 +127,8 @@
        	                      //执行重载 
                              table.reload('studentList', {
                                  where: {
-                                     insId:$("#ins option:selected").val()
+                                     insId:$("#ins option:selected").val(),
+                                   
                                 }
                                  , page: {
                                  curr: 1
@@ -147,6 +142,8 @@
        	                var type = $(this).data('type');
        	                active[type] ? active[type].call(this) : '';
        	            });
+      	            //这个是用于创建点击事件的实例
+      	          
   	  //监听行工具事件
 		table.on('tool(test)', function(obj){  //注：tool是工具条事件名，demo是table原始容器的属性 lay-filter="对应的值"
 		    var data = obj.data;   //获得当前行数据  

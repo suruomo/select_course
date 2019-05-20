@@ -119,17 +119,19 @@ public class AdminController {
             int after = page * limit;
             System.out.println(before+","+after);
             String ins=request.getParameter("insId");
-            System.out.println(ins);
+            System.out.println("筛选学院是"+ins);
             List<Student> stuList=new ArrayList<>();
+            Student student=new Student();
             int count=0;
             if(ins==null) {
             	stuList=userService.queryAllStu();
             	count=stuList.size();
             }
             else {
-            	stuList=userService.queryAllStuByIns(Integer.parseInt(ins));
+            	 stuList=userService.queryAllStuByIns(Integer.parseInt(ins));
             	 count=stuList.size();
             }
+
 	    	Map<String, Object> map = new HashMap<>();
 	    	//用json来传值     	
 	    	JSONArray json = JSONArray.fromObject(stuList);

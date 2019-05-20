@@ -15,13 +15,7 @@
         <form class="layui-form">
         <div class="layui-form-item">
             <div class="layui-input-block"> 
-                <div class="layui-input-inline" style="float:left; width:200px;">
-                   <input type="text" id="search" class="layui-input" 
-                       placeholder="请输入课程编号">
-                </div>
-                <div class="layui-input-inline">
-                    <button type="button" id="tea" class="layui-btn layui-btn-radius " style="margin-left:0px;">查询</button>
-                </div>
+               
                 <div class="layui-input-inline">
                      <select class="layui-select" id="classCheck">
                             <option value="审核通过">审核通过</option>

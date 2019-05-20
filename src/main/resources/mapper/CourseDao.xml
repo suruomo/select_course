@@ -49,7 +49,6 @@
         className=#{className},
         classNum=#{classNum},
         teaId=#{teaId},
-        classChooseNum=#{classChooseNum},
         type=#{type},
         credit=#{credit},
         introduction=#{introduction},

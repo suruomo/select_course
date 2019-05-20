@@ -88,7 +88,6 @@ public class CourseServiceImpl implements CourseService {
         course.setTeaId(teaid);
         course.setItem(item);
         course.setClassCheck(classCheck);;
-        course.setClassChooseNum(course.getClassChooseNum());
         course.setClassNum(Integer.parseInt(num));
         course.setClassId(id);
         courseDao.updateCourse(course);
@@ -250,6 +249,7 @@ public class CourseServiceImpl implements CourseService {
         List<Integer> classid_list=courseDao.queryCourseIdByStuId(stuId);    //已选课程id列表
         List<Course> course_list=new ArrayList<>();   //所选总课程列表
         List<Course> cList=new ArrayList<>(); //该选但未选的专业必修课
+        System.out.println("进来了Service");
         List<Integer> limitId=courseDao.queryClassByProId(userDao.selectStuById(stuId).getProId()); //查找该专业可选的课程id列表
         for(int i:limitId) {
         	Course course=courseDao.queryCourseInfoById(i);//查找课程信息
