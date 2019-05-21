@@ -30,7 +30,7 @@
     </style>
 </head>
 <body>
-<div class="formdiv" style="height:100%;background-size:cover;background-image:url('${pageContext.request.contextPath}/static/images/bg1.jpg')">
+<div class="formdiv" style="height:100%;background-size:cover;background-image:url('${pageContext.request.contextPath}/static/images/HyNiai43z.jpg')">
     <form id="contact" action="<%=basePath%>check" method="post">
         <h3>网上选课系统</h3>
         <h4>欢迎使用</h4>
