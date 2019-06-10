@@ -79,6 +79,13 @@ public class TeacherController {
         return "teacher/courseList";
     }
 
+    @RequestMapping("/scoreList")   
+    @SystemLog(module="教师模块",methods="查看课程列表")
+    public String scoreList(@Param("page") int page, Model model,HttpServletRequest request){
+    	model.addAttribute("teacher", userService.getTeaInfoById((int)request.getSession().getAttribute("id")));
+        model.addAttribute("paging",pageService.subList(page,courseService.queryAllById((int)request.getSession().getAttribute("id"))));
+        return "teacher/scoreList";
+    }
     @RequestMapping("/insertCourse")    //录入非体育课程
     @SystemLog(module="教师模块",methods="录入课程页面")
     public String insertCourse(Model model){

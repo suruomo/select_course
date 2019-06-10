@@ -74,7 +74,6 @@
                       <c:if test="${course.classCheck=='审核通过' ||course.classCheck=='审核不通过'}">
                         <button class="layui-btn layui-btn-radius" onclick="edit(${course.classId})">修改</button>
                         <button class="layui-btn layui-btn-radius layui-btn-danger" onclick="delete_fun(${course.classId})">删除</button>
-                        <button class="layui-btn layui-btn-radius layui-btn-primary" onclick="detail_fun(${course.classId})">录入成绩</button>
                       </c:if>
                       <c:if test="${course.classCheck=='待审核'}">
                         <label class="layui-form-label">无法操作</label>
@@ -139,9 +138,7 @@
                 return;
             }
         }
-        function detail_fun(classId) {
-            window.location.href="<%=basePath%>teacher/detailCourse?courseid="+classId+"&page="+1;
-        }
+      
     </script>
 </rapid:override>
 <%@ include file="base.jsp" %>
