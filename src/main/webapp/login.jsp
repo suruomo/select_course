@@ -44,7 +44,13 @@
             <input type="password" name="userpass" placeholder="密码"  >
         </fieldset>
         <fieldset>   
-            <input name="sub" type="button" onclick="tijiao()" id="contact-submit" value="登录" />
+            <input name="sub" type="button"  id="contact-submit" value="登录" />
+        </fieldset>
+        <fieldset>
+        <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    <h5 class="copyright">Copyright ©2019 网上选课系统 by suruomo</h5>
+  </div>
         </fieldset>
     </form>
 

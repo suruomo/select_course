@@ -2,6 +2,7 @@ package com.zxc.controller.student;
 
 import com.zxc.controller.common.LoginController;
 import com.zxc.controller.log.SystemLog;
+import com.zxc.dao.CourseDao;
 import com.zxc.model.Course;
 import com.zxc.model.Student;
 import com.zxc.service.CourseService;
@@ -47,14 +48,12 @@ public class StudentController {
     public String studentScore(@Param("page") int page,Model model,HttpServletRequest request){
     	 List<Course> cor_list=courseService.queryStuCourse((int)request.getSession().getAttribute("id"));
         model.addAttribute("paging",pageService.subList(page,cor_list));
-         System.out.println("成功");
         return "student/studentScore";
     }
     
     @RequestMapping("/studentInfo")    //查找学生个人信息
     @SystemLog(module="学生模块",methods="查看个人信息")
     public String studentInfo(@RequestParam("stuid") String id, Model model){
-    	System.out.println(id);
         model.addAttribute("student",userService.getStuInfoById(Integer.parseInt(id)));
         return "student/studentInfo";
     }
@@ -75,19 +74,14 @@ public class StudentController {
     @RequestMapping("/professionCourse")    //专业课页面
     @SystemLog(module="学生模块",methods="专业课选课")
     public String professionCourse(Model model,HttpServletRequest request){
-       // model.addAttribute("courseList",courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("stuid")));
         List<Course> cor_list=courseService.queryStuCourseByProfession((int)request.getSession().getAttribute("id"));
         model.addAttribute("paging",pageService.subList(1,cor_list));
-        model.addAttribute("teaList",userService.queryAllTeacher());
-        model.addAttribute("insList",courseService.queryAllIns());
         return "student/professionCourse";
     }
     @RequestMapping("/tongShiCourse")    //通识课页面
     @SystemLog(module="学生模块",methods="通识课选课")
     public String tongShiCourse(@Param("page") int page, Model model,HttpServletRequest request){
         model.addAttribute("paging",pageService.subList(page,courseService.queryTongShi()));
-        model.addAttribute("teaList",userService.queryAllTeacher());
-        model.addAttribute("insList",courseService.queryAllIns());
         return "student/tongShiCourse";
     }
 
@@ -212,11 +206,15 @@ public class StudentController {
     @RequestMapping("/searchCourse")   //通过courseid查找课程，继续选课界面
     public String searchCourse(@Param("courseid") int courseid, Model model){
     	System.out.println(courseid);
-        List<Course> cor_list=new ArrayList<>();
-        cor_list.add(courseService.queryCourse(courseid));
-        model.addAttribute("paging",pageService.subList(1,cor_list));
-        model.addAttribute("teaList",userService.queryAllTeacher());
-        model.addAttribute("insList",courseService.queryAllIns());
+    	if(courseService.queryCourse(courseid)==null) {
+    		  model.addAttribute("alert","该课程不存在!");
+    	}
+    	else {
+    		List<Course> cor_list=new ArrayList<>();
+            cor_list.add(courseService.queryCourse(courseid));
+            model.addAttribute("paging",pageService.subList(1,cor_list));
+    	}
+        
         return "student/courseList";
     }
     @RequestMapping("/searchTea")   //通过className查找所有挂牌课程，继续选课界面

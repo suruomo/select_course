@@ -12,14 +12,11 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
-
+       
     <!--aop执行操作的类-->
     <aop:aspectj-autoproxy proxy-target-class="true" />
-
-       <!--aop全局事务管理(下面基于controller层)-->
-    <bean id="logAopAction" class="com.zxc.controller.log.LogAopAction"/>
-  
-      
+    <!--aop全局事务管理(下面基于controller层)-->
+    <bean id="logAopAction" class="com.zxc.controller.log.LogAopAction"/>  
     <!-- 扫描web相关的bean -->
     <context:component-scan base-package="com.zxc.controller"/>
     <!-- 开启SpringMVC注解模式 -->

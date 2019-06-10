@@ -28,7 +28,8 @@
             </div>
         </div>
     </form>
-    <p style="color:red; margin-top:10px; font-size:15px;">${msg}</p>
+    <p style="color:red; margin-top:10px; font-size:30px;">${msg}</p>
+    <p style="color:red; margin-top:10px; font-size:30px;">${alert}</p>
     <table class="layui-table" style="margin-top:15px;">
         <colgroup>
             <col width="10">
@@ -149,11 +150,6 @@
       });
     </script>
     <script>
-        function search() {
-            var courseid =$("#search").val()
-            window.location.href = "<%=basePath%>student/searchCourse?courseid=" + courseid;
-        }
-
         function goPage(page) {
             window.location.href = "<%=basePath%>student/courseList?page=" + page;
         }
@@ -184,8 +180,14 @@
                 }
             });
             $("#sea").click(function () {
-            	 var courseid =$("#search").val()
-                 window.location.href = "<%=basePath%>student/searchCourse?courseid=" + courseid;
+            	 var courseid =$("#search").val();
+            	 if(courseid==""){
+            		 layer.msg('搜索项为空！', {icon: 2});
+            	 }
+            	 else{
+            		 window.location.href = "<%=basePath%>student/searchCourse?courseid=" + courseid;
+            	 }
+                 
             });
 
         })

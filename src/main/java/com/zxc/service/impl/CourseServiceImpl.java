@@ -202,12 +202,17 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course queryCourse(int id) {    //查找课程详情
         Course course=courseDao.selectCourseByClassId(id);     //课程对象
-        List<Integer> limit_list=courseDao.selectProIdByClassId(id);   //查找开课学院
-        course.setClassLimitProName(new ArrayList<>());
-        for(Integer i:limit_list){
-            course.getClassLimitProName().add(courseDao.selectNameByProId(i));
+        if(course==null) {            //不存在
+        	return course;
         }
-        course.setTeaName(courseDao.selectTeaNameByTeaId(course.getTeaId()));
+        else {
+        	List<Integer> limit_list=courseDao.selectProIdByClassId(id);   //查找开课学院
+            course.setClassLimitProName(new ArrayList<>());
+            for(Integer i:limit_list){
+            course.getClassLimitProName().add(courseDao.selectNameByProId(i));
+            }
+            course.setTeaName(courseDao.selectTeaNameByTeaId(course.getTeaId()));
+        }
         return course;
     }
 

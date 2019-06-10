@@ -7,7 +7,7 @@
 <head>
     <rapid:block name="head"></rapid:block>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/weadmin.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/layui/css/layui.css">

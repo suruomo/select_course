@@ -50,7 +50,6 @@ public class LogAopAction {
          log.setData(time);
          
          //获取用户名
-         
          String username = (String) request.getSession().getAttribute("username");
          log.setUsername(username);
          
