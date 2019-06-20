@@ -46,7 +46,7 @@ public class StudentController {
     @RequestMapping("/studentScore")   //查看个人成绩
     @SystemLog(module="学生模块",methods="查看个人成绩")
     public String studentScore(@Param("page") int page,Model model,HttpServletRequest request){
-    	 List<Course> cor_list=courseService.queryStuCourse((int)request.getSession().getAttribute("id"));
+    	List<Course> cor_list=courseService.queryStuCourse((int)request.getSession().getAttribute("id"));
         model.addAttribute("paging",pageService.subList(page,cor_list));
         return "student/studentScore";
     }

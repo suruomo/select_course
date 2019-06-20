@@ -18,17 +18,18 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.zxc.model.LogEntity;
 import com.zxc.service.LogService;
  
- 
 @Aspect
 public class LogAopAction {
     //注入service,用来将日志信息保存在数据库
     @Resource
     private LogService logservice;
     
-     //配置接入点,如果不知道怎么配置,可以百度一下规则
+     //配置接入点,切点实在空方法上去配置的，当然这是简便写法，因为这样的话，后面方法上面的切面就直接可以用户这个空的方法名去代替这样就避免了重复去写契入点
     @Pointcut("execution(* com.zxc.controller..*.*(..))") 
      private void controllerAspect(){}//定义一个切入点
- 
+    /**
+     * 环绕通知（Around advice） ：包围一个连接点的通知，类似Web中Servlet规范中的Filter的doFilter方法。可以在方法的调用前后完成自定义的行为，也可以选择不执行。
+     */
      @Around("controllerAspect()")
      public Object around(ProceedingJoinPoint pjp) throws Throwable {
          //常见日志实体对象
